@@ -64,19 +64,14 @@
                         <span class="align-middle">English</span>
                     </a>
                 </li>
-                {{-- <li>
-                <a class="dropdown-item " href="{{url('lang/fr')}}" data-language="fr">
-                  <span class="align-middle">French</span>
-                </a>
-              </li>
-              <li> --}}
                 <a class="dropdown-item {{ Session::get('locale') == 'ar' ? 'active' : '' }}"
                     href="{{ url('lang/ar') }}" data-language="de">
                     <span class="align-middle">Arabic</span>
                 </a>
+                
         </li>
     </ul>
-    </li>
+  
 
     <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
@@ -129,11 +124,11 @@
                             </div>
                         @endif
                         @if (auth('student')->check())
-                        <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">{{ auth('student')->user()->name }}</span>
-                            {{-- <small class="text-muted">{{ auth('student')->user()->email }}</small> --}}
-                        </div>
-                    @endif
+                            <div class="flex-grow-1">
+                                <span class="fw-semibold d-block">{{ auth('student')->user()->name }}</span>
+                                {{-- <small class="text-muted">{{ auth('student')->user()->email }}</small> --}}
+                            </div>
+                        @endif
 
 
                     </div>
@@ -152,18 +147,18 @@
                 </a>
             </li> --}}
             @if (auth('student')->check())
-            <li>
-                <a class="dropdown-item" href="{{ route('student.account.index') }}">
-                    <i class="bx bx-user me-2"></i>
-                    <span class="align-middle">{{ trans('app.profile') }}</span>
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-item" href="{{ route('student.account.index') }}">
-                    <i class="fa fa-star"></i>
-                    <span class="align-middle">{{ trans('app.review') }}</span>
-                </a>
-            </li>
+                <li>
+                    <a class="dropdown-item" href="{{ route('student.account.index') }}">
+                        <i class="bx bx-user me-2"></i>
+                        <span class="align-middle">{{ trans('app.profile') }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{{ route('student.account.index') }}">
+                        <i class="fa fa-star"></i>
+                        <span class="align-middle">{{ trans('app.review') }}</span>
+                    </a>
+                </li>
             @endif
 
             {{-- <li>

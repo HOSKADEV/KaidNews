@@ -1,3 +1,9 @@
+
+@php
+$isMenu = false;
+$navbarHideToggle = false;
+@endphp
+
 @extends('layouts/contentNavbarLayout')
 
 @section('title', trans('student.profile'))
@@ -5,6 +11,8 @@
 @section('page-script')
     <script src="{{ asset('assets/js/pages-account-settings-account.js') }}"></script>
 @endsection
+
+
 
 @section('content')
     <div class="row">

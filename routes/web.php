@@ -26,11 +26,6 @@ use App\Http\Controllers\Dashboard\Teacher\TeacherController;
 |
 */
 
-// Main Page Route
-// ->middleware('auth')
-// Route::get('/', 'App\Http\Controllers\dashboard\Analytics@index')->name('dashboard-analytics')->middleware('auth');
-
-
 // ['middleware' => ['auth']],
 Route::group([], function () {
     Route::get('/theme/{theme}', function ($theme) {
@@ -78,9 +73,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth:admin')->group(
 
 Route::name('student.')->middleware('auth:student')->group(function () {
     Route::get('student',[StudentDashboardController::class , 'index']);
-
     Route::resource('account', AccountController::class);
-
 });
 
 Route::name('teacher.')->middleware('auth:teacher')->group(function () {
