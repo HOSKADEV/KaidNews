@@ -43,7 +43,7 @@ class UpdateStudentRequest extends FormRequest
 
             'phone' => 'numeric|unique:students,phone,'.$this->id,
             'email' => 'email|unique:students,email,'.$this->id,
-            'password' => 'sometimes|min:8:max:255',
+            'password' => 'sometimes|min:8|max:255',
             'password_confirmation' => 'sometimes|same:password|min:8|max:255'
         ];
     }
