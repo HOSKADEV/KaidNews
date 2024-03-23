@@ -261,7 +261,7 @@
                                         <div class="col-sm-12 col-md-6 d-flex justify-content-start"></div>
                                         <div class="col-sm-12 col-md-6 d-flex justify-content-end">
                                             <button type="button"
-                                                class="btn btn-primary btn-next">{{ trans('auth/student.next-to-education') }}</button>
+                                                class="btn btn-primary btn-next">{{ trans('auth/student.next') }}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -299,11 +299,11 @@
                                     <div class="f1-buttons col-12 mt-3 d-flex">
                                         <div class="col d-flex justify-content-start">
                                             <button type="button"
-                                                class="btn btn-secondary btn-previous">{{ trans('auth/student.previous-to-personal') }}</button>
+                                                class="btn btn-secondary btn-previous">{{ trans('auth/student.previous') }}</button>
                                         </div>
                                         <div class="col d-flex justify-content-end">
                                             <button type="button"
-                                                class="btn btn-primary btn-next">{{ trans('auth/student.next-to-account') }}</button>
+                                                class="btn btn-primary btn-next">{{ trans('auth/student.next') }}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -366,11 +366,11 @@
                                     <div class="f1-buttons col-12 mt-3 d-flex">
                                         <div class="col d-flex justify-content-start">
                                             <button type="button"
-                                                class="btn btn-secondary btn-previous">{{ trans('auth/student.previous-to-education') }}</button>
+                                                class="btn btn-secondary btn-previous">{{ trans('auth/student.previous') }}</button>
                                         </div>
                                         <div class="col d-flex justify-content-end">
                                             <button type="button" class="btn btn-primary btn-next"
-                                                id="next-review-step">{{ trans('auth/student.next-to-review') }}</button>
+                                                id="next-review-step">{{ trans('auth/student.next') }}</button>
                                         </div>
                                     </div>
                                 </div>

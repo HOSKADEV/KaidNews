@@ -57,5 +57,7 @@ return [
     'previous-to-education' => 'العودة إلى المعلومات الدراسية',
     'previous-to-account'   => 'العودة إلى معلومات تسجيل الدخول',
 
+    'previous' => 'رجوع',
+    'next' => 'مواصلة',
     'accept' => 'حفظ البيانات'
 ];
