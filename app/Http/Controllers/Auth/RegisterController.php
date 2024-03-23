@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use App\Repositories\Student\StudentRepository;
 use App\Http\Requests\Auth\RegisterStudentRequest;
 
@@ -31,6 +32,7 @@ class RegisterController extends Controller
 
         auth()->guard('student')->login($student);
 
-        return to_route('dashboard.student');
+        // return to_route('dashboard.student');
+        return redirect()->intended(RouteServiceProvider::STUDENT);
     }
 }
