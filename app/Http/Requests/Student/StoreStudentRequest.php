@@ -38,11 +38,11 @@ class StoreStudentRequest extends FormRequest
             'photo' => 'nullable|mimes:jpeg,png,jpg',
             'status' => 'nullable|numeric|between:1,2',
 
-            'registration_number' => 'required|numeric|unique:students,registration_number'.$this->id,
+            'registration_number' => 'required|numeric|unique:students,registration_number',
             'group' => 'required|numeric',
 
-            'phone' => 'required|numeric|unique:students,phone'.$this->id,
-            'email' => 'required|email|unique:students,email'.$this->id,
+            'phone' => 'required|numeric|unique:students,phone',
+            'email' => 'required|email|unique:students,email',
             'password' => 'required|min:8|max:255',
             'password_confirmation' => 'required_with:password|same:password|min:8|max:255'
         ];
