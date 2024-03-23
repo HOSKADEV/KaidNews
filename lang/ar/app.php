@@ -7,7 +7,7 @@ return [
 
     'all' => 'الكل',
 
-    'create'    => 'إظافة',
+    'create'    => 'إضافة',
     'edit'      => 'تعديل',
     'update'    => 'تحديث',
     'delete'    => 'حذف',
