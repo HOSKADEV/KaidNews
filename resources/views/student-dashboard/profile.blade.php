@@ -24,6 +24,7 @@ $navbarHideToggle = false;
                     <form  method="POST" action="{{ route('student.account.update','test') }}">
                         @method('PUT')
                         @csrf
+                        <input type="hidden" name="id" value="{{ $student->id }}">
                         <div class="row">
                             <div class="col-sm-12 col-md-3 mb-2 ">
                                 <label for="firstname_ar"
