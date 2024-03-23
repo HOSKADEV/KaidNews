@@ -444,7 +444,7 @@
                                     <div class="f1-buttons col-12 mt-3 d-flex">
                                         <div class="col d-flex justify-content-start">
                                             <button type="button"
-                                                class="btn btn-secondary btn-previous">{{ trans('auth/student.previous-to-account') }}</button>
+                                                class="btn btn-secondary btn-previous">{{ trans('auth/student.previous') }}</button>
                                         </div>
                                         <div class="col d-flex justify-content-end">
                                             <button type="submit" id="btn-save"
