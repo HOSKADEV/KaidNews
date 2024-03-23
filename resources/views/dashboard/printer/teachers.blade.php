@@ -94,7 +94,7 @@
     <table class="table-print">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>{{ trans('print.ID') }}</th>
                 <th>{{ trans('student.lastname') }}</th>
                 <th>{{ trans('student.firstname') }}</th>
                 <th>{{ trans('teacher.email') }}</th>
