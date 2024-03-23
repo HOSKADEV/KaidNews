@@ -50,7 +50,7 @@
                     @endif
 
                     @yield('content')
-
+                    @yield('scripts')
                     <!-- pricingModal -->
                     @if ($pricingModal)
                         @include('_partials/_modals/modal-pricing')
@@ -62,7 +62,7 @@
 
                 <!-- Footer -->
                 @if ($isFooter)
-                    @include('layouts/sections/footer/footer')
+                    {{-- @include('layouts/sections/footer/footer') --}}
                 @endif
                 <!-- / Footer -->
                 <div class="content-backdrop fade"></div>

@@ -1,0 +1,123 @@
+<?php
+
+namespace App\Http\Controllers\Dashboard\Attendence;
+
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Repositories\Student\StudentRepository;
+use App\Repositories\Attendence\AttendenceRepository;
+
+class AttendenceController extends Controller
+{
+    private $students;
+    private $attendences;
+
+    /**
+     * AttendenceController constructor.
+     * @param StudentRepository $students
+     * @param AttendenceRepository $attendence
+     */
+    public function __construct(StudentRepository $students, AttendenceRepository $attendences)
+    {
+        $this->students = $students;
+        $this->attendences = $attendences;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $now = Carbon::parse(now());
+        $year = $now->year;
+        $week = $request->week == null ? $now->weekOfMonth : $request->week;
+        $month = $request->month == null ? $now->month  : $request->month;
+        // $group = $request->group == null ? null : $request->group;
+        $students = $this->students->paginate($perPage = 10, $request->search,$request->group);
+        return view('dashboard.attendence.index', compact('students', 'year', 'month', 'week'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        // $student = Student::findOrfail($request->student);
+        $student = $this->students->find($request->student);
+        if ($request->isChecked == 'true') {
+            $data = [
+                'day' => $request->day,
+                'month' => $request->month,
+                'student_id' => $request->student,
+                'week' => $request->week,
+                'year' => $request->year,
+            ];
+            $this->attendences->create($data);
+            return response()->json(['success' => trans('attendence.attendance') . " " . $student->name . " " . trans('attendence.day') . " " . trans('attendence.days.' . $request->day)]);
+        } else {
+            $this->attendences->deleteAttendence($request->student, $request->day, $request->week, $request->month, $request->year);
+            return response()->json(['success' => trans('attendence.absence') . " " . $student->name . " " . trans('attendence.day') . " " . trans('attendence.days.' . $request->day)]);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}

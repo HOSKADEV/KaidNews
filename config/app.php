@@ -180,6 +180,7 @@ return [
 
     App\Providers\EloquentRepositoryProvider::class,
     
+    App\Providers\ViewServiceProvider::class,
   ],
 
   /*

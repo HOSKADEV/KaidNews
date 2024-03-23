@@ -20,12 +20,21 @@
                 </div>
 
                 <div class="form-group col-md-4" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
-                    <form action="" method="GET" id="searchSectionForm">
-                        <label for="name" class="form-label">{{ trans('teacher.label.name') }}</label>
-                        <input type="text" id="name" name="search" value="{{ Request::get('search') }}"
+                    <form action="" method="GET" id="filterTeacherForm">
+                        <label for="search" class="form-label">{{ trans('teacher.label.name') }}</label>
+                        <input type="text" id="search" name="search" value="{{ Request::get('search') }}"
                             class="form-control input-solid"
                             placeholder="{{ Request::get('search') != '' ? '' : trans('teacher.placeholder.name') }}">
                     </form>
+                </div>
+                <div class="form-group col-md-2 mr-5 mt-4">
+                    @if (count($teachers))
+                        <button target="_blank" id="printTeacher" data-url="{{ route('dashboard.print.teachers') }}"
+                            class="btn
+                        btn-primary text-white">
+                            <span class="bx bxs-printer"></span>&nbsp; {{ trans('app.print') }}
+                        </button>
+                    @endif
                 </div>
             </div>
         </h5>
@@ -43,38 +52,77 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($teachers as $key => $teacher)
-                        <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $teacher->name }}</td>
-                            <td>{{ $teacher->email }}</td>
-                            <td>{{ $teacher->phone }}</td>
-                            <td>{{ $teacher->birthday }}</td>
-                            <td>{{ $teacher->gender == 1 ? trans('teacher.male') : trans('teacher.female') }}</td>
-                            <td>
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                        data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item"
-                                            href="{{ route('dashboard.teachers.edit', $teacher->id) }}">
-                                            <i class="bx bx-edit-alt me-2"></i>
-                                            {{ trans('teacher.edit') }}
-                                        </a>
-                                        <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                            data-bs-target="#deleteTeacherModal{{ $teacher->id }}">
-                                            <i class="bx bx-trash me-2"></i>
-                                            {{ trans('teacher.delete') }}
-                                        </a>
+                    @if (count($teachers))
+                        @foreach ($teachers as $key => $teacher)
+                            <tr>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $teacher->name }}</td>
+                                <td>{{ $teacher->email }}</td>
+                                <td>{{ $teacher->phone }}</td>
+                                <td>{{ $teacher->birthday }}</td>
+                                <td>{{ $teacher->gender == 1 ? trans('teacher.male') : trans('teacher.female') }}</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                            data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{{ route('dashboard.teachers.edit', $teacher->id) }}">
+                                                <i class="bx bx-edit-alt me-2"></i>
+                                                {{ trans('teacher.edit') }}
+                                            </a>
+                                            <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                                                data-bs-target="#deleteTeacherModal{{ $teacher->id }}">
+                                                <i class="bx bx-trash me-2"></i>
+                                                {{ trans('teacher.delete') }}
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
+                                </td>
+                            </tr>
+                            @include('dashboard.teacher.delete')
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="9"><em>@lang('لا يوجد سجلات.')</em></td>
                         </tr>
-                        @include('dashboard.teacher.delete')
-                    @endforeach
+                    @endif
                 </tbody>
             </table>
             {{ $teachers->links() }}
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+            });
+
+            $('#search').on('keyup', function(event) {
+                $("#search").focus();
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 4000);
+
+            })
+
+            function submitForm() {
+                $("#filterTeacherForm").submit();
+            }
+            $("#printTeacher").click(function(e) {
+                let url = $(this).attr('data-url');
+                var printWindow = window.open(url, '_blank', 'height=auto,width=auto');
+                printWindow.print();
+            });
+        });
+    </script>
 @endsection

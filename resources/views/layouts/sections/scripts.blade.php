@@ -98,6 +98,7 @@
         // });
         // next-review-step
     });
+
 </script>
 @yield('vendor-script')
 <!-- END: Page Vendor JS-->

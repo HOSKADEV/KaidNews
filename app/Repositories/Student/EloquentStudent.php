@@ -19,8 +19,9 @@ class EloquentStudent implements StudentRepository
     /**
      * {@inheritdoc}
      */
-    public function count(){
-        return Student::count(); 
+    public function count()
+    {
+        return Student::count();
     }
 
     /**
@@ -29,6 +30,12 @@ class EloquentStudent implements StudentRepository
     public function find($id)
     {
         return Student::find($id);
+    }
+
+
+    public function findNotes($id)
+    {
+        return Student::with('tests', 'tests.subject')->find($id);
     }
 
     /**
@@ -71,13 +78,13 @@ class EloquentStudent implements StudentRepository
      * @param $searchTo
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|mixed
      */
-    public function paginate($perPage, $search = null, $status = null)
+    public function paginate($perPage, $search = null, $group = null, $status = null)
     {
-        $query = Student::query();
-        
-        // if ($status) {
-        //     $query->where('status', $status);
-        // }
+        $query = Student::query()->with('tests', 'tests.subject');
+
+        if ($group) {
+            $query->where('group', $group);
+        }
 
         if ($search) {
             (new StudentKeywordSearch)($query, $search);

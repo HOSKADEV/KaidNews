@@ -7,4 +7,9 @@ return [
     'students'   => 'الطلاب',
     'teachers' => 'الأساتذة',
     'users'        => 'المستخدمين',
+    'attendence'  => 'الحضور',
+    'subjects'  => 'المواد',
+    'evaluations'  => 'التقييمات',
+
+    'settings'=> 'الاعدادات',
 ];

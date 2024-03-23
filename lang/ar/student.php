@@ -7,6 +7,8 @@ return [
     'title-dashboard' => 'الصفحة الرئيسية',
     'profile' => 'معلومات الحساب',
 
+    'firstname' => 'الإسم',
+    'lastname'  => 'اللقب',
     'name' => 'الإسم',
     'birthday' => 'تاريخ الميلاد',
     'gender' => 'الجنس',

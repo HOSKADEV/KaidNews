@@ -10,10 +10,15 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Student\AccountController;
 
 use App\Http\Controllers\Dashboard\Admin\AdminController;
+use App\Http\Controllers\Dashboard\Print\PrintController;
 use App\Http\Controllers\Dashboard\DashboardAdminController;
 use App\Http\Controllers\Student\StudentDashboardController;
+use App\Http\Controllers\Dashboard\Setting\SettingController;
 use App\Http\Controllers\Dashboard\Student\StudentController;
+use App\Http\Controllers\Dashboard\Subject\SubjectController;
 use App\Http\Controllers\Dashboard\Teacher\TeacherController;
+use App\Http\Controllers\Dashboard\Attendence\AttendenceController;
+use App\Http\Controllers\Dashboard\Evaluation\EvaluationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,14 +73,36 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth:admin')->group(
     Route::resource('admins', AdminController::class);
     Route::resource('students', StudentController::class);
     Route::resource('teachers', TeacherController::class);
+
+    Route::resource('attendence', AttendenceController::class);
+
+    // PrintController  attendence
+
+    // Route::resource('evaluations', EvaluationController::class);
+
+    Route::resource('settings', SettingController::class);
+
+    // 
+    Route::resource('subjects', SubjectController::class);
+    Route::resource('evaluations', EvaluationController::class);
+    Route::get('evaluations/create/{id}', [EvaluationController::class, 'create'])->name('evaluations.create');
+
+    Route::prefix('print')->controller(PrintController::class)->name('print.')->group(function () {
+
+        Route::get('students', 'students')->name('students');
+        Route::get('teachers', 'teachers')->name('teachers');
+        Route::get('attendence', 'attendence')->name('attendence');
+        Route::get('trainee_notebook/{student_id}', 'trainee_notebook')->name('trainee_notebook');
+    });
 });
 
 
 Route::name('student.')->middleware('auth:student')->group(function () {
-    Route::get('student',[StudentDashboardController::class , 'index']);
+    Route::get('student', [StudentDashboardController::class, 'index']);
     Route::resource('account', AccountController::class);
 });
 
+// evaluations  EvaluationController
 Route::name('teacher.')->middleware('auth:teacher')->group(function () {
     Route::get('teacher', [TeacherDashboardController::class, 'index']);
 });

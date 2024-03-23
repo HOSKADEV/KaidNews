@@ -6,4 +6,8 @@
 @yield('content')
 <!--/ Content -->
 
+{{-- <!-- Script -->
+@yield('scripts')
+<!--/ Script --> --}}
+
 @endsection

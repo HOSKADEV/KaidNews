@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Test;
+use App\Models\Attendence;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -41,4 +44,40 @@ class Student extends Authenticatable
     {
         return ucwords("{$this->firstname_ar} {$this->lastname_ar}");
     }
+    public function getTotalCoefAttribute(){
+        $totalCoef = 0;
+        foreach ($this->tests as $test) {
+            $totalCoef = $totalCoef + $test->subject->coef;
+        }
+        return $totalCoef;
+    }
+
+    public function getNoteAttribute(){
+        $totalNote= 0;
+        foreach ($this->tests as $test) {
+            $totalNote = $totalNote + $test->subject->coef * $test->rate;
+        }
+        return $totalNote;
+    }
+
+    // total_coef
+    public function getMoyenAttribute()
+    {
+        $moyen  = 0;
+        foreach ($this->tests as $test) {
+            $moyen = $moyen + $test->result;
+        }
+        return  $this->total_coef > 0 ? $moyen / $this->total_coef : null;
+    }
+    public function tests()
+    {
+        return $this->hasMany(Test::class);
+    }
+
+    public function attendences(): HasMany
+    {
+        return $this->hasMany(Attendence::class);
+    }
 }
+
+

@@ -27,7 +27,7 @@ class StudentController extends Controller
      */
     public function index(Request $request)
     {
-        $students = $this->students->paginate($perPage = 10, $request->search);
+        $students = $this->students->paginate($perPage = 10, $request->search,$request->group);
         return view('dashboard.student.index',compact('students'));
     }
 
