@@ -208,7 +208,8 @@
                                         <label for="gender" class="form-label">{{ trans('auth/student.gender') }}</label>
                                         <select class="form-select gender @error('gender') is-invalid @enderror"
                                             name="gender"value="{{ old('gender') }}">
-                                            <option value="" selected >-- {{ trans('auth/student.select_gender') }} --</option>
+                                            <option value="" selected>-- {{ trans('auth/student.select_gender') }} --
+                                            </option>
                                             <option value="1">{{ trans('auth/student.gender_male') }}</option>
                                             <option value="2">{{ trans('auth/student.gender_female') }}</option>
                                         </select>
@@ -257,8 +258,8 @@
                                         @enderror
                                     </div>
                                     <div class="col-12 row px-0 mx-0 mt-3 d-flex ">
-                                        <div class="col-6 d-flex justify-content-start"></div>
-                                        <div class="col-6 d-flex justify-content-end">
+                                        <div class="col-sm-12 col-md-6 d-flex justify-content-start"></div>
+                                        <div class="col-sm-12 col-md-6 d-flex justify-content-end">
                                             <button type="button"
                                                 class="btn btn-primary btn-next">{{ trans('auth/student.next-to-education') }}</button>
                                         </div>
