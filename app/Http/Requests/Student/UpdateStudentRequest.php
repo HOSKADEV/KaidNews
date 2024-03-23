@@ -38,11 +38,11 @@ class UpdateStudentRequest extends FormRequest
             'photo' => 'nullable|mimes:jpeg,png,jpg',
             'status' => 'nullable|numeric|between:1,2',
 
-            'registration_number' => 'numeric|unique:students,registration_number'.$this->id,
+            'registration_number' => 'numeric|unique:students,registration_number,'.$this->id,
             'group' => 'numeric',
 
-            'phone' => 'numeric|unique:students,phone'.$this->id,
-            'email' => 'email|unique:students,email'.$this->id,
+            'phone' => 'numeric|unique:students,phone,'.$this->id,
+            'email' => 'email|unique:students,email,'.$this->id,
             'password' => 'min:8|max:255',
             'password_confirmation' => 'same:password|min:8|max:255'
         ];
