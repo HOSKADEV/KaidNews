@@ -89,7 +89,7 @@
 
                     <div class="col-sm-12 col-md-6 mb-2">
                         <label for="address" class="form-label">{{ trans('app.label.address') }}</label>
-                        <input type="text" class="form-control @error('address') is-invalid @enderror" name="email"
+                        <input type="text" class="form-control @error('address') is-invalid @enderror" name="address"
                             value="{{ old('address') }}" placeholder="{{ trans('app.placeholder.address') }}">
                         @error('address')
                             <small class="text-danger d-block">
