@@ -19,6 +19,7 @@ class Teacher extends Authenticatable
         'gender',
         'birthday',
         'phone',
+        'email',
         'address',
         'photo',
         'status'
