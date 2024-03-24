@@ -6,25 +6,29 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\AdminRepository;
 use App\Repositories\Student\StudentRepository;
+use App\Repositories\Subject\SubjectRepository;
 use App\Repositories\Teacher\TeacherRepository;
 
-class DashboardAdminController extends Controller
+class DashboardController extends Controller
 {
     private $admins;
     private $teachers;
     private $students;
+    private $subjects;
 
     /**
-     * TeacherController constructor.
+     * DashboardController constructor.
      * @param AdminRepository $admins
      * @param TeacherRepository $teachers
      * @param StudentRepository $students
+     * @param SubjectRepository $subjects
      */
-    public function __construct(AdminRepository $admins,TeacherRepository $teachers,StudentRepository $students)
+    public function __construct(AdminRepository $admins,TeacherRepository $teachers,StudentRepository $students , SubjectRepository $subjects)
     {
         $this->admins = $admins;
         $this->teachers = $teachers;
         $this->students = $students;
+        $this->subjects = $subjects;
     }   
     /**
      * Display a listing of the resource.
@@ -33,11 +37,13 @@ class DashboardAdminController extends Controller
      */
     public function index()
     {
-        $admins = $this->admins->count();
-        $teachers = $this->teachers->count() ;
-        $students = $this->students->count();
+        $admins = $this->admins->all();
+        $teachers = $this->teachers->all() ;
+        $students = $this->students->all();
+        $subjects = $this->subjects->all();
 
-        return view('dashboard.index',compact('admins','teachers','students'));
+        // dd(count($this->admins->all()));
+        return view('dashboard.index',compact('admins','teachers','students','subjects'));
     }
 
     /**

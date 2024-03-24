@@ -25,11 +25,10 @@
                         <!-- /Logo -->
                         <h4 class="mb-2">{{ trans('auth/auth.login') }}</h4>
                         @if (Session::get('error'))
-                        <div class="alert alert-danger" role="alert">
-                            {{ Session::get('error') }}
-                        </div>
-
-                    @endif
+                            <div class="alert alert-danger" role="alert">
+                                {{ Session::get('error') }}
+                            </div>
+                        @endif
 
                         <form id="formAuthentication" class="mb-3" action="{{ route('auth.login') }}" method="POST">
                             @csrf

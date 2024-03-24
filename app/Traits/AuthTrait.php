@@ -29,7 +29,8 @@ trait AuthTrait
                 return redirect()->intended(RouteServiceProvider::ADMIN);
                 break;
             case ('teacher'):
-                return redirect()->intended(RouteServiceProvider::TEACHER);
+                return redirect()->intended(RouteServiceProvider::ADMIN);
+                // return redirect()->intended(RouteServiceProvider::TEACHER);
                 break;
             case ('student'):
                 return redirect()->intended(RouteServiceProvider::STUDENT);

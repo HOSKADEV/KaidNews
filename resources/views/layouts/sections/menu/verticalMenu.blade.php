@@ -28,18 +28,20 @@
                 <div>{{ trans('menu.dashboard') }}</div>
             </a>
         </li>
-        <li class="menu-item {{ request()->routeIs('dashboard.admins.index') ? 'active' : '' }}">
-            <a href="{{ route('dashboard.admins.index') }}" class="menu-link">
-                <i class="menu-icon fa fa-user-secret" aria-hidden="true"></i>
-                <div>{{ trans('menu.admins') }}</div>
-            </a>
-        </li>
-        <li class="menu-item {{ request()->routeIs('dashboard.teachers.index') ? 'active' : '' }}">
-            <a href="{{ route('dashboard.teachers.index') }}" class="menu-link">
-                <i class="menu-icon fa fa-users" aria-hidden="true"></i>
-                <div>{{ trans('menu.teachers') }}</div>
-            </a>
-        </li>
+        @if (auth('admin')->check())
+            <li class="menu-item {{ request()->routeIs('dashboard.admins.index') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.admins.index') }}" class="menu-link">
+                    <i class="menu-icon fa fa-user-secret" aria-hidden="true"></i>
+                    <div>{{ trans('menu.admins') }}</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->routeIs('dashboard.teachers.index') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.teachers.index') }}" class="menu-link">
+                    <i class="menu-icon fa fa-users" aria-hidden="true"></i>
+                    <div>{{ trans('menu.teachers') }}</div>
+                </a>
+            </li>
+        @endif
         <li class="menu-item {{ request()->routeIs('dashboard.students.index') ? 'active' : '' }}">
             <a href="{{ route('dashboard.students.index') }}" class="menu-link">
                 <i class="menu-icon fa fa-graduation-cap" aria-hidden="true"></i>
@@ -65,13 +67,14 @@
             </a>
         </li>
 
-        <li class="menu-item {{ request()->routeIs('dashboard.settings.index') ? 'active' : '' }}">
-            <a href="{{ route('dashboard.settings.index') }}" class="menu-link">
-                <i class="menu-icon bx bxs-cog" aria-hidden="true"></i>
-                <div>{{ trans('menu.settings') }}</div>
-            </a>
-        </li>
-        {{-- settings --}}
+        @if (auth('admin')->check())
+            <li class="menu-item {{ request()->routeIs('dashboard.settings.index') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.settings.index') }}" class="menu-link">
+                    <i class="menu-icon bx bxs-cog" aria-hidden="true"></i>
+                    <div>{{ trans('menu.settings') }}</div>
+                </a>
+            </li>
+        @endif
     </ul>
 
 </aside>

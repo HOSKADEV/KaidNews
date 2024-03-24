@@ -19,7 +19,6 @@
                         <span class="tf-icons bx bx-plus"></span>&nbsp; {{ trans('admin.create') }}
                     </a>
                 </div>
-
                 <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
                     <form action="" method="GET" id="searchSectionForm">
                         <label for="name" class="form-label">{{ trans('admin.label.name') }}</label>

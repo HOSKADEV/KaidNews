@@ -129,7 +129,12 @@
                                 {{-- <small class="text-muted">{{ auth('student')->user()->email }}</small> --}}
                             </div>
                         @endif
-
+                        @if (auth('teacher')->check())
+                            <div class="flex-grow-1">
+                                <span class="fw-semibold d-block">{{ auth('teacher')->user()->name }}</span>
+                                <small class="text-muted">{{ auth('teacher')->user()->email }}</small>
+                            </div>
+                        @endif
 
                     </div>
                 </a>

@@ -97,7 +97,7 @@
                         @for ($day = 1; $day <= $days; $day++)
                             <th> {{ trans('attendence.days.' . $day) }}</th>
                         @endfor
-                        <th>{{ trans('app.actions') }}</th>
+                        {{-- <th>{{ trans('app.actions') }}</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -113,13 +113,13 @@
 
                                 @for ($day = 1; $day <= $days; $day++)
                                     <td>
-                                        <input class="form-check-input checkAttendence" type="checkbox"
+                                        <input class="form-check-input checkAttendence" type="checkbox" @if (auth('admin')->check()) disabled @endif
                                             value="{{ $day }}" id="day"
                                             @if (count(
                                                     $student->attendences->where('week', $week)->where('month', $month)->where('year', $year)->where('day', $day)) > 0) checked @endif />
                                     </td>
                                 @endfor
-                                <td>
+                                {{-- <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                             data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
@@ -139,7 +139,7 @@
 
                                         </div>
                                     </div>
-                                </td>
+                                </td> --}}
                             </tr>
                         @endforeach
                     @else

@@ -17,7 +17,7 @@
                             <i class="fa fa-user-secret fa-3x" aria-hidden="true"></i>
                         </div>
                     </div>
-                    <h3 class="card-title mb-2">{{ count($admins) }}</h3>
+                    <h3 class="card-title mb-2">{{ $admins }}</h3>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
                             <i class="fa fa-users fa-3x" aria-hidden="true"></i>
                         </div>
                     </div>
-                    <h3 class="card-title mb-2">{{ count($teachers)  }}</h3>
+                    <h3 class="card-title mb-2">{{ $teachers }}</h3>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
                             <i class="fa fa-graduation-cap fa-3x" aria-hidden="true"></i>
                         </div>
                     </div>
-                    <h3 class="card-title mb-2">{{ count($students)  }}</h3>
+                    <h3 class="card-title mb-2">{{ $students }}</h3>
                 </div>
             </div>
         </div>

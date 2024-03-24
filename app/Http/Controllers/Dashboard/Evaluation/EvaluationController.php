@@ -34,7 +34,9 @@ class EvaluationController extends Controller
      */
     public function index(Request $request)
     {
-        $students = $this->students->paginate($perPage = 10, $request->search);
+        $students = $this->students->paginate($perPage = 10, $request->search,$request->group);
+
+        // $students = $this->students->paginate($perPage = 10, $request->search);
         return view('dashboard.evaluation.index', compact('students'));
     }
 
