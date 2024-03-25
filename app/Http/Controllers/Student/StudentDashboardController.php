@@ -19,7 +19,9 @@ class StudentDashboardController extends Controller
         $this->students = $students;
     }
     public function index(){
-        return view('student-dashboard.index');
+
+        $account = $this->students->findNotes(auth('student')->id());
+        return view('student-dashboard.index',compact('account'));
     }
 
     public function account(){

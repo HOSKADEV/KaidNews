@@ -66,8 +66,6 @@
                             class="form-control input-solid"
                             placeholder="{{ Request::get('search') != '' ? '' : trans('attendence.placeholder.search') }}">
                     </div>
-
-
                     <div class="form-group col-md-2 mr-5 mt-4">
                         @if (count($students))
                             <button target="_blank" id="printSection"

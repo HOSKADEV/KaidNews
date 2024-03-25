@@ -57,4 +57,17 @@ class PrintController extends Controller
         return view('dashboard.printer.teachers', compact('teachers'));
 
     }
+
+
+
+    public function review($id){
+        $account = Student::with('tests', 'tests.subject')->find($id);
+       
+        return view('dashboard.printer.review', compact('account'));
+    }
+    public function certificate($id){
+        $account = Student::with('tests', 'tests.subject')->find($id);
+        return view('dashboard.printer.certificate', compact('account'));
+
+    }
 }

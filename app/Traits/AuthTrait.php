@@ -6,10 +6,6 @@ use App\Providers\RouteServiceProvider;
 
 trait AuthTrait
 {
-    static $someVarA = "my specific content";
-    static $someVarB = "my second specific content";
-
-
     public function checkGuard()
     {
         if (auth()->guard('admin')->check()) {

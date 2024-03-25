@@ -3,7 +3,9 @@
 return [
     'actions'   => 'العمليات',
     'close'     => 'إغلاق',
-    'print'     => 'طباعة', 
+    'print'     => 'طباعة',
+    'download_review' => 'تحميل التقييم', 
+    'download_certificate' => 'تحميل الشهادة', 
 
     'all' => 'الكل',
 
