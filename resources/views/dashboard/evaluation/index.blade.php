@@ -92,7 +92,7 @@
                                             data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                                         <div class="dropdown-menu">
                                             @if ($student->tests->count() == 0)
-                                                @if (auth('teacher')->check())
+                                                @if (auth('admin')->check())
                                                     <a class="dropdown-item"
                                                         href="{{ route('dashboard.evaluations.create', $student->id) }}">
                                                         <i class="bx bx-edit-alt me-2"></i>
@@ -115,10 +115,6 @@
                                                 <i class="bx bx-show me-2"></i>
                                                 {{ trans('evaluation.show') }}
                                             </a>
-
-
-
-
                                         </div>
                                     </div>
                                 </td>
