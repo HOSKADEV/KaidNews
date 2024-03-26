@@ -100,7 +100,7 @@
                                                     </a>
                                                 @endif
                                             @else
-                                                <button target="_blank" id="downloadReview"
+                                                <button target="_blank" id="AdmindownloadReview"
                                                     data-url="{{ route('download.review', [
                                                         'student_id' => $student->id,
                                                     ]) }}"
@@ -168,7 +168,7 @@
                 printWindow.print();
             });
 
-            $("#downloadReview").click(function(e) {
+            $("#AdmindownloadReview").click(function(e) {
                 let url = $(this).attr('data-url');
                 var printWindow = window.open(url, '_blank', 'height=auto,width=auto');
                 printWindow.print();
