@@ -102,7 +102,7 @@
                                             @else
                                                 <button target="_blank" id="downloadReview"
                                                     data-url="{{ route('download.review', [
-                                                        'student_id' => $account->id,
+                                                        'student_id' => $student->id,
                                                     ]) }}"
                                                     class="btn btn-primary text-white">
                                                     <span class="bx bxs-download"></span>&nbsp;
