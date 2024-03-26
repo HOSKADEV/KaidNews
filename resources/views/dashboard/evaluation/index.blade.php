@@ -104,8 +104,8 @@
                                                     data-url="{{ route('download.review', [
                                                         'student_id' => $student->id,
                                                     ]) }}"
-                                                    class="btn btn-primary text-white">
-                                                    <span class="bx bxs-download"></span>&nbsp;
+                                                    class="dropdown-item">
+                                                    <i class="bx bxs-download me-2"></i>
                                                     {{ trans('app.download_review') }}
                                                 </button>
                                             @endif
