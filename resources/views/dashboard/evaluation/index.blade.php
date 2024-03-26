@@ -100,11 +100,11 @@
                                                     </a>
                                                 @endif
                                             @else
-                                                <button target="_blank" id="AdmindownloadReview"
+                                                <button target="_blank" 
                                                     data-url="{{ route('download.review', [
                                                         'student_id' => $student->id,
                                                     ]) }}"
-                                                    class="dropdown-item">
+                                                    class="dropdown-item downloadReview">
                                                     <i class="bx bxs-download me-2"></i>
                                                     {{ trans('app.download_review') }}
                                                 </button>
@@ -168,7 +168,7 @@
                 printWindow.print();
             });
 
-            $("#AdmindownloadReview").click(function(e) {
+            $(".downloadReview").click(function(e) {
                 let url = $(this).attr('data-url');
                 var printWindow = window.open(url, '_blank', 'height=auto,width=auto');
                 printWindow.print();
