@@ -100,14 +100,13 @@
                                                     </a>
                                                 @endif
                                             @else
-                                                <button target="_blank" id="printStudentEvaluation"
-                                                    data-url="{{ route('dashboard.print.attendence', [
-                                                        'group' => Request::get('group'),
-                                                        'month' => Request::get('month'),
+                                                <button target="_blank" id="downloadReview"
+                                                    data-url="{{ route('download.review', [
+                                                        'student_id' => $account->id,
                                                     ]) }}"
-                                                    class="dropdown-item">
-                                                    <i class="bx bxs-printer me-2"></i>
-                                                    {{ trans('app.print') }}
+                                                    class="btn btn-primary text-white">
+                                                    <span class="bx bxs-download"></span>&nbsp;
+                                                    {{ trans('app.download_review') }}
                                                 </button>
                                             @endif
                                             <a class="dropdown-item"
@@ -164,6 +163,12 @@
                 $("#filterStudentEvaluationForm").submit();
             }
             $("#printStudentEvaluation").click(function(e) {
+                let url = $(this).attr('data-url');
+                var printWindow = window.open(url, '_blank', 'height=auto,width=auto');
+                printWindow.print();
+            });
+
+            $("#downloadReview").click(function(e) {
                 let url = $(this).attr('data-url');
                 var printWindow = window.open(url, '_blank', 'height=auto,width=auto');
                 printWindow.print();
