@@ -10,7 +10,7 @@ return [
     ],
     'title_print' =>[
         'attendence' => 'طباعة قائمة حضور الطلبة المتربصين',
-        'trainee_notebook' =>'طباعة دفتر المتربص',
+        'trainee_notebook' =>'دفتر المتربص',
         'students' => 'طباعة قائمة الطلبة',
         'teachers' => 'طباعة قائمة الأساتذة',
     ],
@@ -110,5 +110,20 @@ return [
 
         'notes_teacher_ar' => 'ملاحظات الأستاذ',
         'notes_teacher_fr' => 'Appréciation de l’enseignant',
+
+        'ID' => 'ر.ت',
+        'subject_name' => 'محــاور التقييم',
+        'coef' => 'المعامل',
+        'rate' => 'النقطـة',
+        'total_marks' => 'علامة المعامل',
+
+        'date_ar' => 'التاريخ',
+        'date_fr' => 'Date',
+
+        'signature_ar' => 'إمضاء المؤطر المعين',
+        'signature_fr' => 'Signature du correspondan',
+
+        'notes_ar' => 'ملاحظة : تملأ هذه الصفحة دون أي شطب',
+        'notes_fr' => 'N.B : ne doit comporter ni rature ni surcharge',
     ] ,
 ];

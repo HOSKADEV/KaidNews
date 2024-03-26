@@ -25,14 +25,14 @@
                         </div>
                         <div class="">
                             @if ($account->tests)
-                                {{-- <button target="_blank" id="downloadReview"
+                                <button target="_blank" id="downloadReview"
                                     data-url="{{ route('download.review', [
                                         'student_id' => $account->id,
                                     ]) }}"
                                     class="btn btn-primary text-white"
                                 >
                                     <span class="bx bxs-download"></span>&nbsp; {{ trans('app.download_review') }}
-                                </button> --}}
+                                </button>
                                 {{-- <button target="_blank" id="downloadCertificate"
                                     data-url="{{ route('download.certificate', [
                                         'student_id' => $account->id,
@@ -40,16 +40,8 @@
                                     class="btn btn-primary text-white"
                                 >
                                     <span class="bx bxs-download"></span>&nbsp; {{ trans('app.download_certificate') }}
-                                </button> --}}
-
-                                <a 
-                                href="{{ route('download.review', [
-                                    'student_id' => $account->id,
-                                ]) }}"
-                                class="btn btn-primary text-white"
-                            >
-                                <span class="bx bxs-download"></span>&nbsp; {{ trans('app.download_certificate') }}
-                            </a>
+                                </button> 
+                                 --}}
                             @endif
                         </div>
                     </div>
