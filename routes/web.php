@@ -72,7 +72,7 @@ Route::get('logout', LogoutController::class)->middleware('auth:admin,student,te
 
 // Route::get('logout', LogoutController::class)->middleware('auth:admin,student,teacher')
 //     ->name('auth.logout');
-/*
+
 Route::prefix('dashboard')->name('dashboard.')->middleware('auth:admin,teacher')->group(function () {
     Route::resource('/', DashboardController::class);
 
@@ -96,7 +96,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth:admin,teacher')
     Route::resource('settings', SettingController::class)->middleware('auth:admin');
 });
 
-*/
+
 Route::name('student.')->middleware('auth:student')->group(function () {
     Route::get('student', [StudentDashboardController::class, 'index']);
     Route::resource('account', AccountController::class);
