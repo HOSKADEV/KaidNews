@@ -126,4 +126,10 @@ return [
         'notes_ar' => 'ملاحظة : تملأ هذه الصفحة دون أي شطب',
         'notes_fr' => 'N.B : ne doit comporter ni rature ni surcharge',
     ] ,
+
+
+    'certificate' =>[
+        'title' => 'شهادة تربص نهاية التكوين',
+        'toStudent' => 'إلى  الطـالب  (ة)',
+    ],
 ];

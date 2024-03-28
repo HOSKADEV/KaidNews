@@ -40,6 +40,10 @@ class UpdateStudentRequest extends FormRequest
 
             'registration_number' => 'numeric|unique:students,registration_number,'.$this->id,
             'group' => 'numeric',
+            'residence' => 'string',
+            'batch' => 'string',
+            'start_date' => 'date',
+            'end_date' => 'date|after:start_date',
 
             'phone' => 'numeric|unique:students,phone,'.$this->id,
             'email' => 'email|unique:students,email,'.$this->id,
@@ -62,6 +66,10 @@ class UpdateStudentRequest extends FormRequest
 
             'registration_number' => trans('auth/student.registration_number'),
             'group'               => trans('auth/student.group'),
+            'residence'               => trans('auth/student.residence'),
+            'batch'               => trans('auth/student.batch'),
+            'start_date'               => trans('auth/student.start_date'),
+            'end_date'               => trans('auth/student.end_date'),
 
             'phone'    => trans('auth/student.phone'),
             'email'    => trans('auth/student.email'),

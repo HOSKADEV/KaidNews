@@ -40,7 +40,11 @@ class StoreStudentRequest extends FormRequest
 
             'registration_number' => 'required|numeric|unique:students,registration_number',
             'group' => 'required|numeric',
-
+            'residence' => 'required|string',
+            'batch' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
+            
             'phone' => 'required|numeric|unique:students,phone',
             'email' => 'required|email|unique:students,email',
             'password' => 'required|min:8|max:255',
@@ -62,6 +66,10 @@ class StoreStudentRequest extends FormRequest
 
             'registration_number' => trans('auth/student.registration_number'),
             'group'               => trans('auth/student.group'),
+            'residence'               => trans('auth/student.residence'),
+            'batch'               => trans('auth/student.batch'),
+            'start_date'               => trans('auth/student.start_date'),
+            'end_date'               => trans('auth/student.end_date'),
 
             'phone'    => trans('auth/student.phone'),
             'email'    => trans('auth/student.email'),

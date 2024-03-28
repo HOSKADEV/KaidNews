@@ -17,6 +17,15 @@ class EloquentAttendence implements AttendenceRepository
     {
         return Attendence::all();
     }
+    public function findAttendence($student_id ,$year,$month,$week,$day){
+        $attendence = Attendence::where('student_id',$student_id)
+        ->where('year',$year)
+        ->where('month',$month)
+        ->where('week',$week)
+        ->where('day',$day)
+        ->first();
+        return $attendence;
+    }
 
     /**
      * {@inheritdoc}

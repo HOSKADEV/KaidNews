@@ -11,18 +11,23 @@ interface StudentRepository
     public function all();
 
     /**
+     * Get all available students.
+     * @return mixed
+     */
+    public function listStudentHasNotCertificate();
+    /**
      * Get count of students.
      * @return mixed
      */
     public function count();
-    
+
     /**
      * {@inheritdoc}
      */
     public function create(array $data);
 
     public function findNotes($id);
-    
+
     /**
      * {@inheritdoc}
      */
@@ -41,5 +46,5 @@ interface StudentRepository
      * @param null $status
      * @return mixed
      */
-    public function paginate($perPage, $search = null,$group = null ,$status = null);
+    public function paginate($perPage, $search = null, $group = null, $status = null);
 }

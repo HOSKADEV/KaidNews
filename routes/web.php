@@ -20,6 +20,7 @@ use App\Http\Controllers\Dashboard\Subject\SubjectController;
 use App\Http\Controllers\Dashboard\Teacher\TeacherController;
 use App\Http\Controllers\Dashboard\Attendence\AttendenceController;
 use App\Http\Controllers\Dashboard\Evaluation\EvaluationController;
+use App\Http\Controllers\Dashboard\Certificate\CertificateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,6 +94,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth:admin,teacher')
         Route::get('trainee_notebook/{student_id}', 'trainee_notebook')->name('trainee_notebook');
     });
 
+    Route::resource('certificates', CertificateController::class);
     Route::resource('settings', SettingController::class)->middleware('auth:admin');
 });
 
@@ -107,5 +109,9 @@ Route::name('student.')->middleware('auth:student')->group(function () {
 Route::prefix('download')->middleware('auth:admin,student')->controller(PrintController::class)->name('download.')->group(function () {
     Route::get('review/{student_id}', 'review')->name('review');
     Route::get('certificate/{student_id}', 'certificate')->name('certificate');
+
+
+    // CertificateController
+    // certificates
 });
 /* ----------------------- End Dashboard -----------------------*/

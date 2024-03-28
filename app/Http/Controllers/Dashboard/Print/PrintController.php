@@ -67,7 +67,8 @@ class PrintController extends Controller
     }
     public function certificate($id){
         $account = Student::with('tests', 'tests.subject')->find($id);
-        return view('dashboard.printer.certificate', compact('account'));
+        // return view('dashboard.printer.certificate', compact('account'));
+        return view('dashboard.printer.index', compact('account'));
 
     }
 }

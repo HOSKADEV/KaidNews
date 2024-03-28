@@ -28,13 +28,19 @@ return new class extends Migration
             $table->date('birthday');
             $table->string('state_of_birth');            
             $table->string('place_of_birth');
+            $table->string('residence');
+
 
             $table->string('registration_number')->unique();
             $table->string('group');
+            $table->string('batch');
+            $table->date('start_date');
+            $table->date('end_date');
 
             $table->string('phone')->unique();
             $table->string('email')->unique();
             $table->string('password');
+
 
             $table->timestamps();
             $table->softDeletes();

@@ -29,8 +29,7 @@
                                     data-url="{{ route('download.review', [
                                         'student_id' => $account->id,
                                     ]) }}"
-                                    class="btn btn-primary text-white"
-                                >
+                                    class="btn btn-primary text-white">
                                     <span class="bx bxs-download"></span>&nbsp; {{ trans('app.download_review') }}
                                 </button>
                                 {{-- <button target="_blank" id="downloadCertificate"
@@ -40,8 +39,15 @@
                                     class="btn btn-primary text-white"
                                 >
                                     <span class="bx bxs-download"></span>&nbsp; {{ trans('app.download_certificate') }}
-                                </button> 
-                                 --}}
+                                </button>  --}}
+
+                                <a target="_blank" 
+                                    href="{{ route('download.certificate', [
+                                        'student_id' => $account->id,
+                                    ]) }}"
+                                    class="btn btn-primary text-white">
+                                    <span class="bx bxs-download"></span>&nbsp; {{ trans('app.download_certificate') }}
+                                </a>
                             @endif
                         </div>
                     </div>

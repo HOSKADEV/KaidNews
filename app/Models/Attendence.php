@@ -18,7 +18,8 @@ class Attendence extends Model
         'day',
         'week',
         'month',
-        'year'
+        'year',
+        'number'
     ];
     public function student(): BelongsTo
     {

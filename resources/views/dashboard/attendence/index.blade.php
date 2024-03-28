@@ -100,6 +100,7 @@
                 </thead>
                 <tbody>
                     @if (count($students))
+                    {{-- number --}}
                         @foreach ($students as $key => $student)
                             <tr data-student="{{ $student->id }}" data-week="{{ $week }}"
                                 data-month="{{ $month }}" data-year="{{ $year }}">
@@ -109,12 +110,94 @@
                                 <td>{{ $student->registration_number }}</td>
                                 <td>{{ trans('attendence.groups.' . $student->group) }}</td>
 
+
                                 @for ($day = 1; $day <= $days; $day++)
                                     <td>
-                                        <input class="form-check-input checkAttendence" type="checkbox" @if (auth('teacher')->check()) disabled @endif
+                                        {{-- @if ($student->attendences->where('week', $week)
+                                    ->where('month', $month)
+                                    ->where('year', $year)
+                                    ->where('day', $day)->first()->number? $student->attendences->where('week', $week)
+                                    ->where('month', $month)
+                                    ->where('year', $year)
+                                    ->where('day', $day)->first()->number == 0)
+                                    hhhh
+                                    @endif --}}
+
+                                   @php
+                                    $attendences = $student->attendences->where('week', $week)
+                                    ->where('month', $month)
+                                    ->where('year', $year)
+                                    ->where('day', $day)->first();
+                                  @endphp
+
+{{-- {{ $attendences?->number > 0 ? 'OK' : 'No'; }} --}}
+                                    <input class="form-check-input checkAttendence" type="checkbox" @if (auth('teacher')->check()) disabled @endif
+                                    value="{{ $day }}" id="day" {{ $attendences?->number > 0 ? 'checked' : ''; }}  /> 
+                                    <input class="form-check-input checkAttendence" type="checkbox" @if (auth('teacher')->check()) disabled @endif
+                                    value="{{ $day }}" id="day" {{ $attendences?->number > 1 ? 'checked' : ''; }}  /> 
+                                    <input class="form-check-input checkAttendence" type="checkbox" @if (auth('teacher')->check()) disabled @endif
+                                    value="{{ $day }}" id="day" {{ $attendences?->number > 2 ? 'checked' : ''; }}  /> 
+{{-- 
+@if($attendences)
+@for ($i = 1 ; $i<=$attendences->number ; $i++)
+<input class="form-check-input checkAttendence" type="checkbox" @if (auth('teacher')->check()) disabled @endif
+value="{{ $day }}" id="day" checked /> 
+@endfor
+{{ null }}
+@else
+@endif --}}
+                                  @php
+                                    
+                                    // if($attendences == null){
+                                    //     echo "null";
+                                    // }else{
+
+                                    // }
+
+                                    // if($test == null){
+                                    //     echo "null";
+                                    // }else{
+                                    //     echo $test->number ;
+                                    // }
+                                      $attendence =  App\Models\Attendence::where('student_id',$student->id)
+                                       ->where('month', $month)
+                                    ->where('year', $year)
+                                    ->where('day', $day)
+                                    ->first();
+
+                                    // if($attendence == null){
+                                    //     echo "null";
+                                    // }else{
+                                    //     echo $attendence->number ;
+                                    // }
+                                    // echo $attendence->id == null ? 'null' : $attendence->id ;
+                                   @endphp
+
+
+                                    {{-- @php
+                                   
+                                    if( $student->attendences->where('week', $week)
+                                    ->where('month', $month)
+                                    ->where('year', $year)
+                                    ->where('day', $day)->get('number') === 1 ){
+                                        echo '1';
+                                    }else if( $student->attendences->where('week', $week)
+                                    ->where('month', $month)
+                                    ->where('year', $year)
+                                    ->where('day', $day)->get('number') === 2 ){
+                                        echo '2';
+                                    }else{
+                                        echo "0";
+                                    } --}}
+                                        
+                                    @endphp 
+
+
+                                        
+                                        {{-- <input class="form-check-input checkAttendence" type="checkbox" @if (auth('teacher')->check()) disabled @endif
                                             value="{{ $day }}" id="day"
                                             @if (count(
-                                                    $student->attendences->where('week', $week)->where('month', $month)->where('year', $year)->where('day', $day)) > 0) checked @endif />
+                                                    $student->attendences->where('week', $week)->where('month', $month)->where('year', $year)->where('day', $day)) > 0) checked @endif /> --}}
                                     </td>
                                 @endfor
                                 {{-- <td>

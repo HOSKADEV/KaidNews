@@ -18,6 +18,10 @@ return [
 
     'registration_number' => 'رقم التسجيل',
     'group' => 'الفوج',
+    'residence'=> 'الإقامة',
+    'batch'=> 'الدفعة',
+    'start_date'=> 'تاريخ بداية التربص',
+    'end_date'=> 'تاريخ نهاية التربص',
 
     'phone' => 'رقم الهاتف',
     'email' => 'البريد الإلكتروني',
@@ -32,10 +36,15 @@ return [
         'name' => 'الإسم',
         'group' => 'الفوج',
         'registration_number' => 'رقم التسجيل',
+        'residence'=> 'الإقامة',
+        'batch'=> 'الدفعة',
+        'start_date'=> 'تاريخ بداية التربص',
+        'end_date'=> 'تاريخ نهاية التربص',
     ],
     'placeholder' =>[
         'name' => 'البحث بالإسم',
         'group' => 'البحث بالفوج',
-        'registration_number' => 'البحث برقم التسجيل'
+        'registration_number' => 'البحث برقم التسجيل',
+        'batch'=> 'البحث بالدفعة',
     ],
 ];

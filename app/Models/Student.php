@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Test;
 use App\Models\Attendence;
+use App\Models\Certificate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -29,6 +30,10 @@ class Student extends Authenticatable
 
         'group',
         'registration_number',
+        'residence',
+        'batch',
+        'start_date',
+        'end_date',
 
         'phone',
         'email',
@@ -74,6 +79,10 @@ class Student extends Authenticatable
         return $this->hasMany(Test::class);
     }
 
+    public function certificate()
+    {
+        return $this->hasMany(Certificate::class);
+    }
     public function attendences(): HasMany
     {
         return $this->hasMany(Attendence::class);

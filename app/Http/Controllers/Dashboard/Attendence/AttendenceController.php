@@ -60,18 +60,30 @@ class AttendenceController extends Controller
     {
         // $student = Student::findOrfail($request->student);
         $student = $this->students->find($request->student);
+        $attendence = $this->attendences->findAttendence($request->student ,$request->year,$request->month,$request->week,$request->day);
         if ($request->isChecked == 'true') {
             $data = [
-                'day' => $request->day,
-                'month' => $request->month,
-                'student_id' => $request->student,
-                'week' => $request->week,
-                'year' => $request->year,
+                // 'day' => $request->day,
+                // 'month' => $request->month,
+                // 'student_id' => $request->student,
+                // 'week' => $request->week,
+                // 'year' => $request->year,
+                'number' => $attendence->number + 1,
             ];
-            $this->attendences->create($data);
+            $this->attendences->update($attendence->id,$data);
+            // $this->attendences->create($data);
             return response()->json(['success' => trans('attendence.attendance') . " " . $student->name . " " . trans('attendence.day') . " " . trans('attendence.days.' . $request->day)]);
         } else {
-            $this->attendences->deleteAttendence($request->student, $request->day, $request->week, $request->month, $request->year);
+            $data = [
+                // 'day' => $request->day,
+                // 'month' => $request->month,
+                // 'student_id' => $request->student,
+                // 'week' => $request->week,
+                // 'year' => $request->year,
+                'number' => $attendence->number - 1,
+            ];
+            $this->attendences->update($attendence->id,$data);
+            // $this->attendences->deleteAttendence($request->student, $request->day, $request->week, $request->month, $request->year);
             return response()->json(['success' => trans('attendence.absence') . " " . $student->name . " " . trans('attendence.day') . " " . trans('attendence.days.' . $request->day)]);
         }
     }

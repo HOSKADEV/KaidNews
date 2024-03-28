@@ -16,7 +16,9 @@ use App\Repositories\Teacher\TeacherRepository;
 use App\Repositories\Attendence\EloquentAttendence;
 use App\Repositories\Evaluation\EloquentEvaluation;
 use App\Repositories\Attendence\AttendenceRepository;
+use App\Repositories\Certificate\EloquentCertificate;
 use App\Repositories\Evaluation\EvaluationRepository;
+use App\Repositories\Certificate\CertificateRepository;
 
 class EloquentRepositoryProvider extends ServiceProvider
 {
@@ -37,6 +39,8 @@ class EloquentRepositoryProvider extends ServiceProvider
         $this->app->bind(EvaluationRepository::class, EloquentEvaluation::class);
 
         $this->app->bind(SettingRepository::class, EloquentSetting::class);
+        $this->app->bind(CertificateRepository::class, EloquentCertificate::class);
+
     }
 
     /**

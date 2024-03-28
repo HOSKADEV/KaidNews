@@ -204,7 +204,7 @@
                                             </small>
                                         @enderror
                                     </div>
-                                    <div class="col-sm-12 col-md-3 mb-2">
+                                    <div class="col-sm-12 col-md-2 mb-2">
                                         <label for="gender" class="form-label">{{ trans('auth/student.gender') }}</label>
                                         <select class="form-select gender @error('gender') is-invalid @enderror"
                                             name="gender"value="{{ old('gender') }}">
@@ -219,7 +219,7 @@
                                             </small>
                                         @enderror
                                     </div>
-                                    <div class="col-sm-12 col-md-3 mb-2">
+                                    <div class="col-sm-12 col-md-2 mb-2">
                                         <label for="birthday"
                                             class="form-label">{{ trans('auth/student.birthday') }}</label>
                                         <input type="date"
@@ -231,7 +231,7 @@
                                             </small>
                                         @enderror
                                     </div>
-                                    <div class="col-sm-12 col-md-3 mb-2">
+                                    <div class="col-sm-12 col-md-2 mb-2">
                                         <label for="state_of_birth"
                                             class="form-label">{{ trans('auth/student.state_of_birth') }}</label>
                                         <input type="text"
@@ -252,6 +252,19 @@
                                             name="place_of_birth" value="{{ old('place_of_birth') }}"
                                             placeholder="{{ trans('auth/student.placeholder.place_of_birth') }}">
                                         @error('place_of_birth')
+                                            <small class="text-danger d-block">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-12 col-md-3 mb-2">
+                                        <label for="place_of_birth"
+                                            class="form-label">{{ trans('auth/student.residence') }}</label>
+                                        <input type="text"
+                                            class="form-control residence @error('residence') is-invalid @enderror"
+                                            name="residence" value="{{ old('residence') }}"
+                                            placeholder="{{ trans('auth/student.placeholder.residence') }}">
+                                        @error('residence')
                                             <small class="text-danger d-block">
                                                 {{ $message }}
                                             </small>
@@ -291,6 +304,45 @@
                                             value="{{ old('group') }}"
                                             placeholder="{{ trans('auth/student.placeholder.group') }}">
                                         @error('group')
+                                            <small class="text-danger d-block">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 mb-2">
+                                        <label for="batch"
+                                            class="form-label">{{ trans('auth/student.batch') }}</label>
+                                        <input type="text"
+                                            class="form-control batch @error('batch') is-invalid @enderror" name="batch"
+                                            value="{{ old('batch') }}"
+                                            placeholder="{{ trans('auth/student.placeholder.batch') }}">
+                                        @error('batch')
+                                            <small class="text-danger d-block">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-12 col-md-3 mb-2">
+                                        <label for="start_date"
+                                            class="form-label">{{ trans('auth/student.start_date') }}</label>
+                                        <input type="date"
+                                            class="form-control start_date @error('start_date') is-invalid @enderror" name="start_date"
+                                            value="{{ old('start_date') }}"
+                                            >
+                                        @error('start_date')
+                                            <small class="text-danger d-block">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-12 col-md-3 mb-2">
+                                        <label for="end_date"
+                                            class="form-label">{{ trans('auth/student.end_date') }}</label>
+                                        <input type="date"
+                                            class="form-control end_date @error('end_date') is-invalid @enderror" name="end_date"
+                                            value="{{ old('end_date') }}"
+                                            >
+                                        @error('end_date')
                                             <small class="text-danger d-block">
                                                 {{ $message }}
                                             </small>

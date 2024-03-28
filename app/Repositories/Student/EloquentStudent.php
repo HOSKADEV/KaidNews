@@ -16,6 +16,9 @@ class EloquentStudent implements StudentRepository
         return Student::all();
     }
 
+    public function listStudentHasNotCertificate(){
+        return Student::doesntHave('certificate')->get();
+    }
     /**
      * {@inheritdoc}
      */
@@ -80,7 +83,7 @@ class EloquentStudent implements StudentRepository
      */
     public function paginate($perPage, $search = null, $group = null, $status = null)
     {
-        $query = Student::query()->with('tests', 'tests.subject');
+        $query = Student::query()->with('tests', 'tests.subject','certificate');
 
         if ($group) {
             $query->where('group', $group);

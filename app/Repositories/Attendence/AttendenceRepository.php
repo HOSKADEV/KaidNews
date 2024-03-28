@@ -10,6 +10,7 @@ interface AttendenceRepository
      */
     public function all();
 
+    public function findAttendence($student_id ,$year,$month,$week,$day);
     /**
      * {@inheritdoc}
      */

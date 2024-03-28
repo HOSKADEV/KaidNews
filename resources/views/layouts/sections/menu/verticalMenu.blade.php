@@ -68,6 +68,12 @@
         </li>
 
         @if (auth('admin')->check())
+            <li class="menu-item {{ request()->routeIs('dashboard.certificates.index') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.certificates.index') }}" class="menu-link">
+                    <i class="menu-icon bx bxs-certification" aria-hidden="true"></i>
+                    <div>{{ trans('menu.certificates') }}</div>
+                </a>
+            </li>
             <li class="menu-item {{ request()->routeIs('dashboard.settings.index') ? 'active' : '' }}">
                 <a href="{{ route('dashboard.settings.index') }}" class="menu-link">
                     <i class="menu-icon bx bxs-cog" aria-hidden="true"></i>

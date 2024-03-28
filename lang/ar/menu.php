@@ -10,6 +10,7 @@ return [
     'attendence'  => 'الحضور',
     'subjects'  => 'المواد',
     'evaluations'  => 'التقييمات',
+    'certificates'  => 'الشهادات',
 
     'settings'=> 'الاعدادات',
 ];
