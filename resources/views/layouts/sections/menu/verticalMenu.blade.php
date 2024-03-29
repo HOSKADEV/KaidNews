@@ -3,12 +3,12 @@
     <div class="app-brand demo">
         <a href="{{ route('dashboard.index') }}" class="app-brand-link">
             <span class="app-brand-logo demo">
-                <img width="50" src="{{ asset('assets/logo/kaid-logo.png') }}" alt="brand-logo" srcset="">
+                <img width="150" src="{{ asset('assets/logo/kaid-logo.png') }}" alt="brand-logo" srcset="">
                 {{-- @include('_partials.macros',["width"=>25,"withbg"=>'#696cff']) --}}
             </span>
-            <span class="app-brand-text demo menu-text fw-bold text-capitalize ms-2">
+            {{-- <span class="app-brand-text demo menu-text fw-bold text-capitalize ms-2">
                 {{ config('app.locale') == 'en' ? 'Kaid' : 'القايد' }}
-            </span>
+            </span> --}}
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-autod-block d-xl-none">
