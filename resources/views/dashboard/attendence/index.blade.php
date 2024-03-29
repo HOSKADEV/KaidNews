@@ -23,7 +23,7 @@
                             @else
                                 <option value="">{{ trans('attendence.select.week') }}</option>
                             @endif
-                            @for ($i = 1; $i <= 4; $i++)
+                            @for ($i = 1; $i <= 5; $i++)
                                 <option value="{{ $i }}">{{ trans('attendence.weeks.' . $i) }}</option>
                             @endfor
                         </select>
