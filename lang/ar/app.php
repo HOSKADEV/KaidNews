@@ -10,6 +10,7 @@ return [
     'all' => 'الكل',
 
     'create'    => 'إضافة',
+    'import'    => 'رفع',
     'edit'      => 'تعديل',
     'update'    => 'تحديث',
     'delete'    => 'حذف',

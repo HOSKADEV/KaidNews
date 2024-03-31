@@ -11,6 +11,5 @@ return [
     'subjects'  => 'المواد',
     'evaluations'  => 'التقييمات',
     'certificates'  => 'الشهادات',
-
     'settings'=> 'الاعدادات',
 ];

@@ -20,6 +20,7 @@
                                 <span class="tf-icons bx bx-plus"></span>&nbsp; {{ trans('student.create') }}
                             </a>
                         </div>
+                        
                     @endif
                     <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
                         <label for="search" class="form-label">{{ trans('student.label.name') }}</label>

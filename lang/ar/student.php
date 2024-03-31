@@ -28,6 +28,7 @@ return [
     
     
     'create'=> 'إضافة طالب',
+    'import' => 'رفع ملف الطلبة',
     'edit' => 'تعديل بيانات الطالب',
     'delete' => 'حذف الطالب',
     'delete_confirmation' => 'هل أنت متأكد من عملية حذف هذ الطالب ؟',
@@ -35,6 +36,7 @@ return [
     'label' =>[
         'name' => 'الإسم',
         'group' => 'الفوج',
+        'file' => 'اختر ملف اكسل',
         'registration_number' => 'رقم التسجيل',
         'residence'=> 'الإقامة',
         'batch'=> 'الدفعة',
