@@ -28,9 +28,13 @@ class StudentTableSeeder extends Seeder
             
             'registration_number' => '181832004929',
             'group' => '02',
-    
+            'residence'=> 'حي الشريف بوقادير',
+            'batch'=> 'أ',
+            'start_date'=> '2024-04-3',
+            'end_date'=>  '2024-05-15',
+
             'phone'   => '0775805470',
-            'email'   => 'abdelkadir@kaid.com',
+            'email'   => 'medjadji.abdelkadir@gmail.com',
             'password' => '123456789',
         ]);
     }
