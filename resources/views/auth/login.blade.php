@@ -19,7 +19,7 @@
                             <a href="{{ url('/') }}" class="app-brand-link">
                                 <img class="app-brand-logo" height="100px" src="{{ asset('assets/logo/kaid-logo.png') }}"
                                     alt="" srcset="">
-                                <span class="app-brand-text demo text-body fw-bolder">{{ config('app.name') }}</span>
+                                {{-- <span class="app-brand-text demo text-body fw-bolder">{{ config('app.name') }}</span> --}}
                             </a>
                         </div>
                         <!-- /Logo -->
