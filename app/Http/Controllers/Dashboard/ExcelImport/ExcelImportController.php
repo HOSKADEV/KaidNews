@@ -22,7 +22,9 @@ class ExcelImportController extends Controller
 
         // Process the Excel file
         Excel::import(new ImportStudent, $file);
- 
-        return redirect()->back()->with('success', 'Excel file imported successfully!');
+        toastr()->success(trans('message.success.imported'));
+
+        // 'Excel file imported successfully!'
+        return redirect()->back();
     }
 }
