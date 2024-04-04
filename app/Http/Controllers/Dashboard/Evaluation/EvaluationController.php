@@ -35,7 +35,7 @@ class EvaluationController extends Controller
      */
     public function index(Request $request)
     {
-        $students = $this->students->paginate($perPage = 10, $request->search,$request->group);
+        $students = $this->students->paginate($perPage = 10, $request->search, $request->group);
         // $students = $this->students->paginate($perPage = 10, $request->search);
         return view('dashboard.evaluation.index', compact('students'));
     }
@@ -63,21 +63,20 @@ class EvaluationController extends Controller
         $data = [];
         for ($item = 0; $item < count($request->rate); $item++) {
             $data = [
-                'student_id' =>$request->student_id[$item],
+                'student_id' => $request->student_id[$item],
                 'subject_id' => $request->subject_id[$item],
                 'rate' => $request->rate[$item],
             ];
             $this->evaluations->create($data);
         }
 
-        Evaluation::create([
-            'student_id' =>$request->student_id[1],
-            'rank' => $request->rank,
-            'golden_passport' => $request->golden_passport,
-        ]);
-        // rank
-        // golden_passport
-        
+        if ($request->rank || $request->golden_passport) {
+            Evaluation::create([
+                'student_id' => $request->student_id[1],
+                'rank' => $request->rank != null ? $request->rank : null,
+                'golden_passport' => $request->golden_passport != null ? $request->golden_passport : null,
+            ]);
+        }
         toastr()->success(trans('message.success.create'));
         return redirect()->route('dashboard.evaluations.index');
     }
