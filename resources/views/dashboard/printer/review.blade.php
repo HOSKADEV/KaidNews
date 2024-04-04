@@ -458,7 +458,7 @@
     </div>
 
     <script>
-        // window.print();
+        window.print();
     </script>
 
     <script>

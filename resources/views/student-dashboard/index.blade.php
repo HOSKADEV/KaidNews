@@ -24,7 +24,7 @@
                             {{ trans('app.review') }}
                         </div>
                         <div class="">
-                            @if ($account->tests)
+                            @if ($account->tests->count() > 0)
                                 <button target="_blank" id="downloadReview"
                                     data-url="{{ route('download.review', [
                                         'student_id' => $account->id,
@@ -41,7 +41,7 @@
                                     <span class="bx bxs-download"></span>&nbsp; {{ trans('app.download_certificate') }}
                                 </button>  --}}
 
-                                <a target="_blank" 
+                                <a target="_blank"
                                     href="{{ route('download.certificate', [
                                         'student_id' => $account->id,
                                     ]) }}"
@@ -54,23 +54,22 @@
                 </h5>
                 <hr class="my-0">
                 <div class="card-body pt-0">
-                    @if ($account->tests)
-                        <div class="card-body">
-                            <label for="" class="form-label">{{ trans('evaluation.date_stage') }} :
-                                2023/04/05</label>
-                            <br>
-                            <label for="" class="form-label">{{ trans('evaluation.first_name_last_name') }} :
-                                {{ $account->name }}</label> <br>
-                            <label for="" class="form-label">{{ trans('evaluation.birthday_state_of_birth') }} :
-                                {{ $account->birthday }} {{ $account->state_of_birth }}</label>
-
-
-
+                    <div class="card-body">
+                        <label for="" class="form-label">{{ trans('evaluation.date_stage') }} :
+                            {{ date('d-m-Y', strtotime($account->start_date)) }} {{ trans('evaluation.to') }}
+                            {{ date('d-m-Y', strtotime($account->end_date)) }}
+                        </label>
+                        <br>
+                        <label for="" class="form-label">{{ trans('evaluation.first_name_last_name') }} :
+                            {{ $account->name }}</label> <br>
+                        <label for="" class="form-label">{{ trans('evaluation.birthday_state_of_birth') }} :
+                            {{ date('d-m-Y', strtotime($account->birthday)) }} {{ $account->state_of_birth }}
+                        </label>
+                        @if ($account->tests->count() > 0)
                             <div class="table-responsive text-nowrap">
                                 <table class="table">
                                     <thead>
                                         <tr class="text-nowrap">
-                                            {{-- <th>#</th> --}}
                                             <th>{{ trans('evaluation.subject_name') }}</th>
                                             <th>{{ trans('subject.coef') }}</th>
                                             <th>{{ trans('evaluation.rate') }}</th>
@@ -104,11 +103,10 @@
                                     </tbody>
                                 </table>
                             </div>
-
-                        </div>
-                    @else
-                        <h4 class="text-danger">لا يوجد اي تقييمات لحد الساعة </h4>
-                    @endif
+                        @else
+                            <h4 class="text-danger">لا يوجد اي تقييمات لحد الساعة </h4>
+                        @endif
+                    </div>
                 </div>
 
             </div>
