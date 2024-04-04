@@ -71,7 +71,7 @@ class EvaluationController extends Controller
         }
 
         Evaluation::create([
-            'student_id' =>$request->student_id[$item],
+            'student_id' =>$request->student_id[1],
             'rank' => $request->rank,
             'golden_passport' => $request->golden_passport,
         ]);
