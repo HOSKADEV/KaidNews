@@ -106,6 +106,35 @@
                         @else
                             <h4 class="text-danger">لا يوجد اي تقييمات لحد الساعة </h4>
                         @endif
+
+                        @if ($account->tests->count() > 0)
+                            {{-- <form action="{{ route('student.notes.store') }}" method="post"> --}}
+                            <form action="{{ route('student.notes.store') }}" method="POST">
+                                @method('POST')
+                                @csrf
+                                <div class="row mt-4">
+                                    {{-- <input type="hidden" > --}}
+                                    <h5 class="card-header">{{ trans('evaluation.student_evaluation') }} : <span
+                                            class="form-text text-danger">{{ trans('evaluation.alert') }}</span></h5>
+                                    <div class="col-sm-12 col-md-12 mb-2">
+                                        <textarea class="form-control" @if ($account->notes) disabled @endif name="note"
+                                            id="exampleFormControlTextarea1" rows="3">{{ $account->notes !== null ? $account->notes->note : ''; }}</textarea>
+                                        @error('note')
+                                            <small class="text-danger d-block mt-1">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
+                                    </div>
+                                    @if ($account->notes == null)
+                                        
+                                    <div class="col-sm-12 col-md-6 mb-0">
+                                        <button type="submit"
+                                            class="btn btn-primary me-2">{{ trans('app.save') }}</button>
+                                    </div>
+                                    @endif
+                                </div>
+                            </form>
+                        @endif
                     </div>
                 </div>
 

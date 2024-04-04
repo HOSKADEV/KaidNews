@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Repositories\Note\EloquentNote;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Admin\EloquentAdmin;
+use App\Repositories\Note\NoteRepository;
 use App\Repositories\Admin\AdminRepository;
 use App\Repositories\Setting\EloquentSetting;
 use App\Repositories\Student\EloquentStudent;
@@ -41,6 +43,7 @@ class EloquentRepositoryProvider extends ServiceProvider
         $this->app->bind(SettingRepository::class, EloquentSetting::class);
         $this->app->bind(CertificateRepository::class, EloquentCertificate::class);
 
+        $this->app->bind(NoteRepository::class, EloquentNote::class);
     }
 
     /**

@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Student\AccountController;
 
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\Note\NoteController;
 use App\Http\Controllers\Dashboard\Admin\AdminController;
 use App\Http\Controllers\Dashboard\Print\PrintController;
 use App\Http\Controllers\Student\StudentDashboardController;
@@ -108,8 +109,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth:admin,teacher')
 Route::name('student.')->middleware('auth:student')->group(function () {
     Route::get('student', [StudentDashboardController::class, 'index']);
     Route::resource('account', AccountController::class);
-
-    // dashboard.print.attendence
+    Route::post('notes', [NoteController::class, 'store'])->name('notes.store');
 });
 
 Route::prefix('download')->middleware('auth:admin,student')->controller(PrintController::class)->name('download.')->group(function () {

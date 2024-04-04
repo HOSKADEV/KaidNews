@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Note;
 use App\Models\Test;
 use App\Models\Attendence;
 use App\Models\Evaluation;
@@ -118,6 +119,11 @@ class Student extends Authenticatable
     public function evaluations()
     {
         return $this->hasOne(Evaluation::class);
+    }
+
+    public function notes()
+    {
+        return $this->hasOne(Note::class);
     }
 
 

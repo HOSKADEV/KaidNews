@@ -32,7 +32,7 @@ class EloquentStudent implements StudentRepository
      */
     public function find($id)
     {
-        return Student::find($id);
+        return Student::with('notes')->find($id);
     }
 
 

@@ -25,9 +25,10 @@ return [
     'homeworks_questions' => 'الوجبات المنزلية واسئلة الحصة',
     'attendance' => 'نقاط الحضور',
     'total_marks' => 'العلامة',
-
+    'student_evaluation' => 'تقييم الطالب للتربص',
+    'alert' => 'لديك الحق في تقييم واحد للتربص',
     'label' => [
-        'note' => 'ملاحظة',
+        'note' => 'تققيم',
         'golden_passport' => 'متوج بجواز الذهبي',
         'rank' => 'المرتبة',
         'participation_effectiveness' => '',
@@ -43,6 +44,6 @@ return [
 
     ],
     'placeholder' => [
-        'note' => 'إظافة ملاحظة عن الطالب',
+        'note' => 'إظافة تقييم عن التربص',
     ],
 ];
