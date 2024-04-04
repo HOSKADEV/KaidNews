@@ -85,6 +85,14 @@
                                 <td>{{ $student->group }}</td>
                                 <td class="text-center">
                                     {{ $student->tests->count() > 0 ? number_format($student->moyen, 2) : 'لم يتم تقييم بعد' }}
+                                    @if ($student->evaluations)
+                                        <img src="{{ asset('assets/prize/1.svg') }}" width="30px" height="30px"
+                                            alt="" srcset="">
+                                        @if ($student->evaluations->golden_passport == 1)
+                                            <img src="{{ asset('assets/prize/reward.png') }}" width="30px" height="30px"
+                                                alt="" srcset="">
+                                        @endif
+                                    @endif
                                 </td>
                                 <td>
                                     <div class="dropdown">
@@ -100,7 +108,7 @@
                                                     </a>
                                                 @endif
                                             @else
-                                                <button target="_blank" 
+                                                <button target="_blank"
                                                     data-url="{{ route('download.review', [
                                                         'student_id' => $student->id,
                                                     ]) }}"

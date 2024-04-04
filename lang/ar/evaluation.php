@@ -26,10 +26,22 @@ return [
     'total_marks' => 'العلامة',
 
     'label' => [
+        'note' => 'ملاحظة',
+        'golden_passport' => 'متوج بجواز الذهبي',
+        'rank' => 'المرتبة',
         'participation_effectiveness' => '',
         'overall_assessment' => 'المجموع',
     ],
+    'select' => [
+        'rank1' => 'الرتبة الاولى',
+        'rank2' => 'الرتبة الثانية',
+        'rank3' => 'الرتبة الثالثة',
+
+        'golden_passport_yes' => 'متوج بجواز الذهبي',
+        'golden_passport_no' => 'غير متوج بجواز الذهبي',
+
+    ],
     'placeholder' => [
-        'overall_assessment' => '',
+        'note' => 'إظافة ملاحظة عن الطالب',
     ],
 ];

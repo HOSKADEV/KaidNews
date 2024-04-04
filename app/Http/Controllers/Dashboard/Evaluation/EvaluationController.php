@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard\Evaluation;
 
+use App\Models\Evaluation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Student\StudentRepository;
@@ -35,7 +36,6 @@ class EvaluationController extends Controller
     public function index(Request $request)
     {
         $students = $this->students->paginate($perPage = 10, $request->search,$request->group);
-
         // $students = $this->students->paginate($perPage = 10, $request->search);
         return view('dashboard.evaluation.index', compact('students'));
     }
@@ -69,6 +69,15 @@ class EvaluationController extends Controller
             ];
             $this->evaluations->create($data);
         }
+
+        Evaluation::create([
+            'student_id' =>$request->student_id[$item],
+            'rank' => $request->rank,
+            'golden_passport' => $request->golden_passport,
+        ]);
+        // rank
+        // golden_passport
+        
         toastr()->success(trans('message.success.create'));
         return redirect()->route('dashboard.evaluations.index');
     }

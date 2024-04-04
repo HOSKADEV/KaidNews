@@ -28,39 +28,64 @@
             </div>
         </div>
         <hr class="my-0">
-        <div class="row">
-            <div class="table-responsive text-nowrap pb-4">
-                <form action="{{ route('dashboard.evaluations.store') }}" method="POST">
-                    @csrf
-                    @method('POST')
-                    <table class="table mb-4 repeater">
-                        <thead>
-                            <tr class="text-nowrap">
-                                <th>#</th>
-                                <th>{{ trans('evaluation.subject_name') }}</th>
-                                <th>{{ trans('subject.coef') }}</th>
-                                <th>{{ trans('evaluation.rate') }}</th>
+        <form action="{{ route('dashboard.evaluations.store') }}" method="POST">
+            @csrf
+            @method('POST')
+
+            <div class="table-responsive text-nowrap pb-2">
+                <table class="table mb-4 repeater">
+                    <thead>
+                        <tr class="text-nowrap">
+                            <th>#</th>
+                            <th>{{ trans('evaluation.subject_name') }}</th>
+                            <th>{{ trans('subject.coef') }}</th>
+                            <th>{{ trans('evaluation.rate') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($subjects as $item => $subject)
+                            <tr class="subject">
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $subject->name }}</td>
+                                <td>{{ $subject->coef }}</td>
+                                <td>
+                                    <input type="hidden" name="student_id[]" value="{{ $student->id }}">
+                                    <input type="hidden" name="subject_id[]" value="{{ $subject->id }}">
+                                    <input type="number" name="rate[]" class="form-control rate">
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($subjects as $item => $subject)
-                                <tr class="subject">
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $subject->name }}</td>
-                                    <td>{{ $subject->coef }}</td>
-                                    <td>
-                                        <input type="hidden" name="student_id[]" value="{{ $student->id }}">
-                                        <input type="hidden" name="subject_id[]" value="{{ $subject->id }}">
-                                        <input type="number" name="rate[]" class="form-control rate">
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <button type="submit" class="btn btn-primary mx-4">{{ trans('app.save') }}</button>
-                </form>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-        </div>
+
+            <div class="row px-4">
+                <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                    <label for="rank" class="form-label">{{ trans('evaluation.label.rank') }}</label>
+                    <select class="form-select" id="rank" name="rank" aria-label="Default select example">
+                        <option value="">{{ trans('app.all') }}</option>
+                        <option value="1">{{ trans('evaluation.select.rank1') }}</option>
+                        <option value="2">{{ trans('evaluation.select.rank2') }}</option>
+                        <option value="3">{{ trans('evaluation.select.rank3') }}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                    <label for="golden_passport" class="form-label">{{ trans('evaluation.label.golden_passport') }}</label>
+                    <select class="form-select" id="golden_passport" name="golden_passport" aria-label="Default select example">
+                        <option value="0">{{ trans('evaluation.select.golden_passport_no') }}</option>
+                        <option value="1">{{ trans('evaluation.select.golden_passport_yes') }}</option>
+                    </select>
+                </div>
+
+                {{-- <div class="form-group col-md-6" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                    <label for="note" class="form-label">{{ trans('evaluation.label.note') }}</label>
+                    <input type="text" name="note" class="form-control"
+                        placeholder="{{ trans('evaluation.placeholder.note') }}">
+                </div> --}}
+            </div>
+
+            <button type="submit" class="btn btn-primary mx-4 my-4">{{ trans('app.save') }}</button>
+        </form>
     </div>
 
 @endsection

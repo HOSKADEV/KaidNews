@@ -16,9 +16,7 @@
             <label for="" class="form-label">{{ trans('evaluation.date_stage') }} : 2023/04/05</label> <br>
             <label for="" class="form-label">{{ trans('evaluation.first_name_last_name') }} : {{ $student->name }}</label> <br>
             <label for="" class="form-label">{{ trans('evaluation.birthday_state_of_birth') }} : {{ $student->birthday }} {{ $student->state_of_birth }}</label>
-        </div>
-     
-     
+        </div>     
         <div class="table-responsive text-nowrap">
             <table class="table mb-2">
                 <thead>

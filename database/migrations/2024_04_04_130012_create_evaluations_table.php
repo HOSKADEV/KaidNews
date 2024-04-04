@@ -15,14 +15,11 @@ return new class extends Migration
     {
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('student_id')->unsigned();
+            $table->foreign('student_id')->references('id')->on('students')->onUpdate('cascade');
 
-            $table->unsignedBigInteger('student_id');
-            $table->foreign('student_id')->references('id')->on('students');
-
-            $table->smallInteger('homeworks_questions')->default(0);
-            $table->smallInteger('attendance')->default(0);
-            $table->smallInteger('total_marks')->default(0);
-            
+            $table->enum('rank', ['1', '2', '3'])->nullable();
+            $table->boolean('golden_passport')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

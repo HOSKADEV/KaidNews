@@ -83,7 +83,7 @@ class EloquentStudent implements StudentRepository
      */
     public function paginate($perPage, $search = null, $group = null, $status = null)
     {
-        $query = Student::query()->with('tests', 'tests.subject','certificate');
+        $query = Student::query()->with('evaluations','tests', 'tests.subject','certificate');
 
         if ($group) {
             $query->where('group', $group);

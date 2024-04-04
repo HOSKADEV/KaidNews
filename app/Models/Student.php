@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Test;
 use App\Models\Attendence;
+use App\Models\Evaluation;
 use App\Models\Certificate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,7 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Student extends Authenticatable
 {
-    use HasFactory , SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'firstname_ar',
@@ -38,6 +39,8 @@ class Student extends Authenticatable
         'phone',
         'email',
         'password',
+
+        'moyenFinal'
     ];
 
     public function setPasswordAttribute($value): void
@@ -49,7 +52,8 @@ class Student extends Authenticatable
     {
         return ucwords("{$this->firstname_ar} {$this->lastname_ar}");
     }
-    public function getTotalCoefAttribute(){
+    public function getTotalCoefAttribute()
+    {
         $totalCoef = 0;
         foreach ($this->tests as $test) {
             $totalCoef = $totalCoef + $test->subject->coef;
@@ -57,8 +61,9 @@ class Student extends Authenticatable
         return $totalCoef;
     }
 
-    public function getNoteAttribute(){
-        $totalNote= 0;
+    public function getNoteAttribute()
+    {
+        $totalNote = 0;
         foreach ($this->tests as $test) {
             $totalNote = $totalNote + $test->subject->coef * $test->rate;
         }
@@ -74,6 +79,29 @@ class Student extends Authenticatable
         }
         return  $this->total_coef > 0 ? $moyen / $this->total_coef : null;
     }
+    public function getMoyenFinalAttribute()
+    {
+        return  $this->moyen;
+    }
+    
+    // public function getSortByMoyen(){
+    //     return  $this->getMoyenAttribute->orderByDesc()->take(3);
+    // }
+
+    public function getFirstMoyenAttribute()
+    {
+        // return $this->moyen->sortByDesc()->orderBy('start_date', 'end_date')->first();
+        // return $this->moyen->sortByDesc();
+        // return $this->groupBy('start_date', 'end_date');
+        // return $this->moyen;
+
+
+        // moyenFinal
+        // return Student::orderByDesc('moyenFinal')->groupBy('start_date','end_date')->first();
+
+
+        // if()
+    }
     public function tests()
     {
         return $this->hasMany(Test::class);
@@ -87,6 +115,11 @@ class Student extends Authenticatable
     {
         return $this->hasMany(Attendence::class);
     }
+    public function evaluations()
+    {
+        return $this->hasOne(Evaluation::class);
+    }
+
+
+    // Evaluation
 }
-
-
