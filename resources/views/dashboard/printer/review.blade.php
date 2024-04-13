@@ -8,7 +8,7 @@
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
     {{-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> --}}
-    <title>{{ trans('print.title_print.trainee_notebook').'_'. $account->name }}  </title>
+    <title>{{ trans('print.title_print.trainee_notebook') . '_' . $account->name }} </title>
     <style>
         /* Define your styles for the print page here */
         body {}
@@ -266,17 +266,17 @@
                         </tr>
                         <tr>
                             <td class="text-right"> {{ trans('print.host_institution.phone_ar') }} : </td>
-                            <td>0770988020</td>
+                            <td>{{ $phone }}</td>
                             <td class="text-left"> {{ ': ' . trans('print.host_institution.phone_fr') }}</td>
                         </tr>
                         <tr>
                             <td class="text-right"> {{ trans('print.host_institution.fax_ar') }} : </td>
-                            <td>032124353</td>
+                            <td>{{ $fax }}</td>
                             <td class="text-left"> {{ ': ' . trans('print.host_institution.fax_fr') }}</td>
                         </tr>
                         <tr>
                             <td class="text-right"> {{ trans('print.host_institution.email_ar') }} : </td>
-                            <td>kaidnews@gmail.com</td>
+                            <td>{{ $email }}</td>
                             <td class="text-left"> {{ ': ' . trans('print.host_institution.email_fr') }}</td>
                         </tr>
 
@@ -294,7 +294,7 @@
                                 <h5>{{ trans('print.duration_of_stage.from_ar') }} :</h5>
                             </td>
                             <td>
-                                في الفترة الممتدة من 23-24-29-30 أفريل و01-08-ماي 2023
+                                {{ trans('print.duration_of_stage.duration_date') . $account->start_date->format('d-m-Y') . ' ' . trans('print.duration_of_stage.to') . ' ' . $account->end_date->format('d-m-Y') }}
                             </td>
                             <td class="text-left">
                                 <h5>{{ ': ' . trans('print.duration_of_stage.from_fr') }}</h5>
@@ -345,7 +345,10 @@
                         </tr>
                         <tr>
                             <td class="text-center" colspan="3">
-                                طالب متيمز في دفعته
+                                {{-- طالب متيمز في دفعته --}}
+                                @if ($account->notes)
+                                    {{ $account->notes->note }}
+                                @endif
                             </td>
                         </tr>
                     </tbody>
@@ -449,7 +452,7 @@
                                     {{ trans('print.review.notes_fr') }}
                                 </td>
                             </tr>
-        
+
                         </tbody>
                     </table>
                 </div>

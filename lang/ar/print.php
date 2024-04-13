@@ -102,8 +102,10 @@ return [
         'title_ar' => 'مدة التربص',
         'title_fr' => 'Durée de stage',
 
+        'duration_date' => ' في الفترة الممتدة من ',
         'from_ar' => 'من',
-        'from_fr' => 'Du'
+        'to' => 'الى',
+        'from_fr' => 'Au'
     ],
 
     'review'=> [

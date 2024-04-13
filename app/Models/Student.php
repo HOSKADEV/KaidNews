@@ -44,6 +44,8 @@ class Student extends Authenticatable
         'moyenFinal'
     ];
 
+    protected $dates = ['start_date','end_date'];
+
     public function setPasswordAttribute($value): void
     {
         $this->attributes['password'] = Hash::make($value);
