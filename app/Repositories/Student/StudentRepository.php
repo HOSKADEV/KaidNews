@@ -46,5 +46,18 @@ interface StudentRepository
      * @param null $status
      * @return mixed
      */
-    public function paginate($perPage, $search = null, $group = null, $status = null);
+
+    public function paginate($perPage, $search = null, $registration_number = null, $batch = null, $group = null, $status = null);
+
+
+    /**
+     * Print List Student.
+     *
+     * @param $perPage
+     * @param null $search
+     * @param null $status
+     * @return mixed
+     */
+
+    public function listPrintStudent($search = null, $registration_number = null, $batch = null, $group = null, $status = null);
 }

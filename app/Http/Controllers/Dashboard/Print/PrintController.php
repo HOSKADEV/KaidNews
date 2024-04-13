@@ -4,12 +4,24 @@ namespace App\Http\Controllers\Dashboard\Print;
 
 use Carbon\Carbon;
 use App\Models\Student;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Teacher;
+use App\Repositories\Student\StudentRepository;
 
 class PrintController extends Controller
 {
+    private $students;
+
+    /**
+     * StudentController constructor.
+     * @param StudentRepository $students
+     */
+    public function __construct(StudentRepository $students)
+    {
+        $this->students = $students;
+    }
+    
     public function attendence(Request $request)
     {
 
@@ -42,14 +54,11 @@ class PrintController extends Controller
     public function students(Request $request)
     {
         $group = $request->group;
+        $batch = $request->batch;
 
-        if ($group != null) {
-            $students = Student::where('group', $group)
-                ->get();
-        } else {
-            $students = Student::get();
-        }
-        return view('dashboard.printer.students', compact('students', 'group'));
+        $students = $this->students->listPrintStudent($request->search, $request->registration_number,$batch, $group);
+
+        return view('dashboard.printer.students', compact('students', 'group','batch'));
     }
 
     public function teachers(){

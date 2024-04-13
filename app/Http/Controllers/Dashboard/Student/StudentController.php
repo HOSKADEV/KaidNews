@@ -27,8 +27,8 @@ class StudentController extends Controller
      */
     public function index(Request $request)
     {
-        $students = $this->students->paginate($perPage = 10, $request->search,$request->group);
-        return view('dashboard.student.index',compact('students'));
+        $students = $this->students->paginate($perPage = 10, $request->search, $request->registration_number,$request->batch, $request->group);
+        return view('dashboard.student.index', compact('students'));
     }
 
     /**
@@ -74,7 +74,7 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student = $this->students->find($id);
-        return view('dashboard.student.edit',compact('student'));
+        return view('dashboard.student.edit', compact('student'));
     }
 
     /**
@@ -86,7 +86,7 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request)
     {
-        $this->students->update($request->id,$request->all());
+        $this->students->update($request->id, $request->all());
         toastr()->success(trans('message.success.update'));
         return redirect()->route('dashboard.students.index');
     }

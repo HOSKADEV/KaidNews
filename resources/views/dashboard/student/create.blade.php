@@ -122,7 +122,21 @@
                             </small>
                         @enderror
                     </div>
-                    <div class="col-sm-12 col-md-6 mb-2">
+                    <div class="col-sm-12 col-md-3 mb-2">
+                        <label for="batch"
+                            class="form-label">{{ trans('app.label.batch') }}</label>
+                        <input type="text"
+                            class="form-control batch @error('batch') is-invalid @enderror" name="batch"
+                            value="{{ old('batch') }}"
+                            placeholder="{{ trans('app.placeholder.batch') }}">
+                        @error('batch')
+                            <small class="text-danger d-block">
+                                {{ $message }}
+                            </small>
+                        @enderror
+                    </div>
+
+                    <div class="col-sm-12 col-md-3 mb-2">
                         <label for="group" class="form-label">{{ trans('app.label.group') }}</label>
                         <input type="text" class="form-control @error('group') is-invalid @enderror" name="group"
                             value="{{ old('group') }}" placeholder="{{ trans('app.placeholder.group') }}">
@@ -132,7 +146,33 @@
                             </small>
                         @enderror
                     </div>
-
+                    <div class="col-sm-12 col-md-3 mb-2">
+                        <label for="start_date"
+                            class="form-label">{{ trans('app.label.start_date') }}</label>
+                        <input type="date"
+                            class="form-control start_date @error('start_date') is-invalid @enderror" name="start_date"
+                            value="{{ old('start_date') }}"
+                            >
+                        @error('start_date')
+                            <small class="text-danger d-block">
+                                {{ $message }}
+                            </small>
+                        @enderror
+                    </div>
+                    <div class="col-sm-12 col-md-3 mb-2">
+                        <label for="end_date"
+                            class="form-label">{{ trans('app.label.end_date') }}</label>
+                        <input type="date"
+                            class="form-control end_date @error('end_date') is-invalid @enderror" name="end_date"
+                            value="{{ old('end_date') }}"
+                            >
+                        @error('end_date')
+                            <small class="text-danger d-block">
+                                {{ $message }}
+                            </small>
+                        @enderror
+                    </div>
+                    <div class="col-sm-12 col-md-6 mb-2"></div>
                     <div class="col-sm-12 col-md-6 mb-2">
                         <label for="email" class="form-label">{{ trans('app.label.email') }}</label>
                         <input type="text" class="form-control @error('email') is-invalid @enderror" name="email"

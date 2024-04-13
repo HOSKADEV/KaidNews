@@ -14,7 +14,7 @@ class StudentKeywordSearch implements Filter
             $q->orWhere('firstname_ar', "like", "%{$search}%");
             $q->orWhere('lastname_fr', "like", "%{$search}%");
             $q->orWhere('lastname_ar', "like", "%{$search}%");
-            $q->orWhere('email', 'like', "%{$search}%");
+            // $q->orWhere('email', 'like', "%{$search}%");
         });
     }
 }

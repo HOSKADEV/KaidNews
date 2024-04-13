@@ -16,7 +16,8 @@ class EloquentStudent implements StudentRepository
         return Student::all();
     }
 
-    public function listStudentHasNotCertificate(){
+    public function listStudentHasNotCertificate()
+    {
         return Student::doesntHave('certificate')->get();
     }
     /**
@@ -81,12 +82,19 @@ class EloquentStudent implements StudentRepository
      * @param $searchTo
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|mixed
      */
-    public function paginate($perPage, $search = null, $group = null, $status = null)
+
+    public function paginate($perPage, $search = null, $registration_number = null, $batch = null, $group = null, $status = null)
     {
-        $query = Student::query()->with('evaluations','tests', 'tests.subject','certificate');
+        $query = Student::query()->with('evaluations', 'tests', 'tests.subject', 'certificate');
 
         if ($group) {
             $query->where('group', $group);
+        }
+        if ($registration_number) {
+            $query->where('registration_number', $registration_number);
+        }
+        if ($batch) {
+            $query->where('batch', $batch);
         }
 
         if ($search) {
@@ -99,6 +107,41 @@ class EloquentStudent implements StudentRepository
         if ($search) {
             $result->appends(['search' => $search]);
         }
+        return $result;
+    }
+
+
+    /**
+     * @param null $search
+     * @param null $registration_number
+     * @param null $batch
+     * @param null $group
+     * @param null $status
+     */
+    public function listPrintStudent($search = null, $registration_number = null, $batch = null, $group = null, $status = null)
+    {
+        $query = Student::query()->with('evaluations', 'tests', 'tests.subject', 'certificate');
+
+        if ($group) {
+            $query->where('group', $group);
+        }
+        if ($registration_number) {
+            $query->where('registration_number', $registration_number);
+        }
+        if ($batch) {
+            $query->where('batch', $batch);
+        }
+
+        if ($search) {
+            (new StudentKeywordSearch)($query, $search);
+        }
+
+        $result = $query->orderBy('group', 'desc')
+            ->get();
+
+        // if ($search) {
+        //     $result->appends(['search' => $search]);
+        // }
         return $result;
     }
 }

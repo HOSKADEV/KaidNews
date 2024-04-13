@@ -12,60 +12,111 @@
     </h4>
     <div class="card">
         <h5 class="card-header pt-0 mt-1">
-            <form action="" method="GET" id="filterStudentForm">
-                <div class="row  justify-content-between">
-                    @if (auth('admin')->check())
-                        <div class="form-group col-md-2 px-1 mt-4">
-                            <a href="{{ route('dashboard.students.create') }}" class="btn btn-primary text-white">
-                                <span class="tf-icons bx bx-plus"></span>&nbsp; {{ trans('student.create') }}
-                            </a>
+            <div class="row  justify-content-between">
+                @if (auth('admin')->check())
+                    <div class="form-group col-md-2 px-1 mt-4">
+                        <a href="{{ route('dashboard.students.create') }}" class="btn btn-primary text-white">
+                            <span class="tf-icons bx bx-plus"></span>&nbsp; {{ trans('student.create') }}
+                        </a>
+                    </div>
+                @endif
+                <div class="col-md-8 ">
+                    <form action="" method="GET" id="filterStudentForm" class="row">
+                        <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                            <label for="search" class="form-label">{{ trans('student.label.name') }}</label>
+                            <input type="text" id="search" name="search" value="{{ Request::get('search') }}"
+                                class="form-control input-solid"
+                                placeholder="{{ Request::get('search') != '' ? '' : trans('teacher.placeholder.name') }}">
                         </div>
-                        
-                    @endif
-                    <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
-                        <label for="search" class="form-label">{{ trans('student.label.name') }}</label>
-                        <input type="text" id="search" name="search" value="{{ Request::get('search') }}"
-                            class="form-control input-solid"
-                            placeholder="{{ Request::get('search') != '' ? '' : trans('student.placeholder.name') }}">
+                        <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                            <label for="registration_number"
+                                class="form-label">{{ trans('student.label.registration_number') }}</label>
+                            <input type="text" id="registration_number" name="registration_number"
+                                value="{{ Request::get('registration_number') }}" class="form-control input-solid"
+                                placeholder="{{ Request::get('registration_number') != '' ? '' : trans('student.placeholder.registration_number') }}">
+                        </div>
 
-                    </div>
-                    <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
-                        <label for="name" class="form-label">{{ trans('student.label.registration_number') }}</label>
-                        <input type="text" id="name" name="search" value="{{ Request::get('search') }}"
-                            class="form-control input-solid"
-                            placeholder="{{ Request::get('search') != '' ? '' : trans('student.placeholder.registration_number') }}">
+                        <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                            <label for="group" class="form-label">{{ trans('student.label.group') }}</label>
+                            <select class="form-select" id="group" name="group" aria-label="Default select example">
+                                @if (Request::get('group') != null)
+                                    <option value="{{ Request::get('group') }}">
+                                        {{ trans('app.groups.' . Request::get('group')) }}</option>
+                                @else
+                                    <option value="">{{ trans('attendence.select.group') }}</option>
+                                @endif
+                                <option value="">{{ trans('app.all') }}</option>
+        
+                                @for ($group = 1; $group <= $groups; $group++)
+                                    <option value="{{ $group }}">{{ trans('app.groups.' . $group) }}</option>
+                                @endfor
+                            </select>
+                        </div>
 
-                    </div>
-                    <div class="form-group col-md-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
-                        <label for="group" class="form-label">{{ trans('student.label.group') }}</label>
-                        <select class="form-select" id="group" name="group" aria-label="Default select example">
-                            @if (Request::get('group') != null)
-                                <option value="{{ Request::get('group') }}">
-                                    {{ trans('attendence.groups.' . Request::get('group')) }}</option>
-                            @else
-                                <option value="">{{ trans('attendence.select.group') }}</option>
-                            @endif
-                            <option value="">{{ trans('app.all') }}</option>
-
-                            @for ($group = 1; $group <= $groups; $group++)
-                                <option value="{{ $group }}">{{ trans('attendence.groups.' . $group) }}</option>
-                            @endfor
-                        </select>
-                    </div>
-                    <div class="form-group col-md-2 mr-5 mt-4">
-                        @if (count($students))
-                            <button target="_blank" id="printStudent"
-                                data-url="{{ route('dashboard.print.students', [
-                                    'group' => Request::get('group'),
-                                ]) }}"
-                                class="btn
-                            btn-primary text-white">
-                                <span class="bx bxs-printer"></span>&nbsp; {{ trans('app.print') }}
-                            </button>
-                        @endif
-                    </div>
+                        <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                            <label for="batch" class="form-label">{{ trans('student.label.batch') }}</label>
+                            <select class="form-select" id="batch" name="batch" aria-label="Default select example">
+                                @if (Request::get('batch') != null)
+                                    <option value="{{ Request::get('batch') }}">
+                                        {{ trans('app.batchs.' . Request::get('batch')) }}</option>
+                                @else
+                                    <option value="">{{ trans('app.select.batch') }}</option>
+                                @endif
+                                <option value="">{{ trans('app.all') }}</option>
+                                <option value="أ">{{ trans('app.batchs.أ') }}</option>
+                                <option value="ب">{{ trans('app.batchs.ب') }}</option>
+                                <option value="ج">{{ trans('app.batchs.ج') }}</option>
+        
+                                {{-- @for ($batch = 1; $batch <= $batchs; $batch++)
+                                    <option value="{{ $batch }}">{{ trans('app.batchs.' . $batch) }}</option>
+                                @endfor --}}
+                            </select>
+                        </div>
+                    </form>
                 </div>
-            </form>
+
+                {{-- <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                    <label for="registration_number"
+                        class="form-label">{{ trans('student.label.registration_number') }}</label>
+                    <input type="text" id="registration_number" name="search" value="{{ Request::get('search') }}"
+                        class="form-control input-solid"
+                        placeholder="{{ Request::get('search') != '' ? '' : trans('student.placeholder.registration_number') }}">
+
+                </div>
+                <div class="form-group col-md-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                    <label for="group" class="form-label">{{ trans('student.label.group') }}</label>
+                    <select class="form-select" id="group" name="group" aria-label="Default select example">
+                        @if (Request::get('group') != null)
+                            <option value="{{ Request::get('group') }}">
+                                {{ trans('attendence.groups.' . Request::get('group')) }}</option>
+                        @else
+                            <option value="">{{ trans('attendence.select.group') }}</option>
+                        @endif
+                        <option value="">{{ trans('app.all') }}</option>
+
+                        @for ($group = 1; $group <= $groups; $group++)
+                            <option value="{{ $group }}">{{ trans('attendence.groups.' . $group) }}</option>
+                        @endfor
+                    </select>
+                </div> --}}
+
+                <div class="form-group col-md-2 mt-4">
+                    @if (count($students))
+                        <button target="_blank" id="printStudent"
+                            data-url="{{ route('dashboard.print.students', [
+                                'batch' => Request::get('batch'),
+                                'group' => Request::get('group'),
+                                'search' => Request::get('search'),
+                                'registration_number' => Request::get('registration_number'),
+                            ]) }}"
+                            class="btn
+                            btn-primary text-white mr-2">
+                            <span class="bx bxs-printer"></span>&nbsp; {{ trans('app.print') }}
+                        </button>
+                    @endif
+                </div>
+            </div>
+
         </h5>
         <div class="table-responsive text-nowrap">
             <table class="table mb-2">
@@ -86,50 +137,48 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if (count($students))
-                        @foreach ($students as $key => $student)
-                            <tr>
-                                <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $student->name }}</td>
-                                <td>{{ $student->email }}</td>
-                                <td>{{ $student->phone }}</td>
-                                <td>{{ $student->birthday }}</td>
-                                <td>{{ $student->state_of_birth }} -{{ $student->place_of_birth }}</td>
-                                <td>{{ $student->gender == 1 ? trans('student.male') : trans('student.female') }}</td>
-                                <td>{{ $student->registration_number }}</td>
-                                <td>{{ $student->group }}</td>
-                                @if (auth('admin')->check())
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item"
-                                                    href="{{ route('dashboard.students.edit', $student->id) }}">
-                                                    <i class="bx bx-edit-alt me-2"></i>
-                                                    {{ trans('student.edit') }}
-                                                </a>
-                                                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteStudentModal{{ $student->id }}">
-                                                    <i class="bx bx-trash me-2"></i>
-                                                    {{ trans('student.delete') }}
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                @endif
-                            </tr>
-                            @include('dashboard.student.delete')
-                        @endforeach
-                    @else
+                    @forelse ($students as $key => $student)
                         <tr>
-                            <td colspan="9"><em>@lang('لا يوجد سجلات.')</em></td>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $student->name }}</td>
+                            <td>{{ $student->email }}</td>
+                            <td>{{ $student->phone }}</td>
+                            <td>{{ $student->birthday }}</td>
+                            <td>{{ $student->state_of_birth }} -{{ $student->place_of_birth }}</td>
+                            <td>{{ $student->gender == 1 ? trans('student.male') : trans('student.female') }}</td>
+                            <td>{{ $student->registration_number }}</td>
+                            <td>{{ $student->group }}</td>
+                            @if (auth('admin')->check())
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                            data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item"
+                                                href="{{ route('dashboard.students.edit', $student->id) }}">
+                                                <i class="bx bx-edit-alt me-2"></i>
+                                                {{ trans('student.edit') }}
+                                            </a>
+                                            <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal"
+                                                data-bs-target="#deleteStudentModal{{ $student->id }}">
+                                                <i class="bx bx-trash me-2"></i>
+                                                {{ trans('student.delete') }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            @endif
                         </tr>
-                    @endif
+                        @include('dashboard.student.delete')
+                    @empty
+                        <tr>
+                            <td colspan="10" class="text-center text-danger"><em>@lang('لا يوجد سجلات.')</em></td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
-            {{ $students->links() }}
+            {{ $students->appends(request()->all())->links() }}
         </div>
     </div>
 @endsection
@@ -153,9 +202,30 @@
                 }, 1000);
 
             });
+            $('#batch').on('change', function(event) {
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 1000);
 
+            });
+            
+            // $('#search').on('keyup', function(event) {
+            //     // console.log('search' , $('#search').val());
+            //     $("#search").focus();
+            //     timer = setTimeout(function() {
+            //         submitForm();
+            //     }, 4000);
+
+            // })
             $('#search').on('keyup', function(event) {
                 $("#search").focus();
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 4000);
+
+            })
+            $('#registration_number').on('keyup', function(event) {
+                $("#registration_number").focus();
                 timer = setTimeout(function() {
                     submitForm();
                 }, 4000);

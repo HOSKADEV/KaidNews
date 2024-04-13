@@ -31,12 +31,20 @@ class AttendenceController extends Controller
      */
     public function index(Request $request)
     {
+        // if($request->has('year') != null){
+        //     $now = Carbon::parse(now());
+        //     // $year = $now->year;
+        // }
         $now = Carbon::parse(now());
-        $year = $now->year;
+
+
         $week = $request->week == null ? $now->weekOfMonth : $request->week;
         $month = $request->month == null ? $now->month  : $request->month;
+        $year = $request->year == null ? $now->year  : $request->year;
         // $group = $request->group == null ? null : $request->group;
-        $students = $this->students->paginate($perPage = 10, $request->search,$request->group);
+        //         $students = $this->students->paginate($perPage = 10, $request->search, $request->registration_number,$request->batch, $request->group);
+
+        $students = $this->students->paginate($perPage = 10, $request->search, $request->registration_number,$request->batch, $request->group);
         return view('dashboard.attendence.index', compact('students', 'year', 'month', 'week'));
     }
 

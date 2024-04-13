@@ -35,6 +35,7 @@ return [
 
     'label' =>[
         'name' => 'الإسم',
+        'batch' => 'الدفعة',
         'group' => 'الفوج',
         'file' => 'اختر ملف اكسل',
         'registration_number' => 'رقم التسجيل',

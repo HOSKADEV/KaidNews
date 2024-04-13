@@ -15,7 +15,20 @@
         <h5 class="card-header pt-0 mt-2">
             <form action="" method="GET" id="filterAttendenceForm">
                 <div class="row">
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-2 mb-2">
+                        <label for="year" class="form-label">{{ trans('app.label.year') }}</label>
+                        <select class="form-select" id="year" name="year" aria-label="Default select example">
+                            @if ($year)
+                                <option value="{{ $year }}"> {{ trans('app.year').' '. $year }}</option>
+                            @else
+                                <option value="">{{ trans('app.select.year') }}</option>
+                            @endif
+                            @for ($i = $start_date; $i <= \Carbon\Carbon::now()->format('Y'); $i++)
+                            <option value="{{ $i }}">{{ trans('app.year') .' ' .$i }}</option>
+                        @endfor
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2 mb-2">
                         <label for="week" class="form-label">{{ trans('attendence.label.week') }}</label>
                         <select class="form-select" id="week" name="week" aria-label="Default select example">
                             @if ($week)
@@ -29,7 +42,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-2 mb-2">
                         <label for="month" class="form-label">{{ trans('attendence.label.month') }}</label>
                         <select class="form-select" id="month" name="month" aria-label="Default select example">
                             @if ($month)
@@ -43,30 +56,54 @@
                         </select>
                     </div>
 
-                    <div class="form-group col-md-2">
-                        <label for="group" class="form-label">{{ trans('attendence.label.group') }}</label>
+                    <div class="form-group col-md-3 mb-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                        <label for="group" class="form-label">{{ trans('student.label.group') }}</label>
                         <select class="form-select" id="group" name="group" aria-label="Default select example">
                             @if (Request::get('group') != null)
                                 <option value="{{ Request::get('group') }}">
-                                    {{ trans('attendence.groups.' . Request::get('group')) }}</option>
+                                    {{ trans('app.groups.' . Request::get('group')) }}</option>
                             @else
                                 <option value="">{{ trans('attendence.select.group') }}</option>
                             @endif
                             <option value="">{{ trans('app.all') }}</option>
-
+    
                             @for ($group = 1; $group <= $groups; $group++)
-                                <option value="{{ $group }}">{{ trans('attendence.groups.' . $group) }}</option>
+                                <option value="{{ $group }}">{{ trans('app.groups.' . $group) }}</option>
                             @endfor
                         </select>
                     </div>
 
-                    <div class="form-group col-md-4">
-                        <label for="search" class="form-label">{{ trans('attendence.label.search') }}</label>
+                    <div class="form-group col-md-3 mb-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                        <label for="batch" class="form-label">{{ trans('student.label.batch') }}</label>
+                        <select class="form-select" id="batch" name="batch" aria-label="Default select example">
+                            @if (Request::get('batch') != null)
+                                <option value="{{ Request::get('batch') }}">
+                                    {{ trans('app.batchs.' . Request::get('batch')) }}</option>
+                            @else
+                                <option value="">{{ trans('app.select.batch') }}</option>
+                            @endif
+                            <option value="">{{ trans('app.all') }}</option>
+                            <option value="أ">{{ trans('app.batchs.أ') }}</option>
+                            <option value="ب">{{ trans('app.batchs.ب') }}</option>
+                            <option value="ج">{{ trans('app.batchs.ج') }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-4" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                        <label for="registration_number"
+                            class="form-label">{{ trans('app.label.registration_number') }}</label>
+                        <input type="text" id="registration_number" name="registration_number"
+                            value="{{ Request::get('registration_number') }}" class="form-control input-solid"
+                            placeholder="{{ Request::get('registration_number') != '' ? '' : trans('app.placeholder.registration_number') }}">
+                    </div>
+
+                    <div class="form-group col-md-4 mb-2">
+                        <label for="search" class="form-label">{{ trans('app.label.name') }}</label>
                         <input type="text" id="search" name="search" value="{{ Request::get('search') }}"
                             class="form-control input-solid"
                             placeholder="{{ Request::get('search') != '' ? '' : trans('attendence.placeholder.search') }}">
                     </div>
-                    <div class="form-group col-md-2 mr-5 mt-4">
+                    <div class="form-group col-md-2 mr-5 mt-4 mb-2">
                         @if (count($students))
                             <button target="_blank" id="printSection"
                                 data-url="{{ route('dashboard.print.attendence', [
@@ -230,7 +267,7 @@ value="{{ $day }}" id="day" checked />
                     @endif
                 </tbody>
             </table>
-            {{ $students->links() }}
+            {{ $students->appends(request()->all())->links() }}
         </div>
     </div>
 @endsection
@@ -275,12 +312,24 @@ value="{{ $day }}" id="day" checked />
                 })
             })
 
+            $('#year').on('change', function(event) {
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 1000);
+            });
+
             $('#month').on('change', function(event) {
                 timer = setTimeout(function() {
                     submitForm();
                 }, 1000);
             });
             $('#week').on('change', function(event) {
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 1000);
+
+            });
+            $('#batch').on('change', function(event) {
                 timer = setTimeout(function() {
                     submitForm();
                 }, 1000);
@@ -293,6 +342,13 @@ value="{{ $day }}" id="day" checked />
 
             });
 
+            $('#registration_number').on('keyup', function(event) {
+                $("#registration_number").focus();
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 4000);
+
+            })
             $('#search').on('keyup', function(event) {
                 $("#search").focus();
                 timer = setTimeout(function() {

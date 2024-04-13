@@ -82,7 +82,12 @@
             <div class="col-6">
                 <h3 class="text-center title">{{ trans('print.title.students') }}</h3>
                 <h5 class="text-center">{{ trans('print.date_print') }} : {{ date('Y-m-d H:i') }}</h5>
-                <h5 class="text-center">{{ trans('print.group') }} : {{ $group != null ? trans('print.groups.' . $group) : trans('print.groups.all') }}</h5>
+               
+                <h5 class="text-center">{{ trans('print.batch') }} :
+                    {{ $batch != null ? trans('print.batchs.' . $batch) : trans('print.batchs.all') }}</h5>
+
+                <h5 class="text-center">{{ trans('print.group') }} :
+                    {{ $group != null ? trans('print.groups.' . $group) : trans('print.groups.all') }}</h5>
 
             </div>
             <div class="col-3">
@@ -105,7 +110,13 @@
                 <th>{{ trans('student.email') }}</th>
                 <th>{{ trans('student.phone') }}</th>
                 <th>{{ trans('student.registration_number') }}</th>
-                <th>{{ trans('student.group') }}</th>
+
+                @if ($batch == null)
+                    <th>{{ trans('student.batch') }}</th>
+                @endif
+                @if ($group == null)
+                    <th>{{ trans('student.group') }}</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -123,7 +134,12 @@
                         <td>{{ $student->email }}</td>
                         <td>{{ $student->phone }}</td>
                         <td>{{ $student->registration_number }}</td>
-                        <td>{{ trans('print.groups.' . $student->group) }}</td>
+                        @if ($batch == null)
+                            <td>{{  $student->batch }}</td>
+                        @endif
+                        @if ($group == null)
+                            <td>{{ trans('print.groups.' . $student->group) }}</td>
+                        @endif
                     </tr>
                 @endforeach
             @else
