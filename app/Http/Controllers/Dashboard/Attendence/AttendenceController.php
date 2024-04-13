@@ -44,7 +44,7 @@ class AttendenceController extends Controller
         // $group = $request->group == null ? null : $request->group;
         //         $students = $this->students->paginate($perPage = 10, $request->search, $request->registration_number,$request->batch, $request->group);
 
-        $students = $this->students->paginate($perPage = 10, $request->search, $request->registration_number,$request->batch, $request->group);
+        $students = $this->students->paginate($perPage = 10,$request->searchFrom,$request->searchTo, $request->search, $request->registration_number,$request->batch, $request->group);
         return view('dashboard.attendence.index', compact('students', 'year', 'month', 'week'));
     }
 

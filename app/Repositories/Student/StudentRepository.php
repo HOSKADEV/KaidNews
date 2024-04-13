@@ -47,7 +47,7 @@ interface StudentRepository
      * @return mixed
      */
 
-    public function paginate($perPage, $search = null, $registration_number = null, $batch = null, $group = null, $status = null);
+    public function paginate($perPage,$start_date = null,$end_date = null, $search = null, $registration_number = null, $batch = null, $group = null, $status = null);
 
 
     /**

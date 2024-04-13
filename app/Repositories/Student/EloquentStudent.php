@@ -5,6 +5,7 @@ namespace App\Repositories\Student;
 use App\Models\Student;
 use App\Repositories\Student\StudentRepository;
 use App\Http\Filters\Student\StudentKeywordSearch;
+use App\Http\Filters\Student\StudentKeywordBetweenDate;
 
 class EloquentStudent implements StudentRepository
 {
@@ -83,7 +84,7 @@ class EloquentStudent implements StudentRepository
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|mixed
      */
 
-    public function paginate($perPage, $search = null, $registration_number = null, $batch = null, $group = null, $status = null)
+    public function paginate($perPage,$start_date = null,$end_date = null, $search = null, $registration_number = null, $batch = null, $group = null, $status = null)
     {
         $query = Student::query()->with('evaluations', 'tests', 'tests.subject', 'certificate');
 
@@ -99,6 +100,9 @@ class EloquentStudent implements StudentRepository
 
         if ($search) {
             (new StudentKeywordSearch)($query, $search);
+        }
+        if ($start_date && $end_date) {
+            (new StudentKeywordBetweenDate)($query, $start_date,$end_date);
         }
 
         $result = $query->orderBy('id', 'desc')

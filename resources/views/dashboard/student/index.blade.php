@@ -12,62 +12,76 @@
     </h4>
     <div class="card">
         <h5 class="card-header pt-0 mt-1">
-            <div class="row  justify-content-between">
-                @if (auth('admin')->check())
-                    <div class="form-group col-md-2 px-1 mt-4">
-                        <a href="{{ route('dashboard.students.create') }}" class="btn btn-primary text-white">
-                            <span class="tf-icons bx bx-plus"></span>&nbsp; {{ trans('student.create') }}
-                        </a>
+            <form action="" method="GET" id="filterStudentForm" class="">
+                <div class="row">
+                    @if (auth('admin')->check())
+                        <div class="form-group col-md-2 px-1 mt-4">
+                            <a href="{{ route('dashboard.students.create') }}" class="btn btn-primary text-white">
+                                <span class="tf-icons bx bx-plus"></span>&nbsp; {{ trans('student.create') }}
+                            </a>
+                        </div>
+                    @endif
+                    <div class="form-group col-md-3 mb-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                        <label for="search" class="form-label">{{ trans('student.label.name') }}</label>
+                        <input type="text" id="search" name="search" value="{{ Request::get('search') }}"
+                            class="form-control input-solid"
+                            placeholder="{{ Request::get('search') != '' ? '' : trans('teacher.placeholder.name') }}">
                     </div>
-                @endif
-                <div class="col-md-10">
-                    <form action="" method="GET" id="filterStudentForm" class="row">
-                        <div class="form-group col-md-4" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
-                            <label for="search" class="form-label">{{ trans('student.label.name') }}</label>
-                            <input type="text" id="search" name="search" value="{{ Request::get('search') }}"
-                                class="form-control input-solid"
-                                placeholder="{{ Request::get('search') != '' ? '' : trans('teacher.placeholder.name') }}">
-                        </div>
-                        <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
-                            <label for="registration_number"
-                                class="form-label">{{ trans('student.label.registration_number') }}</label>
-                            <input type="text" id="registration_number" name="registration_number"
-                                value="{{ Request::get('registration_number') }}" class="form-control input-solid"
-                                placeholder="{{ Request::get('registration_number') != '' ? '' : trans('student.placeholder.registration_number') }}">
-                        </div>
-                        <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
-                            <label for="batch" class="form-label">{{ trans('student.label.batch') }}</label>
-                            <select class="form-select" id="batch" name="batch" aria-label="Default select example">
-                                @if (Request::get('batch') != null)
-                                    <option value="{{ Request::get('batch') }}">
-                                        {{ trans('app.batchs.' . Request::get('batch')) }}</option>
-                                @else
-                                    <option value="">{{ trans('app.select.batch') }}</option>
-                                @endif
-                                <option value="">{{ trans('app.all') }}</option>
-                                <option value="أ">{{ trans('app.batchs.أ') }}</option>
-                                <option value="ب">{{ trans('app.batchs.ب') }}</option>
-                                <option value="ج">{{ trans('app.batchs.ج') }}</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
-                            <label for="group" class="form-label">{{ trans('student.label.group') }}</label>
-                            <select class="form-select" id="group" name="group" aria-label="Default select example">
-                                @if (Request::get('group') != null)
-                                    <option value="{{ Request::get('group') }}">
-                                        {{ trans('app.groups.' . Request::get('group')) }}</option>
-                                @else
-                                    <option value="">{{ trans('attendence.select.group') }}</option>
-                                @endif
-                                <option value="">{{ trans('app.all') }}</option>
+                    <div class="form-group col-md-3 mb-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                        <label for="registration_number"
+                            class="form-label">{{ trans('student.label.registration_number') }}</label>
+                        <input type="text" id="registration_number" name="registration_number"
+                            value="{{ Request::get('registration_number') }}" class="form-control input-solid"
+                            placeholder="{{ Request::get('registration_number') != '' ? '' : trans('student.placeholder.registration_number') }}">
+                    </div>
 
-                                @for ($group = 1; $group <= $groups; $group++)
-                                    <option value="{{ $group }}">{{ trans('app.groups.' . $group) }}</option>
-                                @endfor
-                            </select>
-                        </div>
-                    </form>
+                    <div class="form-group col-md-2 mb-2 mb-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                        <label for="batch" class="form-label">{{ trans('student.label.batch') }}</label>
+                        <select class="form-select" id="batch" name="batch" aria-label="Default select example">
+                            @if (Request::get('batch') != null)
+                                <option value="{{ Request::get('batch') }}">
+                                    {{ trans('app.batchs.' . Request::get('batch')) }}</option>
+                            @else
+                                <option value="">{{ trans('app.select.batch') }}</option>
+                            @endif
+                            <option value="">{{ trans('app.all') }}</option>
+                            <option value="أ">{{ trans('app.batchs.أ') }}</option>
+                            <option value="ب">{{ trans('app.batchs.ب') }}</option>
+                            <option value="ج">{{ trans('app.batchs.ج') }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-2 mb-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                        <label for="group" class="form-label">{{ trans('student.label.group') }}</label>
+                        <select class="form-select" id="group" name="group" aria-label="Default select example">
+                            @if (Request::get('group') != null)
+                                <option value="{{ Request::get('group') }}">
+                                    {{ trans('app.groups.' . Request::get('group')) }}</option>
+                            @else
+                                <option value="">{{ trans('attendence.select.group') }}</option>
+                            @endif
+                            <option value="">{{ trans('app.all') }}</option>
+
+                            @for ($group = 1; $group <= $groups; $group++)
+                                <option value="{{ $group }}">{{ trans('app.groups.' . $group) }}</option>
+                            @endfor
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3 mb-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                        <label for="start_date" class="form-label">{{ trans('student.label.start_date') }}</label>
+                        <input type="date" class="form-control input-solid" placeholder="YYYY-MM-DD"
+                            style="background-color: #ffffff" name="start_date" id="start_date"
+                            value="{{ Request::get('start_date') }}" />
+                    </div>
+                    <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                        <label for="end_date" class="form-label">{{ trans('student.label.end_date') }}</label>
+                        <input type="date" class="form-control input-solid" placeholder="YYYY-MM-DD"
+                            style="background-color: #ffffff" name="end_date" id="end_date"
+                            value="{{ Request::get('end_date') }}" />
+                    </div>
                 </div>
+            </form>
+            <div class="row">
                 @if (count($students))
                     <div class="form-group col-md-2 mt-4">
                         <button target="_blank" id="printStudent"
@@ -78,7 +92,7 @@
                                 'registration_number' => Request::get('registration_number'),
                             ]) }}"
                             class="btn
-                            btn-primary text-white mr-2">
+                        btn-primary text-white mr-2">
                             <span class="bx bxs-printer"></span>&nbsp; {{ trans('app.print') }}
                         </button>
                     </div>
@@ -165,6 +179,18 @@
             });
 
             $('#group').on('change', function(event) {
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 1000);
+
+            });
+            $('#start_date').on('change', function(event) {
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 1000);
+
+            });
+            $('#end_date').on('change', function(event) {
                 timer = setTimeout(function() {
                     submitForm();
                 }, 1000);
