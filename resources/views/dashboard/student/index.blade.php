@@ -20,9 +20,9 @@
                         </a>
                     </div>
                 @endif
-                <div class="col-md-8 ">
+                <div class="col-md-10">
                     <form action="" method="GET" id="filterStudentForm" class="row">
-                        <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                        <div class="form-group col-md-4" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
                             <label for="search" class="form-label">{{ trans('student.label.name') }}</label>
                             <input type="text" id="search" name="search" value="{{ Request::get('search') }}"
                                 class="form-control input-solid"
@@ -35,24 +35,6 @@
                                 value="{{ Request::get('registration_number') }}" class="form-control input-solid"
                                 placeholder="{{ Request::get('registration_number') != '' ? '' : trans('student.placeholder.registration_number') }}">
                         </div>
-
-                        <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
-                            <label for="group" class="form-label">{{ trans('student.label.group') }}</label>
-                            <select class="form-select" id="group" name="group" aria-label="Default select example">
-                                @if (Request::get('group') != null)
-                                    <option value="{{ Request::get('group') }}">
-                                        {{ trans('app.groups.' . Request::get('group')) }}</option>
-                                @else
-                                    <option value="">{{ trans('attendence.select.group') }}</option>
-                                @endif
-                                <option value="">{{ trans('app.all') }}</option>
-        
-                                @for ($group = 1; $group <= $groups; $group++)
-                                    <option value="{{ $group }}">{{ trans('app.groups.' . $group) }}</option>
-                                @endfor
-                            </select>
-                        </div>
-
                         <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
                             <label for="batch" class="form-label">{{ trans('student.label.batch') }}</label>
                             <select class="form-select" id="batch" name="batch" aria-label="Default select example">
@@ -66,42 +48,28 @@
                                 <option value="أ">{{ trans('app.batchs.أ') }}</option>
                                 <option value="ب">{{ trans('app.batchs.ب') }}</option>
                                 <option value="ج">{{ trans('app.batchs.ج') }}</option>
-        
-                                {{-- @for ($batch = 1; $batch <= $batchs; $batch++)
-                                    <option value="{{ $batch }}">{{ trans('app.batchs.' . $batch) }}</option>
-                                @endfor --}}
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                            <label for="group" class="form-label">{{ trans('student.label.group') }}</label>
+                            <select class="form-select" id="group" name="group" aria-label="Default select example">
+                                @if (Request::get('group') != null)
+                                    <option value="{{ Request::get('group') }}">
+                                        {{ trans('app.groups.' . Request::get('group')) }}</option>
+                                @else
+                                    <option value="">{{ trans('attendence.select.group') }}</option>
+                                @endif
+                                <option value="">{{ trans('app.all') }}</option>
+
+                                @for ($group = 1; $group <= $groups; $group++)
+                                    <option value="{{ $group }}">{{ trans('app.groups.' . $group) }}</option>
+                                @endfor
                             </select>
                         </div>
                     </form>
                 </div>
-
-                {{-- <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
-                    <label for="registration_number"
-                        class="form-label">{{ trans('student.label.registration_number') }}</label>
-                    <input type="text" id="registration_number" name="search" value="{{ Request::get('search') }}"
-                        class="form-control input-solid"
-                        placeholder="{{ Request::get('search') != '' ? '' : trans('student.placeholder.registration_number') }}">
-
-                </div>
-                <div class="form-group col-md-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
-                    <label for="group" class="form-label">{{ trans('student.label.group') }}</label>
-                    <select class="form-select" id="group" name="group" aria-label="Default select example">
-                        @if (Request::get('group') != null)
-                            <option value="{{ Request::get('group') }}">
-                                {{ trans('attendence.groups.' . Request::get('group')) }}</option>
-                        @else
-                            <option value="">{{ trans('attendence.select.group') }}</option>
-                        @endif
-                        <option value="">{{ trans('app.all') }}</option>
-
-                        @for ($group = 1; $group <= $groups; $group++)
-                            <option value="{{ $group }}">{{ trans('attendence.groups.' . $group) }}</option>
-                        @endfor
-                    </select>
-                </div> --}}
-
-                <div class="form-group col-md-2 mt-4">
-                    @if (count($students))
+                @if (count($students))
+                    <div class="form-group col-md-2 mt-4">
                         <button target="_blank" id="printStudent"
                             data-url="{{ route('dashboard.print.students', [
                                 'batch' => Request::get('batch'),
@@ -113,8 +81,8 @@
                             btn-primary text-white mr-2">
                             <span class="bx bxs-printer"></span>&nbsp; {{ trans('app.print') }}
                         </button>
-                    @endif
-                </div>
+                    </div>
+                @endif
             </div>
 
         </h5>
@@ -208,7 +176,7 @@
                 }, 1000);
 
             });
-            
+
             // $('#search').on('keyup', function(event) {
             //     // console.log('search' , $('#search').val());
             //     $("#search").focus();
