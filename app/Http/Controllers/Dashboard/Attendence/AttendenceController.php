@@ -44,7 +44,7 @@ class AttendenceController extends Controller
         // $group = $request->group == null ? null : $request->group;
         //         $students = $this->students->paginate($perPage = 10, $request->search, $request->registration_number,$request->batch, $request->group);
 
-        $students = $this->students->paginate($perPage = 10,$request->searchFrom,$request->searchTo, $request->search, $request->registration_number,$request->batch, $request->group);
+        $students = $this->students->paginate($perPage = 10, $request->searchFrom, $request->searchTo, $request->search, $request->registration_number, $request->batch, $request->group);
         return view('dashboard.attendence.index', compact('students', 'year', 'month', 'week'));
     }
 
@@ -68,7 +68,7 @@ class AttendenceController extends Controller
     {
         // $student = Student::findOrfail($request->student);
         $student = $this->students->find($request->student);
-        $attendence = $this->attendences->findAttendence($request->student ,$request->year,$request->month,$request->week,$request->day);
+        $attendence = $this->attendences->findAttendence($request->student, $request->year, $request->month, $request->week, $request->day);
         if ($request->isChecked == 'true') {
             $data = [
                 // 'day' => $request->day,
@@ -78,7 +78,7 @@ class AttendenceController extends Controller
                 // 'year' => $request->year,
                 'number' => $attendence->number + 1,
             ];
-            $this->attendences->update($attendence->id,$data);
+            $this->attendences->update($attendence->id, $data);
             // $this->attendences->create($data);
             return response()->json(['success' => trans('attendence.attendance') . " " . $student->name . " " . trans('attendence.day') . " " . trans('attendence.days.' . $request->day)]);
         } else {
@@ -90,7 +90,7 @@ class AttendenceController extends Controller
                 // 'year' => $request->year,
                 'number' => $attendence->number - 1,
             ];
-            $this->attendences->update($attendence->id,$data);
+            $this->attendences->update($attendence->id, $data);
             // $this->attendences->deleteAttendence($request->student, $request->day, $request->week, $request->month, $request->year);
             return response()->json(['success' => trans('attendence.absence') . " " . $student->name . " " . trans('attendence.day') . " " . trans('attendence.days.' . $request->day)]);
         }

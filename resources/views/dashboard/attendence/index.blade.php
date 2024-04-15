@@ -101,8 +101,9 @@
                         <label for="search" class="form-label">{{ trans('app.label.name') }}</label>
                         <input type="text" id="search" name="search" value="{{ Request::get('search') }}"
                             class="form-control input-solid"
-                            placeholder="{{ Request::get('search') != '' ? '' : trans('attendence.placeholder.search') }}">
+                            placeholder="{{ Request::get('search') != '' ? '' : trans('app.placeholder.name') }}">
                     </div>
+                    
                     <div class="form-group col-md-2 mr-5 mt-4 mb-2">
                         @if (count($students))
                             <button target="_blank" id="printSection"
@@ -132,7 +133,6 @@
                         @for ($day = 1; $day <= $days; $day++)
                             <th> {{ trans('attendence.days.' . $day) }}</th>
                         @endfor
-                        {{-- <th>{{ trans('app.actions') }}</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -150,30 +150,21 @@
 
                                 @for ($day = 1; $day <= $days; $day++)
                                     <td>
-                                        {{-- @if ($student->attendences->where('week', $week)
-                                    ->where('month', $month)
-                                    ->where('year', $year)
-                                    ->where('day', $day)->first()->number? $student->attendences->where('week', $week)
-                                    ->where('month', $month)
-                                    ->where('year', $year)
-                                    ->where('day', $day)->first()->number == 0)
-                                    hhhh
-                                    @endif --}}
-
                                    @php
                                     $attendences = $student->attendences->where('week', $week)
                                     ->where('month', $month)
                                     ->where('year', $year)
                                     ->where('day', $day)->first();
+
+                                    // echo $attendences  
                                   @endphp
 
-{{-- {{ $attendences?->number > 0 ? 'OK' : 'No'; }} --}}
                                     <input class="form-check-input checkAttendence" type="checkbox" @if (auth('teacher')->check()) disabled @endif
-                                    value="{{ $day }}" id="day" {{ $attendences?->number > 0 ? 'checked' : ''; }}  /> 
+                                    value="{{ $day }}" id="day" {{ $attendences? '' : 'disabled' ;}} {{ $attendences?->number > 0 ? 'checked' : ''; }}  /> 
                                     <input class="form-check-input checkAttendence" type="checkbox" @if (auth('teacher')->check()) disabled @endif
-                                    value="{{ $day }}" id="day" {{ $attendences?->number > 1 ? 'checked' : ''; }}  /> 
+                                    value="{{ $day }}" id="day" {{ $attendences? '' : 'disabled' ;}}  {{ $attendences?->number > 1 ? 'checked' : ''; }}  /> 
                                     <input class="form-check-input checkAttendence" type="checkbox" @if (auth('teacher')->check()) disabled @endif
-                                    value="{{ $day }}" id="day" {{ $attendences?->number > 2 ? 'checked' : ''; }}  /> 
+                                    value="{{ $day }}" id="day" {{ $attendences? '' : 'disabled' ;}}  {{ $attendences?->number > 2 ? 'checked' : ''; }}  /> 
 {{-- 
 @if($attendences)
 @for ($i = 1 ; $i<=$attendences->number ; $i++)

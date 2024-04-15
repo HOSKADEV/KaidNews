@@ -7,9 +7,9 @@ use Spatie\QueryBuilder\Filters\Filter;
 
 class StudentKeywordBetweenDate implements Filter
 {
-    public function __invoke(Builder $query, $start_date,$end_date, string $property = '')
+    public function __invoke(Builder $query, $start_date, $end_date, string $property = '')
     {
-        $query->where(function ($q) use ($start_date,$end_date) {
+        $query->where(function ($q) use ($start_date, $end_date) {
             $q->whereBetween('start_date', [$start_date, $end_date]);
             $q->whereBetween('end_date', [$start_date, $end_date]);
             // $q->get();

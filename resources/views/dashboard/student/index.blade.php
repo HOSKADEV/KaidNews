@@ -21,11 +21,12 @@
                             </a>
                         </div>
                     @endif
+
                     <div class="form-group col-md-3 mb-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
-                        <label for="search" class="form-label">{{ trans('student.label.name') }}</label>
+                        <label for="search" class="form-label">{{ trans('app.label.name') }}</label>
                         <input type="text" id="search" name="search" value="{{ Request::get('search') }}"
                             class="form-control input-solid"
-                            placeholder="{{ Request::get('search') != '' ? '' : trans('teacher.placeholder.name') }}">
+                            placeholder="{{ Request::get('search') != '' ? '' : trans('app.placeholder.name') }}">
                     </div>
                     <div class="form-group col-md-3 mb-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
                         <label for="registration_number"
@@ -98,7 +99,6 @@
                     </div>
                 @endif
             </div>
-
         </h5>
         <div class="table-responsive text-nowrap">
             <table class="table mb-2">

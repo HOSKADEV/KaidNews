@@ -8,26 +8,26 @@ return [
         'students' => 'قائمة الطلبة',
         'teachers' => 'قائمة الأساتذة',
     ],
-    'title_print' =>[
+    'title_print' => [
         'attendence' => 'طباعة قائمة حضور الطلبة المتربصين',
-        'trainee_notebook' =>'دفتر المتربص',
+        'trainee_notebook' => 'دفتر المتربص',
         'students' => 'طباعة قائمة الطلبة',
         'teachers' => 'طباعة قائمة الأساتذة',
     ],
-    'weeks' =>[
+    'weeks' => [
         '1' => 'الأسبوع الأول',
         '2' => 'الأسبوع الثاني',
         '3' => 'الأسبوع الثالث',
         '4' => 'الأسبوع الرابع',
         '5' => 'الأسبوع الخامس',
     ],
-    'batchs' =>[
+    'batchs' => [
         'all' => 'كل الدفعات',
         'أ' => 'الدفعة أ',
         'ب' => 'الدفعة ب',
         'ج' => 'الدفعة ج',
     ],
-    'groups'=> [
+    'groups' => [
         'all' => 'كل الافواج',
         '1' => 'الفوج 1',
         '2' => 'الفوج 2',
@@ -38,7 +38,7 @@ return [
         '7' => 'الفوج 7',
         '8' => 'الفوج 8',
     ],
-    'batch' =>'الدفعة',
+    'batch' => 'الدفعة',
     'group' => 'الفوج',
     'ID' => 'الرقـم',
 
@@ -72,7 +72,7 @@ return [
         'email' => 'الإميل',
     ],
 
-    'suivi' =>[
+    'suivi' => [
         'title_ar' => 'التأطير',
         'title_fr' => 'Suivi de stage',
         'teacher_charge_ar' => 'الأستاذ المشرف على التربص',
@@ -108,7 +108,7 @@ return [
         'from_fr' => 'Au'
     ],
 
-    'review'=> [
+    'review' => [
         'title_ar' => 'التقييم النهائي للتربص (خاص بالأستاذ المؤطر على مستوى المؤسسة)',
         'title_fr' => 'Evaluation Finale De Stage (Réservée à l’enseignant encadreur à l’établissement d’accueil)',
 
@@ -135,10 +135,10 @@ return [
 
         'notes_ar' => 'ملاحظة : تملأ هذه الصفحة دون أي شطب',
         'notes_fr' => 'N.B : ne doit comporter ni rature ni surcharge',
-    ] ,
+    ],
 
 
-    'certificate' =>[
+    'certificate' => [
         'title' => 'شهادة تربص نهاية التكوين',
         'toStudent' => 'إلى  الطـالب  (ة)',
     ],

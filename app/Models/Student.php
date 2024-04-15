@@ -44,7 +44,10 @@ class Student extends Authenticatable
         'moyenFinal'
     ];
 
-    protected $dates = ['start_date','end_date'];
+    protected $dates = [
+        'start_date',
+        'end_date',
+    ];
 
     public function setPasswordAttribute($value): void
     {
@@ -86,7 +89,7 @@ class Student extends Authenticatable
     {
         return  $this->moyen;
     }
-    
+
     // public function getSortByMoyen(){
     //     return  $this->getMoyenAttribute->orderByDesc()->take(3);
     // }

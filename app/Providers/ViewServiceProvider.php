@@ -6,6 +6,7 @@ use App\Models\Setting;
 use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Support\Facades\View;
+
 class ViewServiceProvider extends ServiceProvider
 {
     /**
@@ -26,17 +27,16 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', function ($view) {
-            $view->with('phone', Setting::where('name','phone')->first()->value);
-            $view->with('email', Setting::where('name','email')->first()->value);
-            $view->with('fax', Setting::where('name','fax')->first()->value);
-            
-            $view->with('groups', Setting::where('name','groups')->first()->value);
-            $view->with('start_date', Setting::where('name','start_date')->first()->value);
-            $view->with('promotion', Setting::where('name','promotion')->first()->value);
-            $view->with('specialization', Setting::where('name','specialization')->first()->value);
-            $view->with('branch', Setting::where('name','branch')->first()->value);
+            $view->with('phone', Setting::where('name', 'phone')->first()->value);
+            $view->with('email', Setting::where('name', 'email')->first()->value);
+            $view->with('fax', Setting::where('name', 'fax')->first()->value);
 
-            
+            $view->with('groups', Setting::where('name', 'groups')->first()->value);
+            $view->with('days', Setting::where('name', 'days')->first()->value);
+            $view->with('start_date', Setting::where('name', 'start_date')->first()->value);
+            $view->with('promotion', Setting::where('name', 'promotion')->first()->value);
+            $view->with('specialization', Setting::where('name', 'specialization')->first()->value);
+            $view->with('branch', Setting::where('name', 'branch')->first()->value);
         });
     }
 }

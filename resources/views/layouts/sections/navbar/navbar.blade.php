@@ -19,7 +19,9 @@
     <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
         <a href="{{ url('/') }}" class="app-brand-link gap-2">
             <span class="app-brand-logo demo">
-                @include('_partials.macros', ['width' => 25, 'withbg' => '#696cff'])
+                <img width="150" src="{{ asset('assets/logo/kaid-logo.png') }}" alt="brand-logo" srcset="">
+
+                {{-- @include('_partials.macros', ['width' => 25, 'withbg' => '#696cff']) --}}
             </span>
             <span class="app-brand-text demo menu-text fw-bolder">{{ config('variables.templateName') }}</span>
         </a>
@@ -104,7 +106,9 @@
     <li class="nav-item navbar-dropdown dropdown-user dropdown">
         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
             <div class="avatar avatar-online">
-                <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle">
+                <img class="w-px-40 h-auto rounded-circle" src="{{ asset('assets/logo/kaid-logo.png') }}" alt="brand-logo" srcset="">
+
+                {{-- <img src="{{ asset('assets/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle"> --}}
             </div>
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
@@ -113,8 +117,11 @@
                     <div class="d-flex">
                         <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                                <img src="{{ asset('assets/img/avatars/1.png') }}" alt
-                                    class="w-px-40 h-auto rounded-circle">
+                                {{-- <img src="{{ asset('assets/img/avatars/1.png') }}" alt
+                                    class="w-px-40 h-auto rounded-circle"> --}}
+
+                                    <img class="w-px-40 h-auto rounded-circle" src="{{ asset('assets/logo/kaid-logo.png') }}" alt="brand-logo" srcset="">
+
                             </div>
                         </div>
                         @if (auth('admin')->check())
