@@ -63,7 +63,7 @@
                             </small>
                         @enderror
                     </div>
-                    <div class="col-sm-12 col-md-3 mb-2">
+                    <div class="col-sm-12 col-md-2 mb-2">
                         <label for="gender" class="form-label">{{ trans('app.label.gender') }}</label>
                         <select class="form-select @error('gender') is-invalid @enderror"
                             name="gender"value="{{ old('gender') }}">
@@ -77,7 +77,7 @@
                             </small>
                         @enderror
                     </div>
-                    <div class="col-sm-12 col-md-3 mb-2">
+                    <div class="col-sm-12 col-md-2 mb-2">
                         <label for="birthday" class="form-label">{{ trans('app.label.birthday') }}</label>
                         <input type="date" class="form-control @error('birthday') is-invalid @enderror" name="birthday"
                             value="{{ old('birthday') }}">
@@ -87,7 +87,7 @@
                             </small>
                         @enderror
                     </div>
-                    <div class="col-sm-12 col-md-3 mb-2">
+                    <div class="col-sm-12 col-md-2 mb-2">
                         <label for="state_of_birth" class="form-label">{{ trans('app.label.state_of_birth') }}</label>
                         <input type="text" class="form-control @error('state_of_birth') is-invalid @enderror"
                             name="state_of_birth" value="{{ old('state_of_birth') }}"
@@ -109,6 +109,18 @@
                             </small>
                         @enderror
                     </div>
+                    <div class="col-sm-12 col-md-3 mb-2">
+                        <label for="residence" class="form-label">{{ trans('app.label.residence') }}</label>
+                        <input type="text" class="form-control @error('residence') is-invalid @enderror"
+                            name="residence" value="{{ old('residence') }}"
+                            placeholder="{{ trans('app.placeholder.residence') }}">
+                        @error('residence')
+                            <small class="text-danger d-block">
+                                {{ $message }}
+                            </small>
+                        @enderror
+                    </div>
+                    <div class="col-sm-12 col-md-12 my-2"></div>
 
                     <div class="col-sm-12 col-md-6 mb-2">
                         <label for="registration_number"
@@ -163,7 +175,8 @@
                             </small>
                         @enderror
                     </div>
-                    <div class="col-sm-12 col-md-6 mb-2"></div>
+
+                    <div class="col-sm-12 col-md-12 my-2"></div>
                     <div class="col-sm-12 col-md-6 mb-2">
                         <label for="email" class="form-label">{{ trans('app.label.email') }}</label>
                         <input type="text" class="form-control @error('email') is-invalid @enderror" name="email"

@@ -43,7 +43,7 @@ return [
         'state_of_birth' => 'ولاية الميلاد',
         'place_of_birth' => 'مكان الميلاد',
         'state_place_of_birth' => 'ولاية ومكان الميلاد',
-
+        'residence' => 'الإقامة',
         'batch' => 'الدفعة',
         'group' => 'الفوج',
         'year' => 'سنة',
@@ -67,6 +67,7 @@ return [
         'gender'   => 'الجنس',
         'state_of_birth' => 'أدخل ولاية الميلاد',
         'place_of_birth' => 'أدخل مكان الميلاد',
+        'residence' => 'أدخل الإقامة',
         'state_place_of_birth' => 'أدخل ولاية ومكان الميلاد',
         'registration_number' => 'أدخل رقم التسجيل',
         'batch' => 'أدخل الدفعة',
