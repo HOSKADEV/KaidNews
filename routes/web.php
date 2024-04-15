@@ -115,6 +115,7 @@ Route::name('student.')->middleware('auth:student')->group(function () {
 Route::prefix('download')->middleware('auth:admin,student')->controller(PrintController::class)->name('download.')->group(function () {
     Route::get('review/{student_id}', 'review')->name('review');
     Route::get('certificate/{student_id}', 'certificate')->name('certificate');
+    Route::get('student/modal', 'studentModel')->middleware('auth:admin')->name('studentModel');
 
 
     // CertificateController

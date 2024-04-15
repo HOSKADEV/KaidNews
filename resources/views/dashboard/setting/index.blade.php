@@ -16,13 +16,15 @@
             <div class="row">
                 <h5 class="card-title">{{ trans('setting.students') }}</h5>
                 <div class="col-sm-12 col-md-3">
-                    {{-- <p class="card-text">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                    </p> --}}
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#importStudentFileModal">
                         <span class="bx bxs-file-import"></span>&nbsp; {{ trans('setting.import.student') }}
                     </button>
- 
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    {{-- <i class='bx bxs-download'></i> --}}
+                    <a href="{{ route('download.studentModel') }}" type="button" class="btn btn-primary">
+                        <span class="bx bxs-download"></span>&nbsp; {{ trans('setting.download.student') }}
+                    </a>
                 </div>
             </div>
             {{-- <p class="card-text">
