@@ -65,6 +65,7 @@ class ImportStudent implements ToModel, WithHeadingRow, WithCustomCsvSettings
             'phone' => $row['rkm_alhatf']== null ? Str::random(10) :$row['rkm_alhatf'],
             'email' => $row['alamyl']== null ? Str::random(10) :$row['alamyl'],
             'password' => $row['rkm_altsgyl']== null ? 'non' :$row['rkm_altsgyl'],
+            'moyenFinal' => '0',
         ]);
 
         // $st = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tarykh_bday_altrbs']);
