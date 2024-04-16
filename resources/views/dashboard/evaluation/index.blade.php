@@ -226,7 +226,6 @@
                     <tr class="text-nowrap">
                         <th>#</th>
                         <th>{{ trans('evaluation.name') }}</th>
-                        <th>{{ trans('evaluation.name') }}</th>
                         <th>{{ trans('student.birthday') }}</th>
                         <th>{{ trans('student.gender') }}</th>
                         <th>{{ trans('student.registration_number') }}</th>
@@ -243,7 +242,6 @@
                             @endphp
                             <tr>
                                 <th scope="row">{{ $rowNumber }}</th>
-                                <td>{{ $student->moyenFinal }}</td>
                                 <td>{{ $student->name }}</td>
                                 <td>{{ $student->birthday }}</td>
                                 <td>{{ $student->gender == 1 ? trans('student.male') : trans('student.female') }}</td>
