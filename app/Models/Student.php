@@ -75,7 +75,9 @@ class Student extends Authenticatable
         }
         return $totalNote;
     }
-
+    // public function getmMyenFinalAttribute(){
+    //     return $this->moyen;
+    // }
     // total_coef
     public function getMoyenAttribute()
     {
@@ -85,10 +87,10 @@ class Student extends Authenticatable
         }
         return  $this->total_coef > 0 ? $moyen / $this->total_coef : null;
     }
-    public function getMoyenFinalAttribute()
-    {
-        return  $this->moyen;
-    }
+    // public function getMoyenFinalAttribute()
+    // {
+    //     return  $this->moyen;
+    // }
 
     // public function getSortByMoyen(){
     //     return  $this->getMoyenAttribute->orderByDesc()->take(3);

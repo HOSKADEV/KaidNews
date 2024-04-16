@@ -8,6 +8,7 @@ use App\Models\Student;
 use App\Models\Subject;
 use App\Traits\DaysTrait;
 use App\Models\Attendence;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -156,6 +157,10 @@ class ImportStudent implements ToModel, WithHeadingRow, WithCustomCsvSettings
             'subject_id' => Subject::where('name', 'اختبار نهاية التربص')->first()->id,
             'rate' => $row["akhtbar_nhay_altrbs"]== null ? 0 :$row['akhtbar_nhay_altrbs'],
         ]);
+
+        $student->moyenFinal = $student->moyen;
+        $student->save();
+
         return $student;
     }
 }

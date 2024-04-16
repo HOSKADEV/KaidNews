@@ -19,9 +19,9 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
-        <li class="menu-header small text-uppercase">
+        {{-- <li class="menu-header small text-uppercase">
             <span class="menu-header-text">{{ trans('menu.dashboard') }}</span>
-        </li>
+        </li> --}}
         <li class="menu-item {{ request()->routeIs('dashboard.index') ? 'active' : '' }}">
             <a href="{{ route('dashboard.index') }}" class="menu-link">
                 <i class='menu-icon bx bxs-dashboard'></i>

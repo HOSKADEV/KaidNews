@@ -80,6 +80,44 @@
                             style="background-color: #ffffff" name="end_date" id="end_date"
                             value="{{ Request::get('end_date') }}" />
                     </div>
+                    <div class="form-group col-md-2 mb-2">
+                        <label for="year" class="form-label">{{ trans('app.label.year') }}</label>
+                        <select class="form-select" id="year" name="year" aria-label="Default select example">
+                            <option value="">{{ trans('app.select.year') }}</option>
+                            <option value="">{{ trans('app.option.year_all') }}</option>
+                            @for ($i = $start_date; $i <= \Carbon\Carbon::now()->format('Y'); $i++)
+                                <option value="{{ $i }}" {{ Request::get('year') == $i ? 'selected' : '' }}>
+                                    {{ trans('app.year') . ' ' . $i }}</option>
+                            @endfor
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-2 mb-2">
+                        <label for="rank" class="form-label">{{ trans('app.label.rank') }}</label>
+                        <select class="form-select" id="rank" name="rank" aria-label="Default select example">
+                            <option value="">{{ trans('app.select.rank') }}</option>
+                            <option value="all" {{ Request::get('rank') == 'all' ? 'selected' : '' }}>{{ trans('app.option.rank_all') }}</option>
+                            <option value="1" {{ Request::get('rank') == 1 ? 'selected' : '' }}>
+                                {{ trans('app.ranks.1') }}</option>
+                            <option value="2"{{ Request::get('rank') == 2 ? 'selected' : '' }}>
+                                {{ trans('app.ranks.2') }}</option>
+                            <option value="3"{{ Request::get('rank') == 3 ? 'selected' : '' }}>
+                                {{ trans('app.ranks.3') }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-2 mb-2">
+                        <label for="passport" class="form-label">{{ trans('app.label.passport') }}</label>
+                        <select class="form-select" id="passport" name="passport" aria-label="Default select example">
+                            <option value="">{{ trans('app.select.passport') }}</option>
+                            <option value="0" {{ Request::get('passport') == 0 ? 'selected' : '' }}>
+                                {{ trans('app.no_passport') }}</option>
+                            <option value="1"{{ Request::get('passport') == 1 ? 'selected' : '' }}>
+                                {{ trans('app.have_passport') }}</option>
+
+                        </select>
+                    </div>
+
                 </div>
             </form>
             <div class="row">
@@ -120,8 +158,11 @@
                 </thead>
                 <tbody>
                     @forelse ($students as $key => $student)
+                        @php
+                            $rowNumber = ($students->currentPage() - 1) * $students->perPage() + $loop->index + 1;
+                        @endphp
                         <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
+                            <th scope="row">{{ $rowNumber }}</th>
                             <td>{{ $student->name }}</td>
                             <td>{{ $student->email }}</td>
                             <td>{{ $student->phone }}</td>
@@ -202,6 +243,27 @@
                 }, 1000);
 
             });
+            $('#year').on('change', function(event) {
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 1000);
+
+            });
+
+
+            $('#rank').on('change', function(event) {
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 1000);
+
+            });
+            $('#passport').on('change', function(event) {
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 1000);
+
+            });
+            
 
             // $('#search').on('keyup', function(event) {
             //     // console.log('search' , $('#search').val());

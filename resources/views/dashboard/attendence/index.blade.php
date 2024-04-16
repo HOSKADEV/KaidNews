@@ -15,19 +15,20 @@
         <h5 class="card-header pt-0 mt-2">
             <form action="" method="GET" id="filterAttendenceForm">
                 <div class="row">
-                    <div class="form-group col-md-2 mb-2">
-                        <label for="year" class="form-label">{{ trans('app.label.year') }}</label>
-                        <select class="form-select" id="year" name="year" aria-label="Default select example">
-                            @if ($year)
-                                <option value="{{ $year }}"> {{ trans('app.year').' '. $year }}</option>
-                            @else
-                                <option value="">{{ trans('app.select.year') }}</option>
-                            @endif
-                            @for ($i = $start_date; $i <= \Carbon\Carbon::now()->format('Y'); $i++)
-                            <option value="{{ $i }}">{{ trans('app.year') .' ' .$i }}</option>
-                        @endfor
-                        </select>
+                    <div class="form-group col-md-3 mb-2">
+                        <label for="search" class="form-label">{{ trans('app.label.name') }}</label>
+                        <input type="text" id="search" name="search" value="{{ Request::get('search') }}"
+                            class="form-control input-solid"
+                            placeholder="{{ Request::get('search') != '' ? '' : trans('app.placeholder.name') }}">
                     </div>
+                    <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                        <label for="registration_number"
+                            class="form-label">{{ trans('app.label.registration_number') }}</label>
+                        <input type="text" id="registration_number" name="registration_number"
+                            value="{{ Request::get('registration_number') }}" class="form-control input-solid"
+                            placeholder="{{ Request::get('registration_number') != '' ? '' : trans('app.placeholder.registration_number') }}">
+                    </div>
+
                     <div class="form-group col-md-2 mb-2">
                         <label for="week" class="form-label">{{ trans('attendence.label.week') }}</label>
                         <select class="form-select" id="week" name="week" aria-label="Default select example">
@@ -55,6 +56,17 @@
                             @endfor
                         </select>
                     </div>
+                    <div class="form-group col-md-2 mb-2">
+                        <label for="year" class="form-label">{{ trans('app.label.year') }}</label>
+                        <select class="form-select" id="year" name="year" aria-label="Default select example">
+                            <option value="">{{ trans('app.select.year') }}</option>
+                            <option value="">{{ trans('app.option.year_all') }}</option>
+                            @for ($i = $start_date; $i <= \Carbon\Carbon::now()->format('Y'); $i++)
+                                <option value="{{ $i }}" {{ Request::get('year') == $i ? 'selected' : '' }}>
+                                    {{ trans('app.year') . ' ' . $i }}</option>
+                            @endfor
+                        </select>
+                    </div>
 
                     <div class="form-group col-md-3 mb-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
                         <label for="group" class="form-label">{{ trans('student.label.group') }}</label>
@@ -66,7 +78,7 @@
                                 <option value="">{{ trans('attendence.select.group') }}</option>
                             @endif
                             <option value="">{{ trans('app.all') }}</option>
-    
+
                             @for ($group = 1; $group <= $groups; $group++)
                                 <option value="{{ $group }}">{{ trans('app.groups.' . $group) }}</option>
                             @endfor
@@ -89,21 +101,47 @@
                         </select>
                     </div>
 
-                    <div class="form-group col-md-4" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
-                        <label for="registration_number"
-                            class="form-label">{{ trans('app.label.registration_number') }}</label>
-                        <input type="text" id="registration_number" name="registration_number"
-                            value="{{ Request::get('registration_number') }}" class="form-control input-solid"
-                            placeholder="{{ Request::get('registration_number') != '' ? '' : trans('app.placeholder.registration_number') }}">
+                    <div class="form-group col-md-2 mb-2">
+                        <label for="rank" class="form-label">{{ trans('app.label.rank') }}</label>
+                        <select class="form-select" id="rank" name="rank" aria-label="Default select example">
+                            <option value="">{{ trans('app.select.rank') }}</option>
+                            <option value="all" {{ Request::get('rank') == 'all' ? 'selected' : '' }}>{{ trans('app.option.rank_all') }}</option>
+                            <option value="1" {{ Request::get('rank') == 1 ? 'selected' : '' }}>
+                                {{ trans('app.ranks.1') }}</option>
+                            <option value="2"{{ Request::get('rank') == 2 ? 'selected' : '' }}>
+                                {{ trans('app.ranks.2') }}</option>
+                            <option value="3"{{ Request::get('rank') == 3 ? 'selected' : '' }}>
+                                {{ trans('app.ranks.3') }}</option>
+                        </select>
                     </div>
 
-                    <div class="form-group col-md-4 mb-2">
-                        <label for="search" class="form-label">{{ trans('app.label.name') }}</label>
-                        <input type="text" id="search" name="search" value="{{ Request::get('search') }}"
-                            class="form-control input-solid"
-                            placeholder="{{ Request::get('search') != '' ? '' : trans('app.placeholder.name') }}">
+                    <div class="form-group col-md-2 mb-2">
+                        <label for="passport" class="form-label">{{ trans('app.label.passport') }}</label>
+                        <select class="form-select" id="passport" name="passport" aria-label="Default select example">
+                            <option value="">{{ trans('app.select.passport') }}</option>
+                            <option value="0" {{ Request::get('passport') == 0 ? 'selected' : '' }}>
+                                {{ trans('app.no_passport') }}</option>
+                            <option value="1"{{ Request::get('passport') == 1 ? 'selected' : '' }}>
+                                {{ trans('app.have_passport') }}</option>
+
+                        </select>
                     </div>
-                    
+
+
+                    <div class="form-group col-md-3 mb-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                        <label for="start_date" class="form-label">{{ trans('student.label.start_date') }}</label>
+                        <input type="date" class="form-control input-solid" placeholder="YYYY-MM-DD"
+                            style="background-color: #ffffff" name="start_date" id="start_date"
+                            value="{{ Request::get('start_date') }}" />
+                    </div>
+                    <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                        <label for="end_date" class="form-label">{{ trans('student.label.end_date') }}</label>
+                        <input type="date" class="form-control input-solid" placeholder="YYYY-MM-DD"
+                            style="background-color: #ffffff" name="end_date" id="end_date"
+                            value="{{ Request::get('end_date') }}" />
+                    </div>
+
+
                     <div class="form-group col-md-2 mr-5 mt-4 mb-2">
                         @if (count($students))
                             <button target="_blank" id="printSection"
@@ -137,11 +175,15 @@
                 </thead>
                 <tbody>
                     @if (count($students))
-                    {{-- number --}}
+                        {{-- number --}}
+
                         @foreach ($students as $key => $student)
+                            @php
+                                $rowNumber = ($students->currentPage() - 1) * $students->perPage() + $loop->index + 1;
+                            @endphp
                             <tr data-student="{{ $student->id }}" data-week="{{ $week }}"
                                 data-month="{{ $month }}" data-year="{{ $year }}">
-                                <th scope="row">{{ $loop->iteration }}</th>
+                                <th scope="row">{{ $rowNumber }}</th>
                                 <td>{{ $student->name }}</td>
                                 <td>{{ $student->gender == 1 ? trans('student.male') : trans('student.female') }}</td>
                                 <td>{{ $student->registration_number }}</td>
@@ -150,59 +192,69 @@
 
                                 @for ($day = 1; $day <= $days; $day++)
                                     <td>
-                                   @php
-                                    $attendences = $student->attendences->where('week', $week)
-                                    ->where('month', $month)
-                                    ->where('year', $year)
-                                    ->where('day', $day)->first();
+                                        @php
+                                            $attendences = $student->attendences
+                                                ->where('week', $week)
+                                                ->where('month', $month)
+                                                ->where('year', $year)
+                                                ->where('day', $day)
+                                                ->first();
 
-                                    // echo $attendences  
-                                  @endphp
+                                            // echo $attendences
 
-                                    <input class="form-check-input checkAttendence" type="checkbox" @if (auth('teacher')->check()) disabled @endif
-                                    value="{{ $day }}" id="day" {{ $attendences? '' : 'disabled' ;}} {{ $attendences?->number > 0 ? 'checked' : ''; }}  /> 
-                                    <input class="form-check-input checkAttendence" type="checkbox" @if (auth('teacher')->check()) disabled @endif
-                                    value="{{ $day }}" id="day" {{ $attendences? '' : 'disabled' ;}}  {{ $attendences?->number > 1 ? 'checked' : ''; }}  /> 
-                                    <input class="form-check-input checkAttendence" type="checkbox" @if (auth('teacher')->check()) disabled @endif
-                                    value="{{ $day }}" id="day" {{ $attendences? '' : 'disabled' ;}}  {{ $attendences?->number > 2 ? 'checked' : ''; }}  /> 
-{{-- 
-@if($attendences)
-@for ($i = 1 ; $i<=$attendences->number ; $i++)
+                                        @endphp
+
+                                        <input class="form-check-input checkAttendence" type="checkbox"
+                                            @if (auth('teacher')->check()) disabled @endif value="{{ $day }}"
+                                            id="day" {{ $attendences ? '' : 'disabled' }}
+                                            {{ $attendences?->number > 0 ? 'checked' : '' }} />
+                                        <input class="form-check-input checkAttendence" type="checkbox"
+                                            @if (auth('teacher')->check()) disabled @endif value="{{ $day }}"
+                                            id="day" {{ $attendences ? '' : 'disabled' }}
+                                            {{ $attendences?->number > 1 ? 'checked' : '' }} />
+                                        <input class="form-check-input checkAttendence" type="checkbox"
+                                            @if (auth('teacher')->check()) disabled @endif value="{{ $day }}"
+                                            id="day" {{ $attendences ? '' : 'disabled' }}
+                                            {{ $attendences?->number > 2 ? 'checked' : '' }} />
+                                        {{-- 
+@if ($attendences)
+@for ($i = 1; $i <= $attendences->number; $i++)
 <input class="form-check-input checkAttendence" type="checkbox" @if (auth('teacher')->check()) disabled @endif
 value="{{ $day }}" id="day" checked /> 
 @endfor
 {{ null }}
 @else
 @endif --}}
-                                  @php
-                                    
-                                    // if($attendences == null){
-                                    //     echo "null";
-                                    // }else{
+                                        @php
 
-                                    // }
+                                            // if($attendences == null){
+                                            //     echo "null";
+                                            // }else{
 
-                                    // if($test == null){
-                                    //     echo "null";
-                                    // }else{
-                                    //     echo $test->number ;
-                                    // }
-                                      $attendence =  App\Models\Attendence::where('student_id',$student->id)
-                                       ->where('month', $month)
-                                    ->where('year', $year)
-                                    ->where('day', $day)
-                                    ->first();
+                                            // }
 
-                                    // if($attendence == null){
-                                    //     echo "null";
-                                    // }else{
-                                    //     echo $attendence->number ;
-                                    // }
-                                    // echo $attendence->id == null ? 'null' : $attendence->id ;
-                                   @endphp
+                                            // if($test == null){
+                                            //     echo "null";
+                                            // }else{
+                                            //     echo $test->number ;
+                                            // }
+                                            $attendence = App\Models\Attendence::where('student_id', $student->id)
+                                                ->where('month', $month)
+                                                ->where('year', $year)
+                                                ->where('day', $day)
+                                                ->first();
+
+                                            // if($attendence == null){
+                                            //     echo "null";
+                                            // }else{
+                                            //     echo $attendence->number ;
+                                            // }
+                                            // echo $attendence->id == null ? 'null' : $attendence->id ;
+
+                                        @endphp
 
 
-                                    {{-- @php
+                                        {{-- @php
                                    
                                     if( $student->attendences->where('week', $week)
                                     ->where('month', $month)
@@ -217,15 +269,14 @@ value="{{ $day }}" id="day" checked />
                                     }else{
                                         echo "0";
                                     } --}}
-                                        
-                                    @endphp 
+
+                                        @endphp
 
 
-                                        
+
                                         {{-- <input class="form-check-input checkAttendence" type="checkbox" @if (auth('teacher')->check()) disabled @endif
                                             value="{{ $day }}" id="day"
-                                            @if (count(
-                                                    $student->attendences->where('week', $week)->where('month', $month)->where('year', $year)->where('day', $day)) > 0) checked @endif /> --}}
+                                            @if (count($student->attendences->where('week', $week)->where('month', $month)->where('year', $year)->where('day', $day)) > 0) checked @endif /> --}}
                                     </td>
                                 @endfor
                                 {{-- <td>
@@ -347,6 +398,31 @@ value="{{ $day }}" id="day" checked />
                 }, 4000);
 
             })
+            $('#start_date').on('change', function(event) {
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 1000);
+
+            });
+            $('#end_date').on('change', function(event) {
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 1000);
+
+            });
+
+            $('#rank').on('change', function(event) {
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 1000);
+
+            });
+            $('#passport').on('change', function(event) {
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 1000);
+
+            });
 
             function submitForm() {
                 $("#filterAttendenceForm").submit();

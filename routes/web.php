@@ -36,7 +36,8 @@ use App\Http\Controllers\Dashboard\ExcelImport\ExcelImportController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+define('PAGINATE_COUNT',100);
+// define('PAGINATE_COUNT',10);
 // ['middleware' => ['auth']],
 Route::group([], function () {
     Route::get('/theme/{theme}', function ($theme) {

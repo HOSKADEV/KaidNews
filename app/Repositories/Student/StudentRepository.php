@@ -24,6 +24,7 @@ interface StudentRepository
     /**
      * {@inheritdoc}
      */
+    public function find($id);
     public function create(array $data);
 
     public function findNotes($id);
@@ -47,7 +48,7 @@ interface StudentRepository
      * @return mixed
      */
 
-    public function paginate($perPage, $start_date = null, $end_date = null, $search = null, $registration_number = null, $batch = null, $group = null, $status = null);
+    public function paginate($perPage, $year = null, $start_date = null, $end_date = null, $search = null, $registration_number = null, $batch = null, $group = null, $rank = null,$passport = null,$status = null);
 
 
     /**

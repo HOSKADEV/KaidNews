@@ -3,8 +3,10 @@
 namespace App\Repositories\Student;
 
 use App\Models\Student;
+use App\Http\Filters\Student\FiltersByRank;
 use App\Repositories\Student\StudentRepository;
 use App\Http\Filters\Student\StudentKeywordSearch;
+use App\Http\Filters\Student\FiltersGoldenPassport;
 use App\Http\Filters\Student\StudentKeywordBetweenDate;
 
 class EloquentStudent implements StudentRepository
@@ -84,10 +86,22 @@ class EloquentStudent implements StudentRepository
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|mixed
      */
 
-    public function paginate($perPage,$start_date = null,$end_date = null, $search = null, $registration_number = null, $batch = null, $group = null, $status = null)
+    public function paginate($perPage, $year = null, $start_date = null, $end_date = null, $search = null, $registration_number = null, $batch = null, $group = null,$rank = null,$passport = null, $status = null)
     {
-        $query = Student::query()->with('evaluations', 'tests', 'tests.subject', 'certificate');
+        $query = Student::query()->with('evaluations', 'tests', 'tests.subject', 'certificate')->orderByDesc('moyenFinal');
 
+        if ($rank) {
+           (new FiltersByRank)($query, $rank);
+        }
+
+        if ($passport == 1) {
+            (new FiltersGoldenPassport)($query, $passport);
+        }
+
+        // FiltersGoldenPassport
+        if ($year) {
+            $query->whereYear('start_date', $year);
+        }
         if ($group) {
             $query->where('group', $group);
         }
@@ -102,11 +116,19 @@ class EloquentStudent implements StudentRepository
             (new StudentKeywordSearch)($query, $search);
         }
         if ($start_date && $end_date) {
-            (new StudentKeywordBetweenDate)($query, $start_date,$end_date);
+            (new StudentKeywordBetweenDate)($query, $start_date, $end_date);
         }
 
-        $result = $query->orderBy('id', 'desc')
-            ->paginate($perPage);
+        // $result = $query->orderBy('id', 'desc')
+        //     ->paginate($perPage);
+        
+
+
+        $result = $query->paginate($perPage);
+            // $result= $query->orderBy(function ($query) {
+            //     // Replace 'fake_column' with the name of your fake column
+            //     return $query->moyen;
+            // });
 
         if ($search) {
             $result->appends(['search' => $search]);

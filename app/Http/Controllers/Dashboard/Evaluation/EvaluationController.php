@@ -35,8 +35,7 @@ class EvaluationController extends Controller
      */
     public function index(Request $request)
     {
-        $students = $this->students->paginate($perPage = 10, $request->search, $request->group);
-        // $students = $this->students->paginate($perPage = 10, $request->search);
+        $students = $this->students->paginate($request->perPage ? $request->perPage : PAGINATE_COUNT, $request->year,$request->start_date,$request->end_date, $request->search, $request->registration_number,$request->batch, $request->group,$request->rank,$request->passport);
         return view('dashboard.evaluation.index', compact('students'));
     }
 
@@ -69,7 +68,10 @@ class EvaluationController extends Controller
             ];
             $this->evaluations->create($data);
         }
-
+        // $this->su
+        $this->students->update($request->student_id[1],[
+            'moyenFinal' => $this->students->find($request->student_id[1])->moyen
+        ]);
         if ($request->rank || $request->golden_passport) {
             Evaluation::create([
                 'student_id' => $request->student_id[1],
