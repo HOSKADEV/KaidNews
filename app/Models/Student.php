@@ -120,6 +120,7 @@ class Student extends Authenticatable
     {
         return $this->belongsTo(Admin::class,'created_by');
     }
+    
     public function certificate()
     {
         return $this->hasMany(Certificate::class);

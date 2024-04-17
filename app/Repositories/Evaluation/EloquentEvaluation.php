@@ -68,7 +68,7 @@ class EloquentEvaluation implements EvaluationRepository
     public function paginate($perPage, $search = null, $status = null)
     {
 
-        $query = Test::query()->with('student','subject');
+        $query = Test::query()->with('evaluatedBy','student','subject');
         
         // if ($status) {
         //     $query->where('status', $status);

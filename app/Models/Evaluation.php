@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Admin;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Evaluation extends Model
 {
@@ -16,4 +17,9 @@ class Evaluation extends Model
         'rank',
         'golden_passport',
     ];
+
+    public function evaluatedBy()
+    {
+        return $this->belongsTo(Admin::class,'created_by');
+    }
 }
