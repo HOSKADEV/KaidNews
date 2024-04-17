@@ -140,7 +140,19 @@
                             style="background-color: #ffffff" name="end_date" id="end_date"
                             value="{{ Request::get('end_date') }}" />
                     </div>
-
+                    <div class="form-group col-md-3 mb-2">
+                        <label for="perPage" class="form-label">{{ trans('app.label.perPage') }}</label>
+                        <select class="form-select" id="perPage" name="perPage" aria-label="Default select example">
+                            <option value="">{{ trans('app.select.perPage') }}</option>
+                            <option value="{{ $students->count() *$students->perPage() }}">{{ trans('app.all') }}</option>
+                            <option value="10" {{ Request::get('perPage') == 10 ? 'selected' : '' }}>
+                                10</option>
+                            <option value="50"{{ Request::get('perPage') == 50 ? 'selected' : '' }}>
+                                50</option>
+                                <option value="100"{{ Request::get('perPage') == 100 ? 'selected' : '' }}>
+                                    100</option>
+                        </select>
+                    </div>
 
                     <div class="form-group col-md-2 mr-5 mt-4 mb-2">
                         @if (count($students))
@@ -423,7 +435,12 @@ value="{{ $day }}" id="day" checked />
                 }, 1000);
 
             });
+            $('#perPage').on('change', function(event) {
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 1000);
 
+            });
             function submitForm() {
                 $("#filterAttendenceForm").submit();
             }

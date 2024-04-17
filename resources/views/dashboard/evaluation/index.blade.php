@@ -143,6 +143,19 @@
     
                             </select>
                         </div>
+                        <div class="form-group col-md-3 mb-2">
+                            <label for="perPage" class="form-label">{{ trans('app.label.perPage') }}</label>
+                            <select class="form-select" id="perPage" name="perPage" aria-label="Default select example">
+                                <option value="">{{ trans('app.select.perPage') }}</option>
+                                <option value="{{ $students->count() *$students->perPage() }}">{{ trans('app.all') }}</option>
+                                <option value="10" {{ Request::get('perPage') == 10 ? 'selected' : '' }}>
+                                    10</option>
+                                <option value="50"{{ Request::get('perPage') == 50 ? 'selected' : '' }}>
+                                    50</option>
+                                    <option value="100"{{ Request::get('perPage') == 100 ? 'selected' : '' }}>
+                                        100</option>
+                            </select>
+                        </div>
 
                         {{-- <div class="form-group col-md-2 mb-2">
                             <label for="year" class="form-label">{{ trans('app.label.year') }}</label>
@@ -374,7 +387,12 @@
                 }, 1000);
 
             });
+            $('#perPage').on('change', function(event) {
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 1000);
 
+            });
             function submitForm() {
                 $("#filterStudentEvaluationForm").submit();
             }

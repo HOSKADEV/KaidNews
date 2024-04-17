@@ -53,6 +53,7 @@ return [
         'address' => 'العنوان',
         'rank' => 'الرتبة',
         'passport' => 'الجواز الذهبي',
+        'perPage' => 'عدد الطلبة',
     ],
     'placeholder' => [
         'name' => 'أدخل الإسم الكامل',
@@ -85,6 +86,7 @@ return [
         'month' => 'اختر الشهر',
         'rank' => 'إختر الرتبة',
         'passport' => 'إختر الجواز الذهبي',
+        'perPage' => 'إختر عدد الطلبة',
     ],
     'have_passport' =>'يوجد',
     'no_passport' =>'لا يوجد',
