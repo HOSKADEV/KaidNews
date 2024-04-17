@@ -12,6 +12,7 @@ class Note extends Model
 
     protected $fillable = [
         'student_id',
+        'created_by',
         'start_date',
         'end_date',
         'note',

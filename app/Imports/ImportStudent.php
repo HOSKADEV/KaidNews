@@ -66,6 +66,7 @@ class ImportStudent implements ToModel, WithHeadingRow, WithCustomCsvSettings
             'email' => $row['alamyl']== null ? Str::random(10) :$row['alamyl'],
             'password' => $row['rkm_altsgyl']== null ? 'non' :$row['rkm_altsgyl'],
             'moyenFinal' => '0',
+            'created_by' => auth('admin')->id(),
         ]);
 
         // $st = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['tarykh_bday_altrbs']);
@@ -95,12 +96,14 @@ class ImportStudent implements ToModel, WithHeadingRow, WithCustomCsvSettings
             'student_id' => $student->id,
             'subject_id' => Subject::where('name', 'المواضبة على الحضور')->first()->id,
             'rate' => $row["almoadb_aal_alhdor"]== null ? 0 :$row['almoadb_aal_alhdor'],
+            'created_by' => auth('admin')->id(),
         ]);
         // كمية المشاركة
         Test::create([
             'student_id' => $student->id,
             'subject_id' => Subject::where('name', 'كمية المشاركة')->first()->id,
             'rate' => $row["kmy_almshark"]== null ? 0 :$row['kmy_almshark'],
+            'created_by' => auth('admin')->id(),
         ]);
 
         // جودة المشاركة
@@ -108,6 +111,7 @@ class ImportStudent implements ToModel, WithHeadingRow, WithCustomCsvSettings
             'student_id' => $student->id,
             'subject_id' => Subject::where('name', 'جودة المشاركة')->first()->id,
             'rate' => $row["god_almshark"]== null ? 0 :$row['god_almshark'],
+            'created_by' => auth('admin')->id(),
         ]);
 
         // روح المبادرة 
@@ -115,6 +119,7 @@ class ImportStudent implements ToModel, WithHeadingRow, WithCustomCsvSettings
             'student_id' => $student->id,
             'subject_id' => Subject::where('name', 'روح المبادرة')->first()->id,
             'rate' => $row["roh_almbadr"]== null ? 0 :$row['roh_almbadr'],
+            'created_by' => auth('admin')->id(),
         ]);
 
         // الحضور الذهني
@@ -122,6 +127,7 @@ class ImportStudent implements ToModel, WithHeadingRow, WithCustomCsvSettings
             'student_id' => $student->id,
             'subject_id' => Subject::where('name', 'الحضور الذهني')->first()->id,
             'rate' => $row["alhdor_althhny"]== null ? 0 :$row['alhdor_althhny'],
+            'created_by' => auth('admin')->id(),
         ]);
 
         // القيم الأخلاقية
@@ -129,6 +135,7 @@ class ImportStudent implements ToModel, WithHeadingRow, WithCustomCsvSettings
             'student_id' => $student->id,
             'subject_id' => Subject::where('name', 'القيم الأخلاقية')->first()->id,
             'rate' => $row["alkym_alakhlaky"]== null ? 0 :$row['alkym_alakhlaky'],
+            'created_by' => auth('admin')->id(),
         ]);
 
         // الهندام
@@ -136,6 +143,7 @@ class ImportStudent implements ToModel, WithHeadingRow, WithCustomCsvSettings
             'student_id' => $student->id,
             'subject_id' => Subject::where('name', 'الهندام')->first()->id,
             'rate' => $row["alhndam"]== null ? 0 :$row['alhndam'],
+            'created_by' => auth('admin')->id(),
         ]);
 
         // العلاقة  الإنسانية و التفاعل مع الفريق
@@ -143,6 +151,7 @@ class ImportStudent implements ToModel, WithHeadingRow, WithCustomCsvSettings
             'student_id' => $student->id,
             'subject_id' => Subject::where('name', 'العلاقة الإنسانية و التفاعل مع الفريق')->first()->id,
             'rate' => $row["alaalak_alansany_oaltfaaal_maa_alfryk"]== null ? 0 :$row['alaalak_alansany_oaltfaaal_maa_alfryk'],
+            'created_by' => auth('admin')->id(),
         ]);
 
         // اعمال المعارف التطبيقية و قدرة العمل
@@ -150,6 +159,7 @@ class ImportStudent implements ToModel, WithHeadingRow, WithCustomCsvSettings
             'student_id' => $student->id,
             'subject_id' => Subject::where('name', 'اعمال المعارف التطبيقية و قدرة العمل')->first()->id,
             'rate' => $row["aaamal_almaaarf_alttbyky_o_kdr_alaaml"]== null ? 0 :$row['aaamal_almaaarf_alttbyky_o_kdr_alaaml'],
+            'created_by' => auth('admin')->id(),
         ]);
 
         // اختبار نهاية التربص
@@ -157,6 +167,7 @@ class ImportStudent implements ToModel, WithHeadingRow, WithCustomCsvSettings
             'student_id' => $student->id,
             'subject_id' => Subject::where('name', 'اختبار نهاية التربص')->first()->id,
             'rate' => $row["akhtbar_nhay_altrbs"]== null ? 0 :$row['akhtbar_nhay_altrbs'],
+            'created_by' => auth('admin')->id(),
         ]);
 
         $student->moyenFinal = $student->moyen;

@@ -49,7 +49,11 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
-        $this->students->create($request->all());
+
+        $data = $request->all() + [
+            'created_by' => auth('admin')->id(),
+        ];
+        $this->students->create($data);
         toastr()->success(trans('message.success.create'));
         return redirect()->route('dashboard.students.index');
     }
@@ -86,7 +90,10 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request)
     {
-        $this->students->update($request->id, $request->all());
+        $data = $request->all() + [
+            'created_by' => auth('admin')->id(),
+        ];
+        $this->students->update($request->id, $data);
         toastr()->success(trans('message.success.update'));
         return redirect()->route('dashboard.students.index');
     }

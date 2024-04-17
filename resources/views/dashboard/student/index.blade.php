@@ -164,6 +164,7 @@
                         <th>{{ trans('student.gender') }}</th>
                         <th>{{ trans('student.registration_number') }}</th>
                         <th>{{ trans('student.group') }}</th>
+                        <th>Created</th>
                         @if (auth('admin')->check())
                             <th>{{ trans('app.actions') }}</th>
                         @endif
@@ -184,6 +185,7 @@
                             <td>{{ $student->gender == 1 ? trans('student.male') : trans('student.female') }}</td>
                             <td>{{ $student->registration_number }}</td>
                             <td>{{ $student->group }}</td>
+                            <td>{{ $student->createdBy->name }}</td>
                             @if (auth('admin')->check())
                                 <td>
                                     <div class="dropdown">

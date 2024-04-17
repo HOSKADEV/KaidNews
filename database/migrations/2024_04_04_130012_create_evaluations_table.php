@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('students')->onUpdate('cascade');
+            $table->bigInteger('created_by')->unsigned();
+            $table->foreign('created_by')->references('id')->on('admins')->onUpdate('cascade');
 
             $table->enum('rank', ['1', '2', '3'])->nullable();
             $table->boolean('golden_passport')->default(0);

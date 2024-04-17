@@ -40,7 +40,10 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('email')->unique();
             $table->string('password');
+            $table->decimal('moyenFinal');
 
+            $table->bigInteger('created_by')->unsigned();
+            $table->foreign('created_by')->references('id')->on('admins')->onUpdate('cascade');
 
             $table->timestamps();
             $table->softDeletes();

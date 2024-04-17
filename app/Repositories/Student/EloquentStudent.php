@@ -88,7 +88,7 @@ class EloquentStudent implements StudentRepository
 
     public function paginate($perPage, $year = null, $start_date = null, $end_date = null, $search = null, $registration_number = null, $batch = null, $group = null,$rank = null,$passport = null, $status = null)
     {
-        $query = Student::query()->with('evaluations', 'tests', 'tests.subject', 'certificate')->orderByDesc('moyenFinal');
+        $query = Student::query()->with('createdBy','evaluations', 'tests', 'tests.subject', 'certificate')->orderByDesc('moyenFinal');
 
         if ($rank) {
            (new FiltersByRank)($query, $rank);

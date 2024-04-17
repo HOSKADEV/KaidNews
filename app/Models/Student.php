@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Note;
 use App\Models\Test;
+use App\Models\Admin;
 use App\Models\Attendence;
 use App\Models\Evaluation;
 use App\Models\Certificate;
@@ -41,7 +42,8 @@ class Student extends Authenticatable
         'email',
         'password',
 
-        'moyenFinal'
+        'moyenFinal',
+        'created_by'
     ];
 
     protected $dates = [
@@ -114,7 +116,10 @@ class Student extends Authenticatable
     {
         return $this->hasMany(Test::class);
     }
-
+    public function createdBy()
+    {
+        return $this->belongsTo(Admin::class,'created_by');
+    }
     public function certificate()
     {
         return $this->hasMany(Certificate::class);

@@ -65,6 +65,7 @@ class EvaluationController extends Controller
                 'student_id' => $request->student_id[$item],
                 'subject_id' => $request->subject_id[$item],
                 'rate' => $request->rate[$item],
+                'created_by' => auth('admin')->id(),
             ];
             $this->evaluations->create($data);
         }
@@ -77,6 +78,7 @@ class EvaluationController extends Controller
                 'student_id' => $request->student_id[1],
                 'rank' => $request->rank != null ? $request->rank : null,
                 'golden_passport' => $request->golden_passport != null ? $request->golden_passport : null,
+                'created_by' => auth('admin')->id(),
             ]);
         }
         toastr()->success(trans('message.success.create'));

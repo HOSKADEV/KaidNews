@@ -12,6 +12,7 @@ class Evaluation extends Model
 
     protected $fillable = [
         'student_id',
+        'created_by',
         'rank',
         'golden_passport',
     ];

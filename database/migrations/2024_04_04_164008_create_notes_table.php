@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('students')->onUpdate('cascade');
+            $table->bigInteger('created_by')->unsigned();
+            $table->foreign('created_by')->references('id')->on('admins')->onUpdate('cascade');
 
             $table->date('start_date');
             $table->date('end_date');
