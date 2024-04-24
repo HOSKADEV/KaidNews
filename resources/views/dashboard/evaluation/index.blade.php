@@ -71,9 +71,9 @@
                                     <option value="">{{ trans('app.select.batch') }}</option>
                                 @endif
                                 <option value="">{{ trans('app.all') }}</option>
-                                <option value="أ">{{ trans('app.batchs.أ') }}</option>
-                                <option value="ب">{{ trans('app.batchs.ب') }}</option>
-                                <option value="ج">{{ trans('app.batchs.ج') }}</option>
+                                <option value="1">{{ trans('app.batchs.1') }}</option>
+                                <option value="2">{{ trans('app.batchs.2') }}</option>
+                                <option value="3">{{ trans('app.batchs.3') }}</option>
                             </select>
                         </div>
                         <div class="form-group col-md-2 mb-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">

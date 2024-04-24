@@ -95,9 +95,9 @@
                                 <option value="">{{ trans('app.select.batch') }}</option>
                             @endif
                             <option value="">{{ trans('app.all') }}</option>
-                            <option value="أ">{{ trans('app.batchs.أ') }}</option>
-                            <option value="ب">{{ trans('app.batchs.ب') }}</option>
-                            <option value="ج">{{ trans('app.batchs.ج') }}</option>
+                            <option value="1">{{ trans('app.batchs.1') }}</option>
+                            <option value="2">{{ trans('app.batchs.2') }}</option>
+                            <option value="3">{{ trans('app.batchs.3') }}</option>
                         </select>
                     </div>
 
@@ -228,11 +228,11 @@
                                             @if (auth('teacher')->check()) disabled @endif value="{{ $day }}"
                                             id="day" {{ $attendences ? '' : 'disabled' }}
                                             {{ $attendences?->number > 2 ? 'checked' : '' }} />
-                                        {{-- 
+                                        {{--
 @if ($attendences)
 @for ($i = 1; $i <= $attendences->number; $i++)
 <input class="form-check-input checkAttendence" type="checkbox" @if (auth('teacher')->check()) disabled @endif
-value="{{ $day }}" id="day" checked /> 
+value="{{ $day }}" id="day" checked />
 @endfor
 {{ null }}
 @else
@@ -267,7 +267,7 @@ value="{{ $day }}" id="day" checked />
 
 
                                         {{-- @php
-                                   
+
                                     if( $student->attendences->where('week', $week)
                                     ->where('month', $month)
                                     ->where('year', $year)
