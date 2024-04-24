@@ -31,7 +31,7 @@
         <form action="{{ route('dashboard.evaluations.update', 'update') }}" method="POST">
             @csrf
             @method('PUT')
-            <input type="text" name="student" value="{{ $student->id }}">
+            <input type="hidden" name="student" value="{{ $student->id }}">
             <div class="table-responsive text-nowrap pb-2">
                 <table class="table mb-4 repeater">
                     <thead>
