@@ -6,6 +6,7 @@ use App\Models\Test;
 
 use App\Http\Filters\Student\StudentKeywordSearch;
 use App\Repositories\Evaluation\EvaluationRepository;
+use Faker\Provider\ar_EG\Text;
 
 class EloquentEvaluation implements EvaluationRepository
 {
@@ -36,6 +37,12 @@ class EloquentEvaluation implements EvaluationRepository
         return $evaluation;
     }
 
+    public function getByStudent($id){
+
+      $evaluation = Test::whereStudentId($id)->get();
+
+      return $evaluation;
+    }
     /**
      * {@inheritdoc}
      */
@@ -69,7 +76,7 @@ class EloquentEvaluation implements EvaluationRepository
     {
 
         $query = Test::query()->with('evaluatedBy','student','subject');
-        
+
         // if ($status) {
         //     $query->where('status', $status);
         // }

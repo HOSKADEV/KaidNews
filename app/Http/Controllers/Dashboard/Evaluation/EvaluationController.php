@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Evaluation;
 use App\Models\Evaluation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Test;
 use App\Repositories\Student\StudentRepository;
 use App\Repositories\Subject\SubjectRepository;
 use App\Repositories\Evaluation\EvaluationRepository;
@@ -107,7 +108,10 @@ class EvaluationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = $this->students->find($id);
+        $subjects = $this->subjects->all();
+        $evaluations = $this->evaluations->getByStudent($id);
+        return view('dashboard.evaluation.edit', compact('student', 'subjects','evaluations'));
     }
 
     /**
@@ -119,7 +123,37 @@ class EvaluationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $deleted = Test::whereStudentId($request->student)->delete();
+        if (!$deleted) {
+          toastr()->error('حدث خطأ أثناء تعديل');
+          return redirect()
+                ->back();
+
+        }
+        $data = [];
+        for ($item = 0; $item < count($request->rate); $item++) {
+            $data = [
+                'student_id' => $request->student_id[$item],
+                'subject_id' => $request->subject_id[$item],
+                'rate' => $request->rate[$item],
+                'created_by' => auth('admin')->id(),
+            ];
+            $this->evaluations->create($data);
+        }
+        // $this->su
+        $this->students->update($request->student_id[1],[
+            'moyenFinal' => $this->students->find($request->student_id[1])->moyen
+        ]);
+        if ($request->rank || $request->golden_passport) {
+            Evaluation::create([
+                'student_id' => $request->student_id[1],
+                'rank' => $request->rank != null ? $request->rank : null,
+                'golden_passport' => $request->golden_passport != null ? $request->golden_passport : null,
+                'created_by' => auth('admin')->id(),
+            ]);
+        }
+        toastr()->success(trans('message.success.update'));
+        return redirect()->route('dashboard.evaluations.index');
     }
 
     /**

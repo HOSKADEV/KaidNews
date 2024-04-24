@@ -18,6 +18,12 @@ interface EvaluationRepository
     /**
      * {@inheritdoc}
      */
+    public function getByStudent($id);
+
+
+    /**
+     * {@inheritdoc}
+     */
     public function update($id, array $data);
 
     /**

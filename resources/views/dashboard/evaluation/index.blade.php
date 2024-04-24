@@ -131,7 +131,7 @@
                                     {{ trans('app.ranks.3') }}</option>
                             </select>
                         </div>
-    
+
                         <div class="form-group col-md-2 mb-2">
                             <label for="passport" class="form-label">{{ trans('app.label.passport') }}</label>
                             <select class="form-select" id="passport" name="passport" aria-label="Default select example">
@@ -140,7 +140,7 @@
                                     {{ trans('app.no_passport') }}</option>
                                 <option value="1"{{ Request::get('passport') == 1 ? 'selected' : '' }}>
                                     {{ trans('app.have_passport') }}</option>
-    
+
                             </select>
                         </div>
                         <div class="form-group col-md-3 mb-2">
@@ -168,7 +168,7 @@
                                 @endfor
                             </select>
                         </div>
-    
+
                         <div class="form-group col-md-3 mb-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
                             <label for="group" class="form-label">{{ trans('student.label.group') }}</label>
                             <select class="form-select" id="group" name="group" aria-label="Default select example">
@@ -179,13 +179,13 @@
                                     <option value="">{{ trans('attendence.select.group') }}</option>
                                 @endif
                                 <option value="">{{ trans('app.all') }}</option>
-    
+
                                 @for ($group = 1; $group <= $groups; $group++)
                                     <option value="{{ $group }}">{{ trans('app.groups.' . $group) }}</option>
                                 @endfor
                             </select>
                         </div>
-    
+
                         <div class="form-group col-md-3 mb-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
                             <label for="batch" class="form-label">{{ trans('student.label.batch') }}</label>
                             <select class="form-select" id="batch" name="batch" aria-label="Default select example">
@@ -201,7 +201,7 @@
                                 <option value="ج">{{ trans('app.batchs.ج') }}</option>
                             </select>
                         </div>
-    
+
                         <div class="form-group col-md-4" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
                             <label for="registration_number"
                                 class="form-label">{{ trans('app.label.registration_number') }}</label>
@@ -209,7 +209,7 @@
                                 value="{{ Request::get('registration_number') }}" class="form-control input-solid"
                                 placeholder="{{ Request::get('registration_number') != '' ? '' : trans('app.placeholder.registration_number') }}">
                         </div>
-    
+
                         <div class="form-group col-md-4 mb-2">
                             <label for="search" class="form-label">{{ trans('app.label.name') }}</label>
                             <input type="text" id="search" name="search" value="{{ Request::get('search') }}"
@@ -293,6 +293,11 @@
                                                     <i class="bx bxs-download me-2"></i>
                                                     {{ trans('app.download_review') }}
                                                 </button>
+                                                <a class="dropdown-item"
+                                                  href="{{ route('dashboard.evaluations.edit', $student->id) }}">
+                                                  <i class='bx bx-edit me-2'></i>
+                                                  {{ trans('evaluation.edit') }}
+                                              </a>
                                             @endif
                                             <a class="dropdown-item"
                                                 href="{{ route('dashboard.evaluations.show', $student->id) }}">
