@@ -7,13 +7,14 @@
 (function () {
   let cardColor, headingColor, axisColor, shadeColor, borderColor;
 
-  cardColor = config.colors.white;
+  cardColor    = config.colors.white;
   headingColor = config.colors.headingColor;
-  axisColor = config.colors.axisColor;
-  borderColor = config.colors.borderColor;
+  axisColor    = config.colors.axisColor;
+  borderColor  = config.colors.borderColor;
 
   // Total Revenue Report Chart - Bar Chart
   // --------------------------------------------------------------------
+
   const totalRevenueChartEl = document.querySelector('#totalRevenueChart'),
     totalRevenueChartOptions = {
       series: [

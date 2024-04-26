@@ -81,6 +81,9 @@ Route::get('logout', LogoutController::class)->middleware('auth:admin,student,te
 
 Route::prefix('dashboard')->name('dashboard.')->middleware('auth:admin,teacher')->group(function () {
     Route::resource('/', DashboardController::class);
+    Route::post('/analyse/added', [DashboardController::class, 'analyseGetStudentByYear']);
+    Route::post('/analyse/gender', [DashboardController::class, 'analyseGetStudentByGender']);
+    Route::post('/analyse/point', [DashboardController::class, 'analyseGetStudentByPoint']);
 
     Route::resource('admins', AdminController::class);
     Route::resource('students', StudentController::class);

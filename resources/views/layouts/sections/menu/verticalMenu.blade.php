@@ -24,45 +24,45 @@
         </li> --}}
         <li class="menu-item {{ request()->routeIs('dashboard.index') ? 'active' : '' }}">
             <a href="{{ route('dashboard.index') }}" class="menu-link">
-                <i class='menu-icon bx bxs-dashboard'></i>
+                <i class='text-primary menu-icon bx bxs-dashboard'></i>
                 <div>{{ trans('menu.dashboard') }}</div>
             </a>
         </li>
         @if (auth('admin')->check())
             <li class="menu-item {{ request()->routeIs('dashboard.admins.index') ? 'active' : '' }}">
                 <a href="{{ route('dashboard.admins.index') }}" class="menu-link">
-                    <i class="menu-icon fa fa-user-secret" aria-hidden="true"></i>
+                    <i class="text-success menu-icon fa fa-user-secret" aria-hidden="true"></i>
                     <div>{{ trans('menu.admins') }}</div>
                 </a>
             </li>
             <li class="menu-item {{ request()->routeIs('dashboard.teachers.index') ? 'active' : '' }}">
                 <a href="{{ route('dashboard.teachers.index') }}" class="menu-link">
-                    <i class="menu-icon fa fa-users" aria-hidden="true"></i>
+                    <i class="text-success menu-icon fa fa-users" aria-hidden="true"></i>
                     <div>{{ trans('menu.teachers') }}</div>
                 </a>
             </li>
         @endif
         <li class="menu-item {{ request()->routeIs('dashboard.students.index') ? 'active' : '' }}">
             <a href="{{ route('dashboard.students.index') }}" class="menu-link">
-                <i class="menu-icon fa fa-graduation-cap" aria-hidden="true"></i>
+                <i class="text-warning menu-icon fa fa-graduation-cap" aria-hidden="true"></i>
                 <div>{{ trans('menu.students') }}</div>
             </a>
         </li>
         <li class="menu-item {{ request()->routeIs('dashboard.subjects.index') ? 'active' : '' }}">
             <a href="{{ route('dashboard.subjects.index') }}" class="menu-link">
-                <i class="menu-icon bx bxs-purchase-tag" aria-hidden="true"></i>
+                <i class="text-danger menu-icon bx bxs-purchase-tag" aria-hidden="true"></i>
                 <div>{{ trans('menu.subjects') }}</div>
             </a>
         </li>
         <li class="menu-item {{ request()->routeIs('dashboard.attendence.index') ? 'active' : '' }}">
             <a href="{{ route('dashboard.attendence.index') }}" class="menu-link">
-                <i class="menu-icon bx bxs-time" aria-hidden="true"></i>
+                <i class="text-info menu-icon bx bxs-time" aria-hidden="true"></i>
                 <div>{{ trans('menu.attendence') }}</div>
             </a>
         </li>
         <li class="menu-item {{ request()->routeIs('dashboard.evaluations.index') ? 'active' : '' }}">
             <a href="{{ route('dashboard.evaluations.index') }}" class="menu-link">
-                <i class="menu-icon fa fa-star" aria-hidden="true"></i>
+                <i class="text-warning menu-icon fa fa-star" aria-hidden="true"></i>
                 <div>{{ trans('menu.evaluations') }}</div>
             </a>
         </li>
@@ -70,13 +70,13 @@
         @if (auth('admin')->check())
             <li class="menu-item {{ request()->routeIs('dashboard.certificates.index') ? 'active' : '' }}">
                 <a href="{{ route('dashboard.certificates.index') }}" class="menu-link">
-                    <i class="menu-icon bx bxs-certification" aria-hidden="true"></i>
+                    <i class="text-dark menu-icon bx bxs-certification" aria-hidden="true"></i>
                     <div>{{ trans('menu.certificates') }}</div>
                 </a>
             </li>
             <li class="menu-item {{ request()->routeIs('dashboard.settings.index') ? 'active' : '' }}">
                 <a href="{{ route('dashboard.settings.index') }}" class="menu-link">
-                    <i class="menu-icon bx bxs-cog" aria-hidden="true"></i>
+                    <i class="text-info menu-icon bx bxs-cog" aria-hidden="true"></i>
                     <div>{{ trans('menu.settings') }}</div>
                 </a>
             </li>
