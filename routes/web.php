@@ -102,6 +102,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth:admin,teacher')
         Route::get('students', 'students')->name('students');
         Route::get('teachers', 'teachers')->name('teachers');
         Route::get('attendence', 'attendence')->name('attendence');
+        Route::get('review', 'review')->name('review');
         Route::get('trainee_notebook/{student_id}', 'trainee_notebook')->name('trainee_notebook');
     });
 
@@ -117,7 +118,7 @@ Route::name('student.')->middleware('auth:student')->group(function () {
 });
 
 Route::prefix('download')->middleware('auth:admin,student')->controller(PrintController::class)->name('download.')->group(function () {
-    Route::get('review/{student_id}', 'review')->name('review');
+    Route::get('reviews/{student_id}', 'review')->name('review');
     Route::get('certificate/{student_id}', 'certificate')->name('certificate');
     Route::get('student/modal', 'studentModel')->middleware('auth:admin')->name('studentModel');
 

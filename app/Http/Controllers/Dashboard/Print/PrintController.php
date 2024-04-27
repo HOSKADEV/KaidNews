@@ -84,11 +84,13 @@ class PrintController extends Controller
 
 
 
-    public function review($id)
+    public function review(Request $request)
     {
-        $account = Student::with('tests', 'tests.subject')->find($id);
+        $group = $request->group;
+        $batch = $request->batch;
+        $students = $this->students->paginate($request->perPage ? $request->perPage : PAGINATE_COUNT, $request->year,$request->start_date,$request->end_date, $request->search, $request->registration_number,$request->batch, $request->group,$request->rank,$request->passport);
 
-        return view('dashboard.printer.review', compact('account'));
+        return view('dashboard.printer.reviews-list', compact('students', 'group', 'batch'));
     }
     public function certificate($id)
     {

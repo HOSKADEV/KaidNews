@@ -227,9 +227,20 @@
                     </div>
                     <div class="form-group col-md-3 mt-4">
                         @if (count($students))
-                            <button target="_blank" id="printStudent"
-                                data-url="{{ route('dashboard.print.students', [
+                            <button target="_blank" id="printStudentEvaluation"
+                                data-url="{{ route('dashboard.print.review', [
                                     'group' => Request::get('group'),
+                                    'batch' => Request::get('batch'),
+                                    'search' => Request::get('search'),
+                                    'registration_number' => Request::get('registration_number'),
+                                    'week'  => Request::get('week'),
+                                    'month' => Request::get('month'),
+                                    'year'  => Request::get('year'),
+                                    'rank'  => Request::get('rank'),
+                                    'passport'   => Request::get('passport'),
+                                    'start_date' => Request::get('start_date'),
+                                    'end_date'   => Request::get('end_date'),
+                                    'perPage'    => Request::get('perPage'),
                                 ]) }}"
                                 class="btn
                             btn-primary text-white">
