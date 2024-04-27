@@ -91,7 +91,7 @@ class EloquentStudent implements StudentRepository
         $query = Student::query()->with('createdBy','evaluations', 'tests', 'tests.subject', 'certificate')->orderByDesc('moyenFinal');
 
         if ($rank) {
-           (new FiltersByRank)($query, $rank);
+            (new FiltersByRank)($query, $rank);
         }
 
         if ($passport == 1) {
@@ -121,7 +121,7 @@ class EloquentStudent implements StudentRepository
 
         // $result = $query->orderBy('id', 'desc')
         //     ->paginate($perPage);
-        
+
 
 
         $result = $query->paginate($perPage);

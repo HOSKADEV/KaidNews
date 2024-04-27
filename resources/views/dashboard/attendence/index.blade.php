@@ -98,6 +98,13 @@
                             <option value="1">{{ trans('app.batchs.1') }}</option>
                             <option value="2">{{ trans('app.batchs.2') }}</option>
                             <option value="3">{{ trans('app.batchs.3') }}</option>
+                            <option value="4">{{ trans('app.batchs.4') }}</option>
+                            <option value="5">{{ trans('app.batchs.5') }}</option>
+                            <option value="6">{{ trans('app.batchs.6') }}</option>
+                            <option value="7">{{ trans('app.batchs.7') }}</option>
+                            <option value="8">{{ trans('app.batchs.8') }}</option>
+                            <option value="9">{{ trans('app.batchs.9') }}</option>
+                            <option value="10">{{ trans('app.batchs.10') }}</option>
                         </select>
                     </div>
 
@@ -158,8 +165,18 @@
                         @if (count($students))
                             <button target="_blank" id="printSection"
                                 data-url="{{ route('dashboard.print.attendence', [
-                                    'group' => Request::get('group'),
+                                    'search' => Request::get('search'),
+                                    'registration_number' => Request::get('registration_number'),
+                                    'week'  => Request::get('week'),
                                     'month' => Request::get('month'),
+                                    'year'  => Request::get('year'),
+                                    'group' => Request::get('group'),
+                                    'batch' => Request::get('batch'),
+                                    'rank'  => Request::get('rank'),
+                                    'passport'   => Request::get('passport'),
+                                    'start_date' => Request::get('start_date'),
+                                    'end_date'   => Request::get('end_date'),
+                                    'perPage'    => Request::get('perPage'),
                                 ]) }}"
                                 class="btn
                                 btn-primary text-white">
@@ -218,15 +235,15 @@
 
                                         <input class="form-check-input checkAttendence" type="checkbox"
                                             @if (auth('teacher')->check()) disabled @endif value="{{ $day }}"
-                                            id="day" {{ $attendences ? '' : 'disabled' }}
+                                            id="day"
                                             {{ $attendences?->number > 0 ? 'checked' : '' }} />
                                         <input class="form-check-input checkAttendence" type="checkbox"
                                             @if (auth('teacher')->check()) disabled @endif value="{{ $day }}"
-                                            id="day" {{ $attendences ? '' : 'disabled' }}
+                                            id="day"
                                             {{ $attendences?->number > 1 ? 'checked' : '' }} />
                                         <input class="form-check-input checkAttendence" type="checkbox"
                                             @if (auth('teacher')->check()) disabled @endif value="{{ $day }}"
-                                            id="day" {{ $attendences ? '' : 'disabled' }}
+                                            id="day"
                                             {{ $attendences?->number > 2 ? 'checked' : '' }} />
                                         {{--
 @if ($attendences)

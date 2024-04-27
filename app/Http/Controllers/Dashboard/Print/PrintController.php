@@ -28,26 +28,35 @@ class PrintController extends Controller
 
     public function attendence(Request $request)
     {
-
+        // dd($request->all());
         $now = Carbon::parse(now());
-        $year = $now->year;
+        $year  = $now->year;
         $month = $request->month == null ? $now->month  : $request->month;
-        $group = $request->group;
+        $week  = $request->week;
+        $registration_number = $request->registration_number;
+        $search = $request->search;
+        $batch  = $request->batch;
+        $rank   = $request->rank;
+        $passport = $request->passport;
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
         // $month = 3;
-        // $group = $request->group == null ? null : $request->group;
-        // $students = Student::with('attendences')->orWhere('group' ,$group)->get();
-        // return view('dashboard.printer.attendence', compact('students', 'group','year', 'month','week'));
-
+        $group = $request->group == null ? null : $request->group;
         // dd($group);
-        if ($group != null) {
-            $students = Student::with('attendences')
-                ->where('group', $group)
-                ->get();
-        } else {
-            $students = Student::with('attendences')->get();
-        }
-
+        $students = $this->students->paginate($request->perPage ? $request->perPage : PAGINATE_COUNT, $year,$request->start_date,$request->end_date, $request->search, $request->registration_number,$request->batch, $request->group,$request->rank,$request->passport);
         return view('dashboard.printer.attendence', compact('students', 'group', 'year', 'month'));
+
+        // dd($students);
+        // $students = Student::with('attendences')->orWhere('group' ,$group)->get();
+        // dd($group);
+        // if ($group != null) {
+        //     $students = Student::with('attendences')
+        //         ->where('group', $group)
+        //         ->get();
+        // } else {
+        //     $students = Student::with('attendences')->get();
+        // }
+
     }
 
 
@@ -60,7 +69,9 @@ class PrintController extends Controller
         $group = $request->group;
         $batch = $request->batch;
 
-        $students = $this->students->listPrintStudent($request->search, $request->registration_number, $batch, $group);
+        $students = $this->students->paginate($request->perPage ? $request->perPage : PAGINATE_COUNT, $request->year,$request->start_date,$request->end_date, $request->search, $request->registration_number,$request->batch, $request->group,$request->rank,$request->passport);
+
+        // $students = $this->students->listPrintStudent($request->search, $request->registration_number, $batch, $group);
 
         return view('dashboard.printer.students', compact('students', 'group', 'batch'));
     }

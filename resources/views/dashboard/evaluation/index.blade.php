@@ -74,6 +74,13 @@
                                 <option value="1">{{ trans('app.batchs.1') }}</option>
                                 <option value="2">{{ trans('app.batchs.2') }}</option>
                                 <option value="3">{{ trans('app.batchs.3') }}</option>
+                                <option value="4">{{ trans('app.batchs.4') }}</option>
+                                <option value="5">{{ trans('app.batchs.5') }}</option>
+                                <option value="6">{{ trans('app.batchs.6') }}</option>
+                                <option value="7">{{ trans('app.batchs.7') }}</option>
+                                <option value="8">{{ trans('app.batchs.8') }}</option>
+                                <option value="9">{{ trans('app.batchs.9') }}</option>
+                                <option value="10">{{ trans('app.batchs.10') }}</option>
                             </select>
                         </div>
                         <div class="form-group col-md-2 mb-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">

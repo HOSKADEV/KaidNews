@@ -85,7 +85,7 @@
                 <div class="row">
                     <div class="col-6">
                         <h5 class="text-right">{{ trans('attendence.group') }} :
-                            {{ $group != null ? trans('print.groups.' . group) : trans('print.groups.all') }}</h5>
+                            {{ $group != null ? trans('print.groups.' . $group) : trans('print.groups.all') }}</h5>
                     </div>
                     <div class="col-6">
                         <h5 class="text-left">{{ trans('attendence.month') }} :
