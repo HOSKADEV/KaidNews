@@ -32,9 +32,9 @@
                     </div>
                     <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
                         <label for="name" class="form-label">{{ trans('student.label.registration_number') }}</label>
-                        <input type="text" id="name" name="search" value="{{ Request::get('search') }}"
+                        <input type="text" id="name" name="registration_number" value="{{ Request::get('registration_number') }}"
                             class="form-control input-solid"
-                            placeholder="{{ Request::get('search') != '' ? '' : trans('student.placeholder.registration_number') }}">
+                            placeholder="{{ Request::get('registration_number') != '' ? '' : trans('student.placeholder.registration_number') }}">
 
                     </div>
                     <div class="form-group col-md-2" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
@@ -55,9 +55,12 @@
                     </div>
                     <div class="form-group col-md-2 mr-5 mt-4">
                         @if (count($students))
-                            <button target="_blank" id="printStudent"
-                                data-url="{{ route('dashboard.print.students', [
+                            <button target="_blank" id="printCertificate"
+                                data-url="{{ route('dashboard.print.certificate', [
                                     'group' => Request::get('group'),
+                                    'search' => Request::get('search'),
+                                    'registration_number' => Request::get('registration_number'),
+                                    'perPage' => Request::get('perPage'),
                                 ]) }}"
                                 class="btn
                             btn-primary text-white">
@@ -65,6 +68,19 @@
                             </button>
                         @endif
                     </div>
+                    <div class="form-group col-md-3 mb-2">
+                      <label for="perPage" class="form-label">{{ trans('app.label.perPage') }}</label>
+                      <select class="form-select" id="perPage" name="perPage" aria-label="Default select example">
+                          <option value="">{{ trans('app.select.perPage') }}</option>
+                          <option value="{{ $students->count() *$students->perPage() }}">{{ trans('app.all') }}</option>
+                          <option value="10" {{ Request::get('perPage') == 10 ? 'selected' : '' }}>
+                              10</option>
+                          <option value="50"{{ Request::get('perPage') == 50 ? 'selected' : '' }}>
+                              50</option>
+                              <option value="100"{{ Request::get('perPage') == 100 ? 'selected' : '' }}>
+                                  100</option>
+                      </select>
+                  </div>
                 </div>
             </form>
         </h5>
@@ -160,14 +176,27 @@
                 $("#search").focus();
                 timer = setTimeout(function() {
                     submitForm();
-                }, 4000);
+                }, 1000);
 
-            })
+            });
+            $('#registration_number').on('keyup', function(event) {
+                $("#registration_number").focus();
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 1000);
+
+            });
+            $('#perPage').on('change', function(event) {
+                timer = setTimeout(function() {
+                    submitForm();
+                }, 1000);
+
+            });
 
             function submitForm() {
                 $("#filterStudentForm").submit();
             }
-            $("#printStudent").click(function(e) {
+            $("#printCertificate").click(function(e) {
                 let url = $(this).attr('data-url');
                 var printWindow = window.open(url, '_blank', 'height=auto,width=auto');
                 printWindow.print();

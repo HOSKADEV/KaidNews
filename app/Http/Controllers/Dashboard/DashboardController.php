@@ -225,15 +225,15 @@ class DashboardController extends Controller
 
     public function analyseGetStudentByPoint()
     {
-        $max   = Student::where('moyenFinal', '>='  ,15)->count();
-        $moyen = Student::whereBetween('moyenFinal', [10, 15])->count();
-        $min   = Student::where('moyenFinal', '< '  ,10)->count();
-
+        $max   = Student::where('moyenFinal','>=',15)->count();
+        $moyen = Student::whereBetween('moyenFinal',[10, 15])->count();
+        $min   = Student::where('moyenFinal','<' ,10)->count();
+        
         return response()->json([
-          'status' => true,
-          'max'   => $max,
-          'moyen' => $moyen,
-          'min'   => $min,
+            'status' => true,
+            'max'   => $max,
+            'moyen' => $moyen,
+            'min'   => $min,
         ]);
     }
 }

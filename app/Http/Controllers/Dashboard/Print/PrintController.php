@@ -92,11 +92,13 @@ class PrintController extends Controller
 
         return view('dashboard.printer.reviews-list', compact('students', 'group', 'batch'));
     }
-    public function certificate($id)
+    public function certificate(Request $request)
     {
-        $account = Student::with('tests', 'tests.subject')->find($id);
+      $group = $request->group;
+      $batch = $request->batch;
+      $students = $this->students->paginate($request->perPage ? $request->perPage : PAGINATE_COUNT, $request->year,$request->start_date,$request->end_date, $request->search, $request->registration_number,$request->batch, $request->group,$request->rank,$request->passport);
         // return view('dashboard.printer.certificate', compact('account'));
-        return view('dashboard.printer.index', compact('account'));
+        return view('dashboard.printer.certificate-list', compact('students', 'group', 'batch'));
 
         // return redirect()->back();
     }

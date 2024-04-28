@@ -125,9 +125,8 @@ class EvaluationController extends Controller
     {
         $deleted = Test::whereStudentId($request->student)->delete();
         if (!$deleted) {
-          toastr()->error('حدث خطأ أثناء تعديل');
-          return redirect()
-                ->back();
+            toastr()->error('حدث خطأ أثناء تعديل');
+            return redirect() ->back();
 
         }
         $data = [];
@@ -145,6 +144,7 @@ class EvaluationController extends Controller
             'moyenFinal' => $this->students->find($request->student_id[1])->moyen
         ]);
         if ($request->rank || $request->golden_passport) {
+            $evaluations = Evaluation::whereStudentId($request->student)->delete();
             Evaluation::create([
                 'student_id' => $request->student_id[1],
                 'rank' => $request->rank != null ? $request->rank : null,

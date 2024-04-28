@@ -18,7 +18,7 @@ class CertificateController extends Controller
      * @param StudentRepository $students
      * @param CertificateRepository $sertificates
      */
-    
+
     public function __construct(StudentRepository $students,CertificateRepository $sertificates)
     {
         $this->students = $students;
@@ -31,7 +31,16 @@ class CertificateController extends Controller
      */
     public function index(Request $request)
     {
-        $students = $this->students->paginate($perPage = 10, $request->search,$request->group);
+        $students = $this->students->paginate($request->perPage ? $request->perPage : PAGINATE_COUNT,
+                                    $request->year ,
+                                    $request->start_date,
+                                    $request->end_date ,
+                                    $request->search,
+                                    $request->registration_number,
+                                    $request->batch,
+                                    $request->group,$request->rank,
+                                    $request->passport,
+                                    $request->status);
 
         $listStduents = $this->students->listStudentHasNotCertificate();
         return view('dashboard.certificate.index',compact('students','listStduents'));
@@ -55,7 +64,7 @@ class CertificateController extends Controller
      */
     public function store(Request $request)
     {
-        $fileName = time().'.'.$request->certificate->extension(); 
+        $fileName = time().'.'.$request->certificate->extension();
 
         // dd( $fileName);
         // $request->certificate->move(storage_path('uploads/sertificates'), $fileName);
