@@ -125,8 +125,10 @@
                       <td class="text-center">
                           {{ $student->tests->count() > 0 ? number_format($student->moyen, 2) : 'لم يتم تقييم بعد' }}
                           @if ($student->evaluations)
-                              <img src="{{ asset('assets/prize/' . $student->evaluations->rank . '.svg') }}"
-                                  width="30px" height="30px" alt="" srcset="">
+                              @if ($student->evaluations->rank != 0)
+                                <img src="{{ asset('assets/prize/' . $student->evaluations->rank . '.svg') }}"
+                                width="30px" height="30px" alt="" srcset="">
+                              @endif
                               @if ($student->evaluations->golden_passport == 1)
                                   <img src="{{ asset('assets/prize/reward.png') }}" width="30px"
                                       height="30px" alt="" srcset="">
