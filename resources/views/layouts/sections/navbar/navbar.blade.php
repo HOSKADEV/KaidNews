@@ -70,10 +70,10 @@
                     href="{{ url('lang/ar') }}" data-language="de">
                     <span class="align-middle">Arabic</span>
                 </a>
-                
+
         </li>
     </ul>
-  
+
 
     <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
@@ -166,7 +166,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="{{ route('student.account.index') }}">
+                    <a class="dropdown-item" href="{{ route('student.index') }}">
                         <i class="fa fa-star"></i>
                         <span class="align-middle">{{ trans('app.review') }}</span>
                     </a>

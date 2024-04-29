@@ -95,7 +95,9 @@ class EvaluationController extends Controller
     public function show($id)
     {
         $student = $this->students->find($id);
-        return view('dashboard.evaluation.single', compact('student'));
+        $evaluations = $this->evaluations->getByStudent($id);
+        $evaluationExists = Evaluation::whereStudentId($id)->first();
+        return view('dashboard.evaluation.single', compact('student','evaluationExists'));
 
         // findNotes
     }
@@ -110,8 +112,9 @@ class EvaluationController extends Controller
     {
         $student = $this->students->find($id);
         $subjects = $this->subjects->all();
+        $evaluationExists = Evaluation::whereStudentId($id)->first();
         $evaluations = $this->evaluations->getByStudent($id);
-        return view('dashboard.evaluation.edit', compact('student', 'subjects','evaluations'));
+        return view('dashboard.evaluation.edit', compact('student', 'subjects','evaluations','evaluationExists'));
     }
 
     /**
@@ -143,15 +146,24 @@ class EvaluationController extends Controller
         $this->students->update($request->student_id[1],[
             'moyenFinal' => $this->students->find($request->student_id[1])->moyen
         ]);
-        if ($request->rank || $request->golden_passport) {
-            $evaluations = Evaluation::whereStudentId($request->student)->delete();
-            Evaluation::create([
-                'student_id' => $request->student_id[1],
-                'rank' => $request->rank != null ? $request->rank : null,
-                'golden_passport' => $request->golden_passport != null ? $request->golden_passport : null,
-                'created_by' => auth('admin')->id(),
-            ]);
+        if (!is_null($request->rank) || !is_null($request->golden_passport)) {
+            $evaluations = Evaluation::whereStudentId($request->student)->first();
+            // dd($evaluations);
+            if ($evaluations) {
+                $evaluations->rank = $request->rank;
+                $evaluations->golden_passport = $request->golden_passport;
+                $evaluations->created_by = auth('admin')->id();
+                $evaluations->save();
+            } else {
+                Evaluation::create([
+                  'student_id' => $request->student_id[1],
+                  'rank' => $request->rank != null ? $request->rank : null,
+                  'golden_passport' => $request->golden_passport != null ? $request->golden_passport : null,
+                  'created_by' => auth('admin')->id(),
+                ]);
+            }
         }
+
         toastr()->success(trans('message.success.update'));
         return redirect()->route('dashboard.evaluations.index');
     }

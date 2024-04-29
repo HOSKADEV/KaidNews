@@ -63,30 +63,74 @@
                     </tbody>
                 </table>
             </div>
-
+            {{-- {{ dd(!empty($evaluationExists)) }} --}}
             <div class="row px-4">
                 <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
                     <label for="rank" class="form-label">{{ trans('evaluation.label.rank') }}</label>
                     <select class="form-select" id="rank" name="rank" aria-label="Default select example">
-                        <option value="">{{ trans('app.all') }}</option>
-                        <option value="1">{{ trans('evaluation.select.rank1') }}</option>
-                        <option value="2">{{ trans('evaluation.select.rank2') }}</option>
-                        <option value="3">{{ trans('evaluation.select.rank3') }}</option>
+                        @if (!empty($evaluationExists))
+                              @switch($evaluationExists->rank)
+                                @case(0)
+                                  <option value="0" selected>{{ trans('app.all') }}</option>
+                                  <option value="1">{{ trans('evaluation.select.rank1') }}</option>
+                                  <option value="2">{{ trans('evaluation.select.rank2') }}</option>
+                                  <option value="3">{{ trans('evaluation.select.rank3') }}</option>
+                                  @break
+                                @case(1)
+                                  <option value="0">{{ trans('app.all') }}</option>
+                                  <option value="1" selected>{{ trans('evaluation.select.rank1') }}</option>
+                                  <option value="2">{{ trans('evaluation.select.rank2') }}</option>
+                                  <option value="3">{{ trans('evaluation.select.rank3') }}</option>
+                                  @break
+                                @case(2)
+                                  <option value="0">{{ trans('app.all') }}</option>
+                                  <option value="1">{{ trans('evaluation.select.rank1') }}</option>
+                                  <option value="2" selected>{{ trans('evaluation.select.rank2') }}</option>
+                                  <option value="3">{{ trans('evaluation.select.rank3') }}</option>
+                                  @break
+                                @case(3)
+                                  <option value="0">{{ trans('app.all') }}</option>
+                                  <option value="1">{{ trans('evaluation.select.rank1') }}</option>
+                                  <option value="2">{{ trans('evaluation.select.rank2') }}</option>
+                                  <option value="3" selected>{{ trans('evaluation.select.rank3') }}</option>
+                                  @break
+                                @default
+                                  <option value="0">{{ trans('app.all') }}</option>
+                                  <option value="1">{{ trans('evaluation.select.rank1') }}</option>
+                                  <option value="2">{{ trans('evaluation.select.rank2') }}</option>
+                                  <option value="3">{{ trans('evaluation.select.rank3') }}</option>
+                              @endswitch
+                        @else
+                          <option value="0">{{ trans('app.all') }}</option>
+                          <option value="1">{{ trans('evaluation.select.rank1') }}</option>
+                          <option value="2">{{ trans('evaluation.select.rank2') }}</option>
+                          <option value="3">{{ trans('evaluation.select.rank3') }}</option>
+                        @endif
                     </select>
                 </div>
                 <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
                     <label for="golden_passport" class="form-label">{{ trans('evaluation.label.golden_passport') }}</label>
                     <select class="form-select" id="golden_passport" name="golden_passport" aria-label="Default select example">
+                        @if (!empty($evaluationExists))
+                          @switch($evaluationExists->golden_passport)
+                            @case(0)
+                              <option value="0" selected>{{ trans('evaluation.select.golden_passport_no') }}</option>
+                              <option value="1">{{ trans('evaluation.select.golden_passport_yes') }}</option>
+                              @break
+                            @case(1)
+                              <option value="0">{{ trans('evaluation.select.golden_passport_no') }}</option>
+                              <option value="1" selected>{{ trans('evaluation.select.golden_passport_yes') }}</option>
+                              @break
+                            @default
+                            <option value="0">{{ trans('evaluation.select.golden_passport_no') }}</option>
+                            <option value="1">{{ trans('evaluation.select.golden_passport_yes') }}</option>
+                          @endswitch
+                        @else
                         <option value="0">{{ trans('evaluation.select.golden_passport_no') }}</option>
                         <option value="1">{{ trans('evaluation.select.golden_passport_yes') }}</option>
+                        @endif
                     </select>
                 </div>
-
-                {{-- <div class="form-group col-md-6" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
-                    <label for="note" class="form-label">{{ trans('evaluation.label.note') }}</label>
-                    <input type="text" name="note" class="form-control"
-                        placeholder="{{ trans('evaluation.placeholder.note') }}">
-                </div> --}}
             </div>
 
             <button type="submit" class="btn btn-primary mx-4 my-4">{{ trans('app.save') }}</button>

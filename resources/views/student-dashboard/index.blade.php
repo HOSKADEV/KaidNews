@@ -65,6 +65,46 @@
                         <label for="" class="form-label">{{ trans('evaluation.birthday_state_of_birth') }} :
                             {{ date('d-m-Y', strtotime($account->birthday)) }} {{ $account->state_of_birth }}
                         </label>
+                        <div class="row px-4 pb-3">
+                          <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                              <label for="rank" class="form-label">{{ trans('evaluation.label.rank') }}</label>
+                              @if (!empty($evaluationExists))
+                                @switch($evaluationExists->rank)
+                                  @case(0)
+                                    <input type="text" class="form-control" value="{{ trans('app.Norank') }}" disabled>
+                                    @break
+                                  @case(1)
+                                    <input type="text" class="form-control" value="{{ trans('evaluation.select.rank1') }}" disabled>
+                                    @break
+                                  @case(2)
+                                    <input type="text" class="form-control" value="{{ trans('evaluation.select.rank2') }}" disabled>
+                                    @break
+                                  @case(3)
+                                    <input type="text" class="form-control" value="{{ trans('evaluation.select.rank3') }}" disabled>
+                                    @break
+                                  @default
+                                    <input type="text" class="form-control" value="{{ trans('app.Norank') }}" disabled>
+                                @endswitch
+                              @else
+                                <input type="text" class="form-control" value="{{ trans('app.Norank') }}" disabled>
+                              @endif
+                          </div>
+                          <div class="form-group col-md-3" dir="{{ config('app.locale') == 'ar' ? 'rtl' : 'ltr' }}">
+                              <label for="golden_passport" class="form-label">{{ trans('evaluation.label.golden_passport') }}</label>
+                              @if (!empty($evaluationExists))
+                                @switch($evaluationExists->golden_passport)
+                                  @case(0)
+                                    <input type="text" class="form-control" value="{{ trans('evaluation.select.golden_passport_no') }}" disabled>
+                                    @break
+                                  @case(1)
+                                    <input type="text" class="form-control" value="{{ trans('evaluation.select.golden_passport_yes') }}" disabled>
+                                    @break
+                                  @default
+                                    <input type="text" class="form-control" value="{{ trans('evaluation.select.golden_passport_no') }}" disabled>
+                                @endswitch
+                              @endif
+                          </div>
+                        </div>
                         @if ($account->tests->count() > 0)
                             <div class="table-responsive text-nowrap">
                                 <table class="table">
@@ -126,7 +166,7 @@
                                         @enderror
                                     </div>
                                     @if ($account->notes == null)
-                                        
+
                                     <div class="col-sm-12 col-md-6 mb-0">
                                         <button type="submit"
                                             class="btn btn-primary me-2">{{ trans('app.save') }}</button>

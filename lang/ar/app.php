@@ -8,6 +8,7 @@ return [
     'download_certificate' => 'تحميل الشهادة',
 
     'all' => 'الكل',
+    'Norank'  => 'لا توجد المرتبة',
 
     'create'    => 'إضافة',
     'import'    => 'رفع',

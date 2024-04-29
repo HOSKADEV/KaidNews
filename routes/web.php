@@ -113,7 +113,8 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth:admin,teacher')
 
 
 Route::name('student.')->middleware('auth:student')->group(function () {
-    Route::get('student', [StudentDashboardController::class, 'index']);
+    Route::get('student', [StudentDashboardController::class, 'index'])->name('index');
+    Route::get('student/{student_id}', [StudentDashboardController::class, 'indexAdmin'])->name('index.admin');
     Route::resource('account', AccountController::class);
     Route::post('notes', [NoteController::class, 'store'])->name('notes.store');
 });
