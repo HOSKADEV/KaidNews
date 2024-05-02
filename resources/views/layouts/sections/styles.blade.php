@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="{{ asset(mix('assets/vendor/fonts/boxicons.css')) }}" />
 
 <!-- Core CSS -->
-{{-- @if (Session::get('theme') == 'dark')
+@if (Session::get('theme') == 'dark')
 
     @if (Session::get('locale') == 'ar')
         <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core-dark.css') }}" />
@@ -27,10 +27,9 @@
         <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/vendor/css/theme-default.css') }}" />
     @endif
-@endif --}}
+@endif
 
-<link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/core.css') }}" />
-<link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default.css') }}" />
+
 
 <link rel="stylesheet" href="{{ asset(mix('assets/css/demo.css')) }}" />
 

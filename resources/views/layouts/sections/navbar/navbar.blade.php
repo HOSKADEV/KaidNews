@@ -63,12 +63,12 @@
                 <li>
                     <a class="dropdown-item {{ Session::get('locale') == 'en' ? 'active' : '' }}"
                         href="{{ url('lang/en') }}" data-language="en">
-                        <span class="align-middle">English</span>
+                        <span class="align-middle">{{ trans('app.English') }}</span>
                     </a>
                 </li>
                 <a class="dropdown-item {{ Session::get('locale') == 'ar' ? 'active' : '' }}"
                     href="{{ url('lang/ar') }}" data-language="de">
-                    <span class="align-middle">Arabic</span>
+                    <span class="align-middle">{{ trans('app.Arabic') }}</span>
                 </a>
 
         </li>
@@ -86,12 +86,12 @@
         <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
             <li>
                 <a class="dropdown-item" href="{{ url('theme/light') }}" data-theme="light">
-                    <span class="align-middle"><i class='bx bx-sun me-2'></i>Light</span>
+                    <span class="align-middle"><i class='bx bx-sun me-2'></i>{{ trans('app.Light') }}</span>
                 </a>
             </li>
             <li>
                 <a class="dropdown-item" href="{{ url('theme/dark') }}" data-theme="dark">
-                    <span class="align-middle"><i class="bx bx-moon me-2"></i>Dark</span>
+                    <span class="align-middle"><i class="bx bx-moon me-2"></i>{{ trans('app.Dark') }}</span>
                 </a>
             </li>
             {{-- <li>

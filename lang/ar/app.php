@@ -6,6 +6,10 @@ return [
     'print'     => 'طباعة',
     'download_review' => 'تحميل التقييم',
     'download_certificate' => 'تحميل الشهادة',
+    'Dark' => 'الوضع الليلي',
+    'Light' => 'الوضع عادي',
+    'English' => 'إنجليزي',
+    'Arabic' => 'عربي',
 
     'all' => 'الكل',
     'Norank'  => 'لا توجد المرتبة',

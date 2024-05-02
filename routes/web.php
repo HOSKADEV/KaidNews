@@ -3,15 +3,17 @@
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Session;
+
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Student\AccountController;
-
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\Note\NoteController;
 use App\Http\Controllers\Dashboard\Admin\AdminController;
@@ -37,6 +39,7 @@ use App\Http\Controllers\Dashboard\ExcelImport\ExcelImportController;
 |
 */
 define('PAGINATE_COUNT',100);
+Session::put('locale', 'ar');
 // define('PAGINATE_COUNT',10);
 // ['middleware' => ['auth']],
 Route::group([], function () {
@@ -53,6 +56,7 @@ Route::group([], function () {
 });
 
 Route::get('/', function (Request $request) {
+    Session::put('locale', 'ar');
     return to_route('auth.login');
 });
 
