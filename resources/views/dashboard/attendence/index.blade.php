@@ -248,7 +248,7 @@
                                                 ->first();
                                         @endphp
 
-                                        @endphp
+                                        
                                     </td>
                                 @endfor
                             </tr>

@@ -74,6 +74,9 @@
 
 <body>
     <div class="header-print-page" style="margin-top: 15px">
+        <div>
+            <h3 class="text-center title">التربص الميداني بجريدة القائد نيوز {{ $date }}</h3>
+        </div>
         <div class="row">
             <div class="col-3 text-right">
                 <img style="height: 100px; width:200px" src="{{ asset('assets/logo/logo-print.jpg') }}" alt=""
