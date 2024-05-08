@@ -38,9 +38,6 @@ class ImportStudent implements ToModel, WithHeadingRow, WithCustomCsvSettings
     public function model(array $row)
     {
 
-      dd($row);
-        // dd($row);
-
         $student =  Student::create([
             'firstname_ar' => $row['alasm_balaarby'] == null ? 'non' :$row['alasm_balaarby'],
             'firstname_fr' => $row['alasm_balfrnsy'] == null ? 'non' :$row['alasm_balfrnsy'],
