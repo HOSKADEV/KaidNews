@@ -30,6 +30,7 @@ class PrintController extends Controller
     {
         // dd($request->all());
         $now = Carbon::parse(now());
+        $date = Carbon::now()->year;
         $year  = $now->year;
         $month = $request->month == null ? $now->month  : $request->month;
         $week  = $request->week;
@@ -44,7 +45,7 @@ class PrintController extends Controller
         $group = $request->group == null ? null : $request->group;
         // dd($group);
         $students = $this->students->paginate($request->perPage ? $request->perPage : PAGINATE_COUNT, $year,$request->start_date,$request->end_date, $request->search, $request->registration_number,$request->batch, $request->group,$request->rank,$request->passport);
-        return view('dashboard.printer.attendence', compact('students', 'group', 'year', 'month'));
+        return view('dashboard.printer.attendence', compact('students', 'group', 'year', 'month','date'));
 
         // dd($students);
         // $students = Student::with('attendences')->orWhere('group' ,$group)->get();
@@ -66,6 +67,7 @@ class PrintController extends Controller
 
     public function students(Request $request)
     {
+        $date = Carbon::now()->year;
         $group = $request->group;
         $batch = $request->batch;
 
@@ -73,7 +75,7 @@ class PrintController extends Controller
 
         // $students = $this->students->listPrintStudent($request->search, $request->registration_number, $batch, $group);
 
-        return view('dashboard.printer.students', compact('students', 'group', 'batch'));
+        return view('dashboard.printer.students', compact('students', 'group', 'batch','date'));
     }
 
     public function teachers()
@@ -86,19 +88,21 @@ class PrintController extends Controller
 
     public function review(Request $request)
     {
+        $date = Carbon::now()->year;
         $group = $request->group;
         $batch = $request->batch;
         $students = $this->students->paginate($request->perPage ? $request->perPage : PAGINATE_COUNT, $request->year,$request->start_date,$request->end_date, $request->search, $request->registration_number,$request->batch, $request->group,$request->rank,$request->passport);
 
-        return view('dashboard.printer.reviews-list', compact('students', 'group', 'batch'));
+        return view('dashboard.printer.reviews-list', compact('students', 'group', 'batch','date'));
     }
     public function certificate(Request $request)
     {
+      $date = Carbon::now()->year;
       $group = $request->group;
       $batch = $request->batch;
       $students = $this->students->paginate($request->perPage ? $request->perPage : PAGINATE_COUNT, $request->year,$request->start_date,$request->end_date, $request->search, $request->registration_number,$request->batch, $request->group,$request->rank,$request->passport);
         // return view('dashboard.printer.certificate', compact('account'));
-        return view('dashboard.printer.certificate-list', compact('students', 'group', 'batch'));
+        return view('dashboard.printer.certificate-list', compact('students', 'group', 'batch','date'));
 
         // return redirect()->back();
     }
@@ -106,6 +110,7 @@ class PrintController extends Controller
 
     public function studentModel()
     {
+        $date = Carbon::now()->year;
         $filePath = storage_path('app/public/student-model-file.xlsx');
         $newFilename = 'إستمارة معلومات المتربصين.xlsx';
         return Response::download($filePath, $newFilename);

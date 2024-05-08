@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Student\StudentRepository;
 use App\Http\Requests\Student\StoreStudentRequest;
 use App\Http\Requests\Student\UpdateStudentRequest;
+use Carbon\Carbon;
 
 class StudentController extends Controller
 {
@@ -77,6 +78,7 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
+        $data = Carbon::now()->year;
         $student = $this->students->find($id);
         return view('dashboard.student.edit', compact('student'));
     }

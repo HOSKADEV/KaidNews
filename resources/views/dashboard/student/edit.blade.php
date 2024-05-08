@@ -111,7 +111,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-sm-12 col-md-6 mb-2">
+                    <div class="col-sm-12 col-md-4 mb-2">
                         <label for="registration_number"
                             class="form-label">{{ trans('app.label.registration_number') }}</label>
                         <input type="text" class="form-control @error('registration_number') is-invalid @enderror"
@@ -123,11 +123,21 @@
                             </small>
                         @enderror
                     </div>
-                    <div class="col-sm-12 col-md-6 mb-2">
+                    <div class="col-sm-12 col-md-4 mb-2">
                         <label for="group" class="form-label">{{ trans('app.label.group') }}</label>
                         <input type="text" class="form-control @error('group') is-invalid @enderror" name="group"
                             value="{{ $student->group }}" placeholder="{{ trans('app.placeholder.group') }}">
                         @error('group')
+                            <small class="text-danger d-block">
+                                {{ $message }}
+                            </small>
+                        @enderror
+                    </div>
+                    <div class="col-sm-12 col-md-4 mb-2">
+                        <label for="batch" class="form-label">{{ trans('app.label.batch') }}</label>
+                        <input type="text" class="form-control @error('batch') is-invalid @enderror" name="batch"
+                            value="{{ $student->batch }}" placeholder="{{ trans('app.placeholder.batch') }}">
+                        @error('batch')
                             <small class="text-danger d-block">
                                 {{ $message }}
                             </small>

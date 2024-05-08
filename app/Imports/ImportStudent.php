@@ -38,7 +38,7 @@ class ImportStudent implements ToModel, WithHeadingRow, WithCustomCsvSettings
     public function model(array $row)
     {
 
-
+      dd($row);
         // dd($row);
 
         $student =  Student::create([
@@ -51,7 +51,7 @@ class ImportStudent implements ToModel, WithHeadingRow, WithCustomCsvSettings
             // 'birthday' => $row['tarykh_almylad'],
             'birthday' => date('Y-m-d H:i:s' , strtotime($row['tarykh_almylad'])),
 
-            // 
+            //
             'state_of_birth' => $row['olay_almylad']== null ? 'non' :$row['olay_almylad'],
             'place_of_birth' => $row['mkan_almylad']== null ? 'non' :$row['mkan_almylad'],
 
@@ -114,7 +114,7 @@ class ImportStudent implements ToModel, WithHeadingRow, WithCustomCsvSettings
             'created_by' => auth('admin')->id(),
         ]);
 
-        // روح المبادرة 
+        // روح المبادرة
         Test::create([
             'student_id' => $student->id,
             'subject_id' => Subject::where('name', 'روح المبادرة')->first()->id,
