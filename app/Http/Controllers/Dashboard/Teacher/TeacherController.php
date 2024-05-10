@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Teacher\TeacherRepository;
+use Illuminate\Support\Facades\Validator;
 
 class TeacherController extends Controller
 {
@@ -48,6 +49,23 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
+        $validate = Validator::make($request->all(), [
+          'firstname_ar' => 'required|string',
+          'lastname_ar'  => 'required|string',
+          'firstname_fr' => 'required|string',
+          'lastname_fr'  => 'required|string',
+          'gender'    => 'required',
+          'birthday'  => 'required|date_format:Y-m-d',
+          'address'   => 'required',
+          'email'     => 'required|unique:teachers',
+          'phone'     => 'required|unique:teachers',
+          'password'  => 'required|min:6',
+          'password_confirmation' => 'required_with:password|same:password|min:6',
+        ]);
+        if ($validate->fails()) {
+            toastr()->error($validate->errors()->first());
+            return redirect()->back();
+        }
         $this->teachers->create($request->all());
         toastr()->success(trans('message.success.create'));
         return redirect()->route('dashboard.teachers.index');
