@@ -140,7 +140,7 @@
                             @for ($day = 1; $day <= $days; $day++)
                                 <td class="text-center" style="width: 30px">
                                     @if (count($student->attendences->where('week', $i)->where('month', $month)->where('year', $year)->where('day', $day)) > 0)
-                                        X
+                                        X - {{ count($student->attendences->where('week', $i)->where('month', $month)->where('year', $year)->where('day', $day)) }}
                                     @endif
                                 </td>
                             @endfor
