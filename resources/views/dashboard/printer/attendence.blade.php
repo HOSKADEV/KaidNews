@@ -139,8 +139,8 @@
                         @for ($i = 1; $i < 5; $i++)
                             @for ($day = 1; $day <= $days; $day++)
                                 <td class="text-center" style="width: 30px">
-                                    @if (count($student->attendences->where('week', $i)->where('month', $month)->where('year', $year)->where('day', $day)) > 0)
-                                        X - {{ count($student->attendences->where('week', $i)->where('month', $month)->where('year', $year)->where('day', $day)) }}
+                                    @if (count($student->attendences->where('week', $i)->where('month', $month)->where('year', $year)->where('day', $day)->where('number', '!=', 0)) > 0)
+                                        X 
                                     @endif
                                 </td>
                             @endfor
