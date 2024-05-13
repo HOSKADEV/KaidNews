@@ -331,7 +331,7 @@
                                 {{ trans('print.review.firstname_lastname_teacher_ar') }} :
                             </td>
                             <td>
-                                منير طاهر عباس
+
                             </td>
                             <td class="text-left">
                                 {{ ': ' . trans('print.review.firstname_lastname_teacher_fr') }}
@@ -343,7 +343,7 @@
                             </td>
                             <td></td>
                             <td class="text-left">
-                                {{ trans('print.review.notes_teacher_fr') }} : Mounir Taher Abbes
+                                {{ trans('print.review.notes_teacher_fr') }} : 
                             </td>
                         </tr>
                         <tr>
