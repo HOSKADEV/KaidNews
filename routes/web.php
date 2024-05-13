@@ -106,7 +106,8 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth:admin,teacher')
         Route::get('students', 'students')->name('students');
         Route::get('teachers', 'teachers')->name('teachers');
         Route::get('attendence', 'attendence')->name('attendence');
-        Route::get('review', 'review')->name('review');
+        Route::get('review', 'reviewList')->name('review');
+        Route::get('review/note', 'review')->name('reviewnote');
         Route::get('certificate', 'certificate')->name('certificate');
         Route::get('trainee_notebook/{student_id}', 'trainee_notebook')->name('trainee_notebook');
     });

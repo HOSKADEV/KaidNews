@@ -86,7 +86,7 @@ class PrintController extends Controller
 
 
 
-    public function review(Request $request)
+    public function reviewList(Request $request)
     {
         $date = Carbon::now()->year;
         $group = $request->group;
@@ -95,6 +95,14 @@ class PrintController extends Controller
 
         return view('dashboard.printer.reviews-list', compact('students', 'group', 'batch','date'));
     }
+
+    public function review(Request $request)
+    {
+      $date = Carbon::now()->year;
+      $account = Student::find($request->student_id);
+      return view('dashboard.printer.review', compact('account','date'));
+    }
+
     public function certificate(Request $request)
     {
       $date = Carbon::now()->year;

@@ -306,19 +306,19 @@
                                                 @endif
                                             @else
                                                 @if (auth('admin')->check())
-                                                  <button target="_blank"
-                                                      data-url="{{ route('download.review', [
-                                                          'student_id' => $student->id,
-                                                      ]) }}"
-                                                      class="dropdown-item downloadReview">
-                                                      <i class="bx bxs-download me-2"></i>
-                                                      {{ trans('app.download_review') }}
-                                                  </button>
-                                                  <a class="dropdown-item"
-                                                      href="{{ route('dashboard.evaluations.edit', $student->id) }}">
-                                                      <i class='bx bx-edit me-2'></i>
-                                                      {{ trans('evaluation.edit') }}
-                                                  </a>
+                                                    <button target="_blank"
+                                                        data-url="{{ route('dashboard.print.reviewnote', [
+                                                            'student_id' => $student->id,
+                                                        ]) }}"
+                                                        class="dropdown-item downloadReview">
+                                                        <i class="bx bxs-download me-2"></i>
+                                                        {{ trans('app.download_review') }}
+                                                    </button>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('dashboard.evaluations.edit', $student->id) }}">
+                                                        <i class='bx bx-edit me-2'></i>
+                                                        {{ trans('evaluation.edit') }}
+                                                    </a>
                                                 @endif
                                             @endif
                                             <a class="dropdown-item"
