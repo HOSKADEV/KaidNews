@@ -339,11 +339,11 @@
                         </tr>
                         <tr>
                             <td class="text-right">
-                                {{ trans('print.review.notes_teacher_ar') }} : منير طاهر عباس
+                                {{ trans('print.review.notes_teacher_ar') }} : 
                             </td>
                             <td></td>
                             <td class="text-left">
-                                {{ trans('print.review.notes_teacher_fr') }} : 
+                                {{ trans('print.review.notes_teacher_fr') }} :
                             </td>
                         </tr>
                         <tr>
