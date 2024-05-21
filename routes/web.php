@@ -82,7 +82,9 @@ Route::get('logout', LogoutController::class)->middleware('auth:admin,student,te
 
 // Route::get('logout', LogoutController::class)->middleware('auth:admin,student,teacher')
 //     ->name('auth.logout');
+Route::prefix('dashboard')->name('dashboard.')->middleware('auth:admin')->group(function () {
 
+});
 Route::prefix('dashboard')->name('dashboard.')->middleware('auth:admin,teacher')->group(function () {
     Route::resource('/', DashboardController::class);
     Route::post('/analyse/added', [DashboardController::class, 'analyseGetStudentByYear']);
