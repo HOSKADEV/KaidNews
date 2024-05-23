@@ -59,6 +59,7 @@ class EmployeeExpnseController extends Controller
           'newjob' => 'required_if:job,0',
           'name'    => 'required|string',
           'amount'  => 'required',
+          'month'  => 'required',
           'notes'   => 'sometimes'
         ]);
 
@@ -82,7 +83,7 @@ class EmployeeExpnseController extends Controller
           'name' => $request->name,
           'amount' => $request->amount,
           'notes' => $request->notes,
-          'month' => $date->format('m'),
+          'month' => $request->month,
           'year' => $date->format('Y'),
         ]);
         $employee = $this->employeeExpnses->create($dataEmployee);
@@ -133,6 +134,7 @@ class EmployeeExpnseController extends Controller
           'newjob'  => 'required_if:job,0',
           'name'    => 'required|string',
           'amount'  => 'required',
+          'month'  => 'required',
           'notes'   => 'sometimes'
         ]);
 
@@ -146,6 +148,7 @@ class EmployeeExpnseController extends Controller
           'types_of_expenses_id' => $request->job,
           'name' => $request->name,
           'amount' => $request->amount,
+          'month' => $request->month,
           'notes' => $request->notes,
         ]);
         $employee = $this->employeeExpnses->update($id, $dataEmployee);

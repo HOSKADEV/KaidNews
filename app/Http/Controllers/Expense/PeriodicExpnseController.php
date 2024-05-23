@@ -57,6 +57,7 @@ class PeriodicExpnseController extends Controller
           'job'    => 'required',
           'newjob' => 'required_if:job,0',
           'amount'  => 'required',
+          'month'  => 'required',
           'notes'   => 'sometimes'
         ]);
 
@@ -79,7 +80,7 @@ class PeriodicExpnseController extends Controller
           'types_of_expenses_id' => $request->job == 0 ? $newJob->id : $request->job,
           'amount' => $request->amount,
           'notes' => $request->notes,
-          'month' => $date->format('m'),
+          'month' => $request->month,
           'year' => $date->format('Y'),
         ]);
 
@@ -130,6 +131,7 @@ class PeriodicExpnseController extends Controller
           'job'    => 'required',
           'newjob' => 'required_if:job,0',
           'amount'  => 'required',
+          'month'  => 'required',
           'notes'   => 'sometimes'
         ]);
 
@@ -142,6 +144,7 @@ class PeriodicExpnseController extends Controller
         $dataPeriodic = array_replace([
           'types_of_expenses_id' => $request->job,
           'amount' => $request->amount,
+          'month' => $request->month,
           'notes' => $request->notes,
         ]);
       

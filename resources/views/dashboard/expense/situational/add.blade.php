@@ -27,6 +27,15 @@
                     <input type="number" class="form-control"  name="amount" placeholder="{{ trans('expense.Outflows') }}"/>
                   </div>
                   <div class="mb-3">
+                    <label for="month" class="form-label">{{ trans('attendence.label.month') }}</label>
+                    <select class="form-select" name="month" >
+                            <option value="">{{ trans('attendence.select.month') }}</option>
+                        @for ($i = 1; $i <= 12; $i++)
+                            <option value="{{ $i }}">{{ trans('attendence.months.' . $i) }}</option>
+                        @endfor
+                    </select>
+                  </div>
+                  <div class="mb-3">
                     <label class="form-label" for="">{{ trans('expense.Notes') }}</label>
                     <textarea class="form-control" name="notes" placeholder="{{ trans('expense.Notes') }}"></textarea>
                   </div>
