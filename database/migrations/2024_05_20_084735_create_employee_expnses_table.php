@@ -18,8 +18,10 @@ return new class extends Migration
             $table->unsignedBigInteger('types_of_expenses_id');
             $table->foreign('types_of_expenses_id')->references('id')->on('types_of_expenses')->onDelete('cascade');
             $table->string('name');
-            $table->double('amount', 15, 8);
-            $table->date('month')->format('m');
+            $table->double('amount', 15, 2);
+            $table->longText('notes')->nullable();
+            $table->integer('month');
+            $table->integer('year');
             $table->timestamps();
             $table->softDeletes();
         });

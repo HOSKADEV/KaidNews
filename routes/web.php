@@ -27,6 +27,11 @@ use App\Http\Controllers\Dashboard\Attendence\AttendenceController;
 use App\Http\Controllers\Dashboard\Evaluation\EvaluationController;
 use App\Http\Controllers\Dashboard\Certificate\CertificateController;
 use App\Http\Controllers\Dashboard\ExcelImport\ExcelImportController;
+use App\Http\Controllers\Expense\EmployeeExpnseController;
+use App\Http\Controllers\Expense\ExpenseController;
+use App\Http\Controllers\Expense\PeriodicExpnseController;
+use App\Http\Controllers\Expense\SituationalExpnseController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +88,10 @@ Route::get('logout', LogoutController::class)->middleware('auth:admin,student,te
 // Route::get('logout', LogoutController::class)->middleware('auth:admin,student,teacher')
 //     ->name('auth.logout');
 Route::prefix('dashboard')->name('dashboard.')->middleware('auth:admin')->group(function () {
+    Route::resource('expense', ExpenseController::class);
+    Route::resource('employee', EmployeeExpnseController::class);
+    Route::resource('periodic', PeriodicExpnseController::class);
+    Route::resource('situational', SituationalExpnseController::class);
 
 });
 Route::prefix('dashboard')->name('dashboard.')->middleware('auth:admin,teacher')->group(function () {
@@ -112,6 +121,9 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth:admin,teacher')
         Route::get('review/note', 'review')->name('reviewnote');
         Route::get('certificate', 'certificate')->name('certificate');
         Route::get('trainee_notebook/{student_id}', 'trainee_notebook')->name('trainee_notebook');
+        Route::get('employee-expenses', 'employeeExpenses')->name('employee');
+        Route::get('situational-expenses', 'situationalExpnses')->name('situational');
+        Route::get('periodic-expenses', 'periodicExpnses')->name('periodic');
     });
 
     Route::resource('certificates', CertificateController::class);

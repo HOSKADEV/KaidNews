@@ -80,7 +80,14 @@
                     <div>{{ trans('menu.settings') }}</div>
                 </a>
             </li>
+            <li class="menu-item {{ request()->routeIs('dashboard.expense.index') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.expense.index') }}" class="menu-link">
+                  <i class='text-info bx bxs-bank me-2' aria-hidden="true"></i>
+                    <div>{{ trans('menu.expenses') }}</div>
+                </a>
+            </li>
         @endif
+
     </ul>
 
 </aside>

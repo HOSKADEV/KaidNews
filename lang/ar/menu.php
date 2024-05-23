@@ -12,4 +12,5 @@ return [
     'evaluations'  => 'التقييمات',
     'certificates'  => 'الشهادات',
     'settings'=> 'الاعدادات',
+    'expenses'=> 'المصاريف',
 ];

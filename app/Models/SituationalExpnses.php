@@ -14,6 +14,8 @@ class SituationalExpnses extends Model
       'types_of_expenses_id',
       'amount',
       'month',
+      'year',
+      'notes'
     ];
 
     public function typeExpenses()

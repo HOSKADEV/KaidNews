@@ -7,23 +7,36 @@ use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 
-use Illuminate\Support\Facades\Storage;
-
 use App\Repositories\Student\StudentRepository;
+
+use App\Repositories\EmployeeExpnses\EmployeeExpnsesRepository;
+use App\Repositories\PeriodicExpnses\PeriodicExpnsesRepository;
+use App\Repositories\SituationalExpnses\SituationalExpnsesRepository;
 
 class PrintController extends Controller
 {
     private $students;
+    private $employeeExpnses;
+    private $situationalExpnses;
+    private $periodicExpnses;
 
     /**
      * StudentController constructor.
      * @param StudentRepository $students
+     * @param EmployeeExpnsesRepository $employeeExpnses
+     * @param SituationalExpnsesRepository $situationalExpnses
+     * @param PeriodicExpnsesRepository $periodicExpnses
      */
-    public function __construct(StudentRepository $students)
+    public function __construct(StudentRepository $students, EmployeeExpnsesRepository $employeeExpnses, 
+    SituationalExpnsesRepository $situationalExpnses, PeriodicExpnsesRepository $periodicExpnses)
     {
         $this->students = $students;
+        $this->employeeExpnses = $employeeExpnses;
+        $this->situationalExpnses = $situationalExpnses;
+        $this->periodicExpnses = $periodicExpnses;
     }
 
     public function attendence(Request $request)
@@ -98,9 +111,9 @@ class PrintController extends Controller
 
     public function review(Request $request)
     {
-      $date = Carbon::now()->year;
-      $account = Student::find($request->student_id);
-      return view('dashboard.printer.review', compact('account','date'));
+        $date = Carbon::now()->year;
+        $account = Student::find($request->student_id);
+        return view('dashboard.printer.review', compact('account','date'));
     }
 
     public function certificate(Request $request)
@@ -122,5 +135,40 @@ class PrintController extends Controller
         $filePath = storage_path('app/public/student-model-file.xlsx');
         $newFilename = 'إستمارة معلومات المتربصين.xlsx';
         return Response::download($filePath, $newFilename);
+    }
+
+    public function employeeExpenses(Request $request)
+    {
+        $now = Carbon::parse(now());
+        $month = $request->month == null ? $now->month  : $request->month;
+        $year = $request->year == null ? $now->year  : $request->year;
+
+        $employees = $this->employeeExpnses->paginate($perPage = 100, $month , $year);
+
+        return view('dashboard.printer.employee-expnses', compact('employees', 'year'));
+
+    }
+
+    public function situationalExpnses(Request $request)
+    {
+        $now = Carbon::parse(now());
+        $month = $request->month == null ? $now->month  : $request->month;
+        $year = $request->year == null ? $now->year  : $request->year;
+
+        $situationals = $this->situationalExpnses->paginate($perPage = 100, $month , $year);
+
+        return view('dashboard.printer.situational-expnses', compact('situationals', 'year'));
+
+    }
+
+    public function periodicExpnses(Request $request)
+    {
+      $now = Carbon::parse(now());
+      $month = $request->month == null ? $now->month  : $request->month;
+      $year = $request->year == null ? $now->year  : $request->year;
+      $periodics = $this->periodicExpnses->paginate($perPage = 100, $month, $year);
+
+        return view('dashboard.printer.periodic-expnses', compact('periodics', 'year'));
+
     }
 }

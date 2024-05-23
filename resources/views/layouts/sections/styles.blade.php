@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="{{ asset(mix('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css')) }}" />
 
 <link rel="stylesheet" href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/fontawesome-free/css/font-awesome.min.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('assets/fontawesome-free/css/font-awesome.min.css') }}"> --}}
 
 <!-- Vendor Styles -->
 @yield('vendor-style')

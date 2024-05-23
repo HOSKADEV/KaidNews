@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use PhpParser\Node\Expr\Cast\Double;
 
 class EmployeeExpnses extends Model
 {
@@ -15,6 +16,12 @@ class EmployeeExpnses extends Model
       'name',
       'amount',
       'month',
+      'year',
+      'notes'
+    ];
+
+    protected $casts = [
+      'amount' => 'double'
     ];
 
     public function typeExpenses()
