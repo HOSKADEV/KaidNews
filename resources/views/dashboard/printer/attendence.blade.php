@@ -140,7 +140,41 @@
                             @for ($day = 1; $day <= $days; $day++)
                                 <td class="text-center" style="width: 30px">
                                     @if (count($student->attendences->where('week', $i)->where('month', $month)->where('year', $year)->where('day', $day)->where('number', '!=', 0)) > 0)
-                                        X 
+                                        @php
+                                            $numbers = $student->attendences->where('week', $i)->where('month', $month)->where('year', $year)->where('day', $day);
+                                        @endphp
+                                        @foreach ($numbers as $number)
+                                        @switch($number->number)
+                                          @case(3)
+                                            <div class="d-flex">
+                                                <span class="border border-secondary p-1">x</span>
+                                                <span class="border border-secondary p-1">x</span>
+                                                <span class="border border-secondary p-1">x</span>
+                                            </div>
+                                            @break
+                                          @case(2)
+                                            <div class="d-flex">
+                                                <span class="border border-secondary p-1">x</span>
+                                                <span class="border border-secondary p-1">x</span>
+                                                <span class="border border-secondary p-1">.</span>
+                                            </div>
+                                            @break
+                                          @case(1)
+                                            <div class="d-flex">
+                                                <span class="border border-secondary p-1">x</span>
+                                                <span class="border border-secondary p-1">.</span>
+                                                <span class="border border-secondary p-1">.</span>
+                                            </div>
+                                            @break
+
+                                          @default
+                                          <div class="d-flex">
+                                            <span class="border border-secondary p-1"></span>
+                                            <span class="border border-secondary p-1"></span>
+                                            <span class="border border-secondary p-1"></span>
+                                          </div>
+                                        @endswitch
+                                        @endforeach
                                     @endif
                                 </td>
                             @endfor
