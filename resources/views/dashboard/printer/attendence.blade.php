@@ -144,37 +144,36 @@
                                             $numbers = $student->attendences->where('week', $i)->where('month', $month)->where('year', $year)->where('day', $day);
                                         @endphp
                                         @foreach ($numbers as $number)
-                                        @switch($number->number)
-                                          @case(3)
-                                            <div class="d-flex">
-                                                <span class=" pl-1">ح</span>
-                                                <span class=" pl-1">ح</span>
-                                                <span class=" pl-1">ح</span>
-                                            </div>
-                                            @break
-                                          @case(2)
-                                            <div class="d-flex">
-                                                <span class=" pl-1">ح</span>
-                                                <span class=" pl-1">ح</span>
-                                                <span class=" pl-1">غ</span>
-                                            </div>
-                                            @break
-                                          @case(1)
-                                            <div class="d-flex">
-                                                <span class=" pl-1">ح</span>
-                                                <span class=" pl-1">غ</span>
-                                                <span class=" pl-1">غ</span>
-                                            </div>
-                                            @break
-
-                                          @default
-                                          <div class="d-flex">
-                                            <span class=" pl-1">غ</span>
-                                            <span class=" pl-1">غ</span>
-                                            <span class=" pl-1">غ</span>
-                                          </div>
-                                        @endswitch
+                                            @switch($number->number)
+                                              @case(3)
+                                                <div class="d-flex">
+                                                    <span class="text-success">ح</span>
+                                                    <span class="text-success">ح</span>
+                                                    <span class="text-success">ح</span>
+                                                </div>
+                                                @break
+                                              @case(2)
+                                                <div class="d-flex">
+                                                    <span class="text-success">ح</span>
+                                                    <span class="text-success">ح</span>
+                                                    <span class="text-danger">غ</span>
+                                                </div>
+                                                @break
+                                              @case(1)
+                                                <div class="d-flex">
+                                                    <span class="text-success">ح</span>
+                                                    <span class="text-danger">غ</span>
+                                                    <span class="text-danger">غ</span>
+                                                </div>
+                                                @break
+                                            @endswitch
                                         @endforeach
+                                    @else
+                                        <div class="d-flex">
+                                          <span class="text-danger">غ</span>
+                                          <span class="text-danger">غ</span>
+                                          <span class="text-danger">غ</span>
+                                        </div>
                                     @endif
                                 </td>
                             @endfor
