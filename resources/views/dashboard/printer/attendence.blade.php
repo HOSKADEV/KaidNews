@@ -147,31 +147,31 @@
                                         @switch($number->number)
                                           @case(3)
                                             <div class="d-flex">
-                                                <span class="border border-secondary p-1">x</span>
-                                                <span class="border border-secondary p-1">x</span>
-                                                <span class="border border-secondary p-1">x</span>
+                                                <span class=" pl-1">ح</span>
+                                                <span class=" pl-1">ح</span>
+                                                <span class=" pl-1">ح</span>
                                             </div>
                                             @break
                                           @case(2)
                                             <div class="d-flex">
-                                                <span class="border border-secondary p-1">x</span>
-                                                <span class="border border-secondary p-1">x</span>
-                                                <span class="border border-secondary p-1">.</span>
+                                                <span class=" pl-1">ح</span>
+                                                <span class=" pl-1">ح</span>
+                                                <span class=" pl-1">غ</span>
                                             </div>
                                             @break
                                           @case(1)
                                             <div class="d-flex">
-                                                <span class="border border-secondary p-1">x</span>
-                                                <span class="border border-secondary p-1">.</span>
-                                                <span class="border border-secondary p-1">.</span>
+                                                <span class=" pl-1">ح</span>
+                                                <span class=" pl-1">غ</span>
+                                                <span class=" pl-1">غ</span>
                                             </div>
                                             @break
 
                                           @default
                                           <div class="d-flex">
-                                            <span class="border border-secondary p-1"></span>
-                                            <span class="border border-secondary p-1"></span>
-                                            <span class="border border-secondary p-1"></span>
+                                            <span class=" pl-1">غ</span>
+                                            <span class=" pl-1">غ</span>
+                                            <span class=" pl-1">غ</span>
                                           </div>
                                         @endswitch
                                         @endforeach
